@@ -27,10 +27,12 @@ class MainFrame:
         self._width, self._height = window_width, window_height
         self._frame = pygame.display
         self._surface = self._frame.set_mode((self._width, self._height))
+        # create ground platform
+        self._ground = Ground((0, self._surface.get_height() - 50, 500, 100), "Der")
         # get a word-article combo from the database
         self._word_article_combo = database.get_random_word()
         # character attributes
-        self._character = MainCharacter((window_width, window_height))
+        self._character = MainCharacter((window_width, window_height), self._ground.rect.y)
         self.user_initial_position = 204
         # result screen
         # also, the text displays "you win" by default. This is overwritten in the code for wrong answers.
@@ -44,7 +46,6 @@ class MainFrame:
         self.required_bgs = math.ceil(self._surface.get_height() / self._background_list[0].get_height()) + 2
         self.scroll = 0
         # platform attributes
-        self._ground = Ground((0, self._surface.get_height()-50, 500, 100), "Der")
         self._platform_one = Platform((0, 100), (107, 30), "der platform")
         self._platform_two = Platform((self._width/2-(107/2), 100), (107, 30), "das platform")
         self._platform_three = Platform((self._width-107, 100), (107, 30), "die platform")
@@ -143,13 +144,13 @@ class MainFrame:
     def handle_input(self):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_RIGHT]:
-            if self.clamp() != "r border":
+            if self.allow_traversal() != "r border":
                 self._character.rect.x += self._character.velocity
                 if not self._jumping:
                     self._character.animation_mode = 1
                 self._character.flip = False
         elif keys[pygame.K_LEFT]:
-            if self.clamp() != "l border":
+            if self.allow_traversal() != "l border":
                 self._character.rect.x -= self._character.velocity
                 if not self._jumping:
                     self._character.animation_mode = 1
@@ -174,15 +175,17 @@ class MainFrame:
             self._jumping = False
             self._character.jump_velocity = 20
 
-    def clamp(self) -> str:
+    def allow_traversal(self) -> str:
         """
-        clamps the character's x coordinate so that it can't go off-screen or off other platforms.
+        allows for the user to go beyond the borders and spawn on the other side
 
         :return: String
         """
-        if self._character.rect.x < -1 * self._character.rect.size[0]/2+20:
+        if self._character.rect.x < -1 * self._character.rect.size[0]/2:
+            self._character.rect.x = self._surface.get_width()-self._character.rect.size[0]/2
             return "l border"
-        if self._character.rect.bottomright[0] > self._surface.get_width()+self._character.rect.size[0]/2-20:
+        if self._character.rect.bottomright[0] > self._surface.get_width()+self._character.rect.size[0]/2:
+            self._character.rect.x = -1 * self._character.rect.size[0]/2
             return "r border"
         # ensure that the character can not move past platform margins once on it
         """if self._on_platform:

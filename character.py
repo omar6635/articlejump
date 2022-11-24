@@ -3,13 +3,14 @@ from loadSprite import load_sprite
 
 
 class MainCharacter(pygame.sprite.Sprite):
-    def __init__(self, coordinates):
+    def __init__(self, coordinates, ground_y):
         super(MainCharacter, self).__init__()
         self.sprite = pygame.image.load("data/gfx/internet_asset_packs/Medieval King Pack 2/Sprites/Idle.png")\
             .convert_alpha()
-        self.image = load_sprite(self.sprite, 0, 160, 111, 1, (0, 0, 0))
-        self.rect = self.image.get_rect()
-        self.reset_position(coordinates)
+        # 63, 223, 383 ...
+        self.image = load_sprite(self.sprite, 64, 50, 34, 56, 1, (0, 0, 0))
+        self.rect = pygame.Rect(0, 0, 34, 56)
+        self.reset_position(coordinates, ground_y)
         self._velocity = 3
         self._jump_velocity = 20
         self._accelr = 1
@@ -19,9 +20,9 @@ class MainCharacter(pygame.sprite.Sprite):
         self.animation_mode = 0
         self.flip = False
 
-    def reset_position(self, coordinates):
-        self.rect.x = coordinates[0]/2
-        self.rect.y = coordinates[1] - self.rect.size[1]*1.39
+    def reset_position(self, coordinates, ground_y):
+        self.rect.centerx = coordinates[0]/2
+        self.rect.bottom = ground_y+2
 
     def create_animation_list(self):
         # create two dimensional list of sprite packs for idle, jumping, dead etc.
@@ -34,8 +35,9 @@ class MainCharacter(pygame.sprite.Sprite):
             self.sprite = pygame.image.load(file).convert_alpha()
             steps = int(self.sprite.get_width() / 160)
             temp_list = []
+            multiplier = 160
             for x in range(steps):
-                temp_list.append(load_sprite(self.sprite, x, 160, 111, 1, (0, 0, 0)))
+                temp_list.append(load_sprite(self.sprite, 63+multiplier*x, 50, 34, 56, 1, (0, 0, 0)))
             animation_list.append(temp_list)
         return animation_list
 
@@ -90,10 +92,11 @@ class MainCharacter(pygame.sprite.Sprite):
 if __name__ == "__main__":
     pygame.init()
     display = pygame.display.set_mode((500, 500))
-    my_char = MainCharacter((250, 0))
+    my_char = MainCharacter((500, 500), 400)
     run = True
     while run:
         display.fill((55, 55, 55))
+        pygame.draw.rect(display, (0, 0, 0), my_char.rect, 2)
         loop_animation = my_char.create_animation_list()
         my_char.animation(loop_animation, display)
         for event in pygame.event.get():
