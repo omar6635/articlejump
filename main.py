@@ -1,5 +1,4 @@
 # a&m's -> attributes and methods
-import copy
 import pygame
 import database
 import asyncio
@@ -7,7 +6,7 @@ import time
 import math
 from character import MainCharacter
 from ground import Ground
-from text import Text
+from platforms import Platform
 # initialize pygame globally for global variables
 pygame.init()
 # database object is defined globally so that any class can access it
@@ -50,6 +49,8 @@ class MainFrame:
         self._platform_two = Platform((self._width/2-(107/2), 90), (107, 30), "das platform")
         self._platform_three = Platform((self._width-107, 90), (107, 30), "die platform")
         self._platform_group = pygame.sprite.Group(self._platform_one, self._platform_two, self._platform_three)
+        for platform in self._platform_group:
+            self._platform_group.add(platform.create_new_platform())
         # fonts
         self.main_font_30 = pygame.font.Font("data/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf", 30)
         self.main_font_50 = pygame.font.Font("data/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf", 50)
@@ -277,27 +278,6 @@ class MainFrame:
             current_word_article_combo = self._word_article_combo
             while current_word_article_combo[0] == self._word_article_combo[0]:
                 self._word_article_combo = database.get_random_word()
-
-
-class Platform(pygame.sprite.Sprite):
-    def __init__(self, coordinates, dimesions, name):
-        # calling parent class constructor in order to get access to its a&m's
-        super(Platform, self).__init__()
-        self.name = name
-        self.image = pygame.transform.scale(pygame.image.load("data/gfx/platform_sprite.png"), dimesions)
-        self.rect = self.image.get_rect()
-        self.rect.x = coordinates[0]
-        self.rect.y = coordinates[1]
-        self.rect_deepcopy = copy.deepcopy(self.rect.y)
-        self.article = Text(str.upper(name[0:3]), (0, 0, 0), 40, (self.rect.centerx,
-                                                                  self.rect.centery+self.rect.size[1]-7))
-        self.article_y_deepcopy = copy.deepcopy(self.article.rect.y)
-
-    def draw_platform(self, surface, scroll):
-        self.rect.y = self.rect_deepcopy - scroll
-        self.article.rect.y = self.article_y_deepcopy - scroll
-        surface.blit(self.image, self.rect)
-        surface.blit(self.article.article_surface, self.article.rect)
 
 
 class ResultScreen:

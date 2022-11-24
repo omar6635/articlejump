@@ -1,7 +1,6 @@
 import pygame
 import copy
 from text import Text
-from loadSprite import load_sprite
 
 
 class Ground(pygame.sprite.Sprite):

@@ -83,6 +83,9 @@ class MainCharacter(pygame.sprite.Sprite):
         if self._jump_velocity < 0:
             if (self.rect.bottom - self._jump_velocity+8) > platform_group.sprites()[0].rect.y and \
                     MainCharacter.check_character_platform_col(platform_group, self.rect.centerx,
+               self.rect.bottom - self._jump_velocity) or \
+                    (self.rect.bottom - self._jump_velocity+8) > platform_group.sprites()[3].rect.y and \
+                    MainCharacter.check_character_platform_col(platform_group, self.rect.centerx,
                                                                self.rect.bottom - self._jump_velocity):
                 return True
             else:
