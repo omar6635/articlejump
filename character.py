@@ -13,12 +13,14 @@ class MainCharacter(pygame.sprite.Sprite):
         self.reset_position(coordinates, ground_y)
         self._velocity = 3
         self._jump_velocity = 20
-        self._accelr = 1
+        self._gravity = 1
         self.last_time = pygame.time.get_ticks()
         self.animation_cooldown = 100
         self.frame = 0
         self.animation_mode = 0
+        self.jumping = False
         self.flip = False
+        self.on_platform = False
 
     def reset_position(self, coordinates, ground_y):
         self.rect.centerx = coordinates[0]/2
@@ -64,6 +66,35 @@ class MainCharacter(pygame.sprite.Sprite):
         else:
             self.animation_mode = 3
 
+    def jump(self, ground_y, platform_group):
+        self.rect.y -= self._jump_velocity
+        self._jump_velocity -= self.gravity
+
+        if self.rect.bottom - self._jump_velocity > ground_y:
+            self.jumping = False
+            self._jump_velocity = 20
+        if self.check_platform_collision(platform_group):
+            self.jumping = False
+            self.on_platform = True
+            self._jump_velocity = 20
+
+    def check_platform_collision(self, platform_group):
+        # use collideobjects() for the rect class to test if character collides with platforms
+        if self._jump_velocity < 0:
+            if (self.rect.bottom - self._jump_velocity+8) > platform_group.sprites()[0].rect.y and \
+                    MainCharacter.check_character_platform_col(platform_group, self.rect.centerx,
+                                                               self.rect.bottom - self._jump_velocity):
+                return True
+            else:
+                return False
+
+    @staticmethod
+    def check_character_platform_col(platform_group, x, y):
+        for platform in platform_group:
+            if platform.rect.collidepoint(x, y):
+                return True
+        return False
+
     @property
     def velocity(self):
         return self._velocity
@@ -81,12 +112,12 @@ class MainCharacter(pygame.sprite.Sprite):
         self._jump_velocity = val
 
     @property
-    def accelr(self):
-        return self._accelr
+    def gravity(self):
+        return self._gravity
 
-    @accelr.setter
-    def accelr(self, val):
-        self._accelr = val
+    @gravity.setter
+    def gravity(self, val):
+        self._gravity = val
 
 
 if __name__ == "__main__":

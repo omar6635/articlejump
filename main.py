@@ -46,9 +46,9 @@ class MainFrame:
         self.required_bgs = math.ceil(self._surface.get_height() / self._background_list[0].get_height()) + 2
         self.scroll = 0
         # platform attributes
-        self._platform_one = Platform((0, 100), (107, 30), "der platform")
-        self._platform_two = Platform((self._width/2-(107/2), 100), (107, 30), "das platform")
-        self._platform_three = Platform((self._width-107, 100), (107, 30), "die platform")
+        self._platform_one = Platform((0, 90), (107, 30), "der platform")
+        self._platform_two = Platform((self._width/2-(107/2), 90), (107, 30), "das platform")
+        self._platform_three = Platform((self._width-107, 90), (107, 30), "die platform")
         self._platform_group = pygame.sprite.Group(self._platform_one, self._platform_two, self._platform_three)
         # fonts
         self.main_font_30 = pygame.font.Font("data/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf", 30)
@@ -59,16 +59,13 @@ class MainFrame:
         # formatting code
         self.format_panel_screen()
         self._result_list = [Platform((0, 0), (0, 0), "default")]
-        self._on_platform = False
-        self._jumping = False
         self._force_descent = False
         self._draw_trail = False
         self.running = True
         self.menu_running = False
-        self.offset = 32
         # display splash and title screens
-        #self.splash_screen()
-        #self.title_screen()
+        # self.splash_screen()
+        # self.title_screen()
 
     def catch_events(self):
         for event in pygame.event.get():
@@ -132,52 +129,29 @@ class MainFrame:
             pygame.display.update()
             pygame.time.delay(10)
 
-    def detect_collision_platforms(self):
-        # FIXME: collision detection is rather clunky and janky
-        """if pygame.sprite.spritecollide(self._character, self._platform_group, False) and \
-                self._character.jump_velocity < 0:
-            self._result_list = pygame.sprite.spritecollide(self._character, self._platform_group, False)
-            self._on_platform = True
-        else:
-            self._on_platform = False"""
-
     def handle_input(self):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_RIGHT]:
             if self.allow_traversal() != "r border":
                 self._character.rect.x += self._character.velocity
-                if not self._jumping:
+                if not self._character.jumping:
                     self._character.animation_mode = 1
                 self._character.flip = False
         elif keys[pygame.K_LEFT]:
             if self.allow_traversal() != "l border":
                 self._character.rect.x -= self._character.velocity
-                if not self._jumping:
+                if not self._character.jumping:
                     self._character.animation_mode = 1
                 self._character.flip = True
         else:
             self._character.animation_mode = 0
-        if keys[pygame.K_UP] and not self._jumping:
-            self._jumping = True
-
-    def reset_character_pos(self):
-        self._character.rect.x = self._surface.get_width() / 2
-        self._character.rect.y = self._surface.get_height() - 96
-
-    def character_jump(self):
-        self._character.rect.y -= self._character.jump_velocity
-        self._character.jump_velocity -= self._character.accelr
-        if self._character.rect.colliderect(self._ground):
-            self._jumping = False
-            self._character.jump_velocity = 20
-        if self._on_platform:
-            self._character.rect.y = self._platform_one.rect.topleft[1] - self._platform_one.rect.size[1] - self.offset
-            self._jumping = False
-            self._character.jump_velocity = 20
+        if keys[pygame.K_UP] and not self._character.jumping:
+            self._character.on_platform = False
+            self._character.jumping = True
 
     def allow_traversal(self) -> str:
         """
-        allows for the user to go beyond the borders and spawn on the other side
+        allows for the user to go beyond the borders and pop out on the other side
 
         :return: String
         """
@@ -208,9 +182,9 @@ class MainFrame:
                                                               self.scroll))
             start_number -= 150
         # check if character's jumping or not
-        if self._jumping:
+        if self._character.jumping:
             self._character.check_jump(self._character.jump_velocity)
-            self.character_jump()
+            self._character.jump(self._ground.rect.y, self._platform_group)
         # draw the ground on background
         self._ground.blit_ground(self._surface, self.scroll)
         # draw the character on the background
@@ -219,17 +193,25 @@ class MainFrame:
         # draw platforms on bg
         for platform in self._platform_group:
             platform.draw_platform(self._surface, self.scroll)
-        #if self._draw_trail:
+        # if self._draw_trail:
         #    line_trail = LineTrail(pygame.mouse.get_pos(), self, (self._character.rect.centerx,
         #                           self._surface.get_height() - self._character.rect.centery))
         #    line_trail.update(self._surface)
-        self.check_and_show_result(self._result_list[0].name, str.lower(self._word_article_combo[1]) + " platform")
+        # self.check_and_show_result(self._result_list[0].name, str.lower(self._word_article_combo[1]) + " platform")
+        # make user fall of platform if not on it anymore
+        if self._character.on_platform and not MainCharacter.check_character_platform_col(self._platform_group,
+                                               self._character.rect.centerx, self._character.rect.bottom):
+            self._character.jumping = True
+            self._character.jump_velocity = 0
+            self._character.on_platform = False
+        # replace word under ground/platform and restart user position
         self.draw_next_frame()
+        # scroll the background
         self.scroll_background()
-        self._frame.flip()
+        self._frame.update()
 
     def scroll_background(self):
-        if self._jumping and self._character.jump_velocity > -20:
+        if self._character.jumping and self._character.jump_velocity > -20:
             self.scroll -= self._character.jump_velocity
             if abs(self.scroll) > self._surface.get_height():
                 self.scroll = 0
@@ -285,7 +267,6 @@ class MainFrame:
 
     def draw_next_frame(self):
         if self._result_screen.effect_finished:
-            self.offset = 15
             self._result_screen.upper_limit = False
             self._result_screen.effect_finished = False
             for platform in self._platform_group:
@@ -382,7 +363,6 @@ async def main():
     clock = pygame.time.Clock()
     while main_frame.running:
         clock.tick(60)
-        main_frame.detect_collision_platforms()
         main_frame.catch_events()
         if not main_frame.menu_running:
             main_frame.draw_surface_sprites()
