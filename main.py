@@ -4,9 +4,12 @@ import database
 import asyncio
 import time
 import math
+import copy
 from character import MainCharacter
 from ground import Ground
 from platforms import Platform
+from result_screen import ResultScreen
+from text import Text
 # initialize pygame globally for global variables
 pygame.init()
 # database object is defined globally so that any class can access it
@@ -27,30 +30,35 @@ class MainFrame:
         self._frame = pygame.display
         self._surface = self._frame.set_mode((self._width, self._height))
         # create ground platform
-        self._ground = Ground((0, self._surface.get_height() - 50, 500, 100), "Der")
-        # get a word-article combo from the database
-        self._word_article_combo = database.get_random_word()
+        self._ground = Ground((0, self._surface.get_height() - 50, 500, 100))
         # character attributes
         self._character = MainCharacter((window_width, window_height), self._ground.rect.y)
-        self.user_initial_position = 204
+        # list of words drawn on screen
+        self.word_article_dict = {}
         # result screen
         # also, the text displays "you win" by default. This is overwritten in the code for wrong answers.
         self._result_screen = ResultScreen("Correct!   ", (0, 255, 0))
         # create background list and variable for number of backgrounds required to fill screens
         self._background_list = []
         self._background_list.append(pygame.transform.scale(pygame.image.load("data/gfx/background_sprite2.png")
-                                                            .convert(), (self._surface.get_width(), 150)))
+                                                            .convert(), (self._surface.get_width(),
+                                                                         self._surface.get_height()/2)))
         self._background_list.append(pygame.transform.scale(pygame.image.load("data/gfx/background_sprite3.png")
-                                                            .convert(), (self._surface.get_width(), 150)))
+                                                            .convert(), (self._surface.get_width(),
+                                                                         self._surface.get_height()/2)))
         self.required_bgs = math.ceil(self._surface.get_height() / self._background_list[0].get_height()) + 2
-        self.scroll = 0
         # platform attributes
-        self._platform_one = Platform((0, 90), (107, 30), "der platform")
-        self._platform_two = Platform((self._width/2-(107/2), 90), (107, 30), "das platform")
-        self._platform_three = Platform((self._width-107, 90), (107, 30), "die platform")
+        self._platform_one = Platform((0, self._surface.get_height()-220), (107, 30), "der platform")
+        self._platform_two = Platform((self._width/2-(107/2),
+                                       self._surface.get_height()-220), (107, 30), "das platform")
+        self._platform_three = Platform((self._width-107, self._surface.get_height()-220), (107, 30), "die platform")
         self._platform_group = pygame.sprite.Group(self._platform_one, self._platform_two, self._platform_three)
         for platform in self._platform_group:
-            self._platform_group.add(platform.create_new_platform())
+            self._platform_group.add(platform.create_new_platforms())
+        # for every 3 platforms in the platform group, blit a randomly generated word on the screen
+        for i in range(0, len(self._platform_group), 3):
+            self.generate_draw_word(self._platform_group.sprites()[i+1].rect.center)
+        # self.word_article_dict.pop(list(self.word_article_dict.items())[0][0])
         # fonts
         self.main_font_30 = pygame.font.Font("data/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf", 30)
         self.main_font_50 = pygame.font.Font("data/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf", 50)
@@ -60,6 +68,7 @@ class MainFrame:
         # formatting code
         self.format_panel_screen()
         self._result_list = [Platform((0, 0), (0, 0), "default")]
+        self.background_scroll = 0
         self._force_descent = False
         self._draw_trail = False
         self.running = True
@@ -88,7 +97,6 @@ class MainFrame:
             current_time *= 60
             previous_time = time.time()
             splash_screen_timer += current_time
-
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -116,7 +124,6 @@ class MainFrame:
                 if event.type == pygame.QUIT:
                     pygame.quit()
             if clicked and start_button.collidepoint(mouse_coords):
-                clicked = False
                 pygame.mixer.Sound.play(jump_sfx)
                 display_ts = False
             self._surface.fill((0, 128, 128))
@@ -130,92 +137,36 @@ class MainFrame:
             pygame.display.update()
             pygame.time.delay(10)
 
-    def handle_input(self):
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_RIGHT]:
-            if self.allow_traversal() != "r border":
-                self._character.rect.x += self._character.velocity
-                if not self._character.jumping:
-                    self._character.animation_mode = 1
-                self._character.flip = False
-        elif keys[pygame.K_LEFT]:
-            if self.allow_traversal() != "l border":
-                self._character.rect.x -= self._character.velocity
-                if not self._character.jumping:
-                    self._character.animation_mode = 1
-                self._character.flip = True
-        else:
-            self._character.animation_mode = 0
-        if keys[pygame.K_UP] and not self._character.jumping:
-            self._character.on_platform = False
-            self._character.jumping = True
-
-    def allow_traversal(self) -> str:
-        """
-        allows for the user to go beyond the borders and pop out on the other side
-
-        :return: String
-        """
-        if self._character.rect.x < -1 * self._character.rect.size[0]/2:
-            self._character.rect.x = self._surface.get_width()-self._character.rect.size[0]/2
-            return "l border"
-        if self._character.rect.bottomright[0] > self._surface.get_width()+self._character.rect.size[0]/2:
-            self._character.rect.x = -1 * self._character.rect.size[0]/2
-            return "r border"
-        # ensure that the character can not move past platform margins once on it
-        """if self._on_platform:
-            platform_to_check = self._result_list[0]
-            if self._character.rect.bottomright[0] > platform_to_check.rect.topright[0]:
-                return "r border"
-            elif self._character.rect.bottomleft[0] < platform_to_check.rect.topleft[0]:
-                return "l border"""
-
     def format_panel_screen(self):
         self._frame.set_caption("Artikeljump")
         self._frame.set_icon(self._character.image)
 
     def draw_surface_sprites(self):
         self._surface.fill((0, 0, 0))
+        # move character
+        scroll = self._character.move(self._ground.rect.y, self._platform_group, self._surface.get_rect()[2:])
+        # create background scroll by adding scroll onto it (cumulative variable)
+        self.background_scroll += scroll
         # blit the background(s) on the frame
-        start_number = 150
+        start_number = self._surface.get_height()/2
         for i in range(0, self.required_bgs):
-            self._surface.blit(self._background_list[i % 2], (0, start_number -
-                                                              self.scroll))
-            start_number -= 150
-        # check if character's jumping or not
-        if self._character.jumping:
-            self._character.check_jump(self._character.jump_velocity)
-            self._character.jump(self._ground.rect.y, self._platform_group)
+            self._surface.blit(self._background_list[i % 2], (0, start_number +
+                                                              self.background_scroll))
+            start_number -= self._surface.get_height()/2
         # draw the ground on background
-        self._ground.blit_ground(self._surface, self.scroll)
+        self._ground.blit_ground(self._surface, scroll)
         # draw the character on the background
         sprite_list = self._character.create_animation_list()
         self._character.animation(sprite_list, self._surface)
         # draw platforms on bg
         for platform in self._platform_group:
-            platform.draw_platform(self._surface, self.scroll)
-        # if self._draw_trail:
-        #    line_trail = LineTrail(pygame.mouse.get_pos(), self, (self._character.rect.centerx,
-        #                           self._surface.get_height() - self._character.rect.centery))
-        #    line_trail.update(self._surface)
-        # self.check_and_show_result(self._result_list[0].name, str.lower(self._word_article_combo[1]) + " platform")
-        # make user fall of platform if not on it anymore
-        if self._character.on_platform and not MainCharacter.check_character_platform_col(self._platform_group,
-                                               self._character.rect.centerx, self._character.rect.bottom):
-            self._character.jumping = True
-            self._character.jump_velocity = 0
-            self._character.on_platform = False
-        # replace word under ground/platform and restart user position
-        self.draw_next_frame()
-        # scroll the background
-        self.scroll_background()
+            platform.draw_platform(self._surface, scroll)
+        # draw words on bg
+        for sub_list in list(self.word_article_dict.items()):
+            sub_list[0].scroll_text(scroll)
+            sub_list[0].draw_on_surface_alpha(self._surface, 75)
+        # background_scroll the background
         self._frame.update()
-
-    def scroll_background(self):
-        if self._character.jumping and self._character.jump_velocity > -20:
-            self.scroll -= self._character.jump_velocity
-            if abs(self.scroll) > self._surface.get_height():
-                self.scroll = 0
 
     def create_draw_menu(self):
         while self.menu_running:
@@ -250,103 +201,29 @@ class MainFrame:
                     self.menu_running = False
                     pygame.quit()
 
-    def check_and_show_result(self, on_platform, correct_result):
-        if on_platform == correct_result:
-            self._result_screen.change_text("Correct!", (0, 255, 0))
-            self._result_screen.fade_in_out_effect()
-            self._surface.blit(self._result_screen.textcop, (self._surface.get_rect().centerx -
-                                                             self._result_screen.textcop.get_size()[0] / 2,
-                                                             self._surface.get_rect().centery -
-                                                             self._result_screen.textcop.get_size()[1] / 2))
-        elif on_platform != "default" and on_platform != correct_result:
-            self._result_screen.change_text("Incorrect!", (255, 0, 0))
-            self._result_screen.fade_in_out_effect()
-            self._surface.blit(self._result_screen.textcop, (self._surface.get_rect().centerx -
-                                                             self._result_screen.textcop.get_size()[0] / 2,
-                                                             self._surface.get_rect().centery -
-                                                             self._result_screen.textcop.get_size()[1] / 2))
-
-    def draw_next_frame(self):
-        if self._result_screen.effect_finished:
-            self._result_screen.upper_limit = False
-            self._result_screen.effect_finished = False
-            for platform in self._platform_group:
-                if platform != self._result_list[0]:
-                    self._platform_group.remove(platform)
-            self._result_list = [Platform((0, 0), (0, 0), "default")]
-            # FIXME: temporary fix for getting the same word as the current one. Solve in original class.
-            current_word_article_combo = self._word_article_combo
-            while current_word_article_combo[0] == self._word_article_combo[0]:
-                self._word_article_combo = database.get_random_word()
-
-
-class ResultScreen:
-    def __init__(self, text: str, color: tuple):
-        super(ResultScreen, self).__init__()
-        pygame.font.init()
-        self.font = pygame.font.SysFont("Calibri", 50)
-        self.textsurface = self.font.render(text, True, color)
-        self.textcop = self.textsurface.copy()
-        self.alphasurf = pygame.Surface(self.textcop.get_size(), pygame.SRCALPHA)
-        self.alphaval = 0
-        self.upper_limit = False
-        self.effect_finished = False
-
-    def fade_in_out_effect(self):
-        # to be used later for displaying win or loss text
-        # this code can produce a fade in or fade out effect alike
-        # alphaval cannot reach 0. otherwise, unwanted effects can occur
-        if not self.upper_limit:
-            self.alphaval = min(self.alphaval + 4, 255)
-        else:
-            self.alphaval = max(self.alphaval-4, 0)
-        # using a copy of the original text makes things noticeably faster
-        self.textcop = self.textsurface.copy()
-        # fill alphasurface with a certain opacity of white (lower alpha = more transparent)
-        self.alphasurf.fill((255, 255, 255, self.alphaval))
-        # blend white surface onto text to change its opacity
-        self.textcop.blit(self.alphasurf, (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
-        if self.alphaval == 255:
-            self.upper_limit = True
-        if self.alphaval == 0:
-            self.effect_finished = True
-
-    def change_text(self, new_text: str, color):
-        self.textsurface = self.font.render(new_text, True, color)
-
-
-class LineTrail(pygame.sprite.Sprite):
-    def __init__(self, mouse_coords, parent, coordinates):
-        super(LineTrail, self).__init__()
-        self.mouse_coords = mouse_coords
-        self.xpos = coordinates[0]
-        self.ypos = coordinates[1]
-        # self.rotate(coordinates[0], coordinates[1], width, height)
-        self.parent = parent
-
-    def update(self, parent):
-        pygame.draw.line(parent, (0, 255, 0), (self.xpos, self.ypos), self.mouse_coords)
-
-    """def rotate(self, pivot_x, pivot_y, width, height):
-        if self.mouse_coords[0] < pivot_x and self.mouse_coords[1] > pivot_y:
-            self.xpos, self.ypos = pivot_x - width, pivot_y
-        elif self.mouse_coords[0] > pivot_x and self.mouse_coords[1] < pivot_y:
-            self.xpos, self.ypos = pivot_x, pivot_y - height
-        elif self.mouse_coords[0] < pivot_x and self.mouse_coords[1] < pivot_y:
-            self.xpos, self.ypos = pivot_x - width, pivot_y - height
-        elif self.mouse_coords[0] > pivot_x and self.mouse_coords[1] > pivot_y:
-            self.xpos, self.ypos = pivot_x, pivot_y"""
+    def generate_draw_word(self, coordinates: tuple) -> None:
+        # prepare coordinates
+        a_y = copy.deepcopy(coordinates[1]) - 90
+        a_x = copy.deepcopy(coordinates[0])
+        # get a word-article combo from the database
+        word_article_combo = database.get_random_word()
+        # as long as the database returns a duplicate, get another one
+        while word_article_combo[0] in [i[0].text for i in list(self.word_article_dict.items())]:
+            word_article_combo = database.get_random_word()
+        # create a Text object
+        text_obj = Text(word_article_combo[0], (0, 0, 0), 40, (a_x, a_y))
+        # add the Text object and its correct article to dict
+        self.word_article_dict[text_obj] = word_article_combo[1]
 
 
 async def main():
-    main_frame = MainFrame(window_width=500, window_height=300)
+    main_frame = MainFrame(window_width=500, window_height=700)
     clock = pygame.time.Clock()
     while main_frame.running:
         clock.tick(60)
         main_frame.catch_events()
         if not main_frame.menu_running:
             main_frame.draw_surface_sprites()
-            main_frame.handle_input()
         else:
             main_frame.create_draw_menu()
         await asyncio.sleep(0)

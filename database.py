@@ -15,7 +15,8 @@ class SQLMain:
     def insert_word(*args):
         Word(name=args[0], difficulty=args[1], favorite_word=args[2], article_id=args[3])
 
-    def create_articles(self):
+    @staticmethod
+    def create_articles():
         Article(name="Der")
         Article(name="Das")
         Article(name="Die")

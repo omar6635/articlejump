@@ -1,5 +1,5 @@
 import pygame
-from loadSprite import load_sprite
+from load_sprite import load_sprite
 
 
 class MainCharacter(pygame.sprite.Sprite):
@@ -12,7 +12,7 @@ class MainCharacter(pygame.sprite.Sprite):
         self.rect = pygame.Rect(0, 0, 34, 56)
         self.reset_position(coordinates, ground_y)
         self._velocity = 3
-        self._jump_velocity = 20
+        self._jump_velocity = 0
         self._gravity = 1
         self.last_time = pygame.time.get_ticks()
         self.animation_cooldown = 100
@@ -21,6 +21,7 @@ class MainCharacter(pygame.sprite.Sprite):
         self.jumping = False
         self.flip = False
         self.on_platform = False
+        self.scroll_threshold = None
 
     def reset_position(self, coordinates, ground_y):
         self.rect.centerx = coordinates[0]/2
@@ -66,37 +67,80 @@ class MainCharacter(pygame.sprite.Sprite):
         else:
             self.animation_mode = 3
 
-    def jump(self, ground_y, platform_group):
-        self.rect.y -= self._jump_velocity
-        self._jump_velocity -= self.gravity
+    def move(self, ground_top,  platform_group, screen_dimensions):
+        # reset variables
+        scroll = 0
+        dx = 0
+        dy = 0
+        s_width = screen_dimensions[0]
+        self.scroll_threshold = screen_dimensions[1]/2
 
-        if self.rect.bottom - self._jump_velocity > ground_y:
-            self.jumping = False
-            self._jump_velocity = 20
-        if self.check_platform_collision(platform_group):
-            self.jumping = False
-            self.on_platform = True
-            self._jump_velocity = 20
+        # process keypresses
+        self.handle_input(s_width)
 
-    def check_platform_collision(self, platform_group):
-        # use collideobjects() for the rect class to test if character collides with platforms
-        if self._jump_velocity < 0:
-            if (self.rect.bottom - self._jump_velocity+8) > platform_group.sprites()[0].rect.y and \
-                    MainCharacter.check_character_platform_col(platform_group, self.rect.centerx,
-               self.rect.bottom - self._jump_velocity) or \
-                    (self.rect.bottom - self._jump_velocity+8) > platform_group.sprites()[3].rect.y and \
-                    MainCharacter.check_character_platform_col(platform_group, self.rect.centerx,
-                                                               self.rect.bottom - self._jump_velocity):
-                return True
-            else:
-                return False
+        # gravity
+        self._jump_velocity += self._gravity
+        dy += self._jump_velocity
 
-    @staticmethod
-    def check_character_platform_col(platform_group, x, y):
+        # check collision with platform
         for platform in platform_group:
-            if platform.rect.collidepoint(x, y):
-                return True
-        return False
+            # collision in the y direction
+            if platform.rect.colliderect(self.rect.x, self.rect.y + dy, self.rect.width, self.rect.height):
+                # check if above the platform
+                if self.rect.bottom < platform.rect.centery:
+                    if self.jump_velocity > 0:
+                        self.rect.bottom = platform.rect.top
+                        dy = 0
+                        self.jump_velocity = -20
+
+        # check collision with ground
+        if self.rect.bottom + dy > ground_top:
+            dy = 0
+            self.jump_velocity = -20
+
+        # check if the player has bounced to the top of the screen
+        if self.rect.top <= self.scroll_threshold:
+            # if player is jumping
+            if self.jump_velocity < 0:
+                scroll = -dy+1
+
+        # update rectangle position
+        self.rect.x += dx
+        self.rect.y += dy + scroll
+
+        return scroll
+
+    def handle_input(self, screen_width):
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_RIGHT]:
+            if self.allow_traversal(screen_width) != "r border":
+                self.rect.x += self.velocity
+                if not self.jumping:
+                    self.animation_mode = 1
+                self.flip = False
+        elif keys[pygame.K_LEFT]:
+            if self.allow_traversal(screen_width) != "l border":
+                self.rect.x -= self.velocity
+                if not self.jumping:
+                    self.animation_mode = 1
+                self.flip = True
+        else:
+            self.animation_mode = 0
+        if keys[pygame.K_UP] and not self.jumping:
+            self.jumping = True
+
+    def allow_traversal(self, surface_width) -> str:
+        """
+        allows for the user to go beyond the borders and pop out on the other side
+
+        :return: String
+        """
+        if self.rect.x < -1 * self.rect.size[0]/2:
+            self.rect.x = surface_width-self.rect.size[0]/2
+            return "l border"
+        if self.rect.bottomright[0] > surface_width+self.rect.size[0]/2:
+            self.rect.x = -1 * self.rect.size[0]/2
+            return "r border"
 
     @property
     def velocity(self):
