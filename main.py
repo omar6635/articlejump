@@ -10,6 +10,8 @@ from ground import Ground
 from platforms import Platform
 from result_screen import ResultScreen
 from text import Text
+from load_sprite import load_sprite
+
 # initialize pygame globally for global variables
 pygame.init()
 # database object is defined globally so that any class can access it
@@ -33,6 +35,16 @@ class MainFrame:
         self._ground = Ground((0, self._surface.get_height() - 50, 500, 100))
         # character attributes
         self._character = MainCharacter((window_width, window_height), self._ground.rect.y)
+        # UI elements
+        self._wooden_frame = load_sprite(
+            pygame.image.load("data/gfx/internet_asset_packs/dungeon pack/wooden_frame.png"),
+            0, 0, 530, 174, 0.3, (0, 0, 0))
+        self._whole_heart = load_sprite(pygame.image.load("data/gfx/internet_asset_packs/dungeonui.v1.png"),
+                                        20, 133, 14, 15, 1.87, (0, 0, 0))
+        self._half_heart = load_sprite(pygame.image.load("data/gfx/internet_asset_packs/dungeonui.v1.png"),
+                                       35, 133, 14, 15, 1.87, (0, 0, 0))
+        self._empty_heart = load_sprite(pygame.image.load("data/gfx/internet_asset_packs/dungeonui.v1.png"),
+                                        52, 133, 14, 15, 1.87, (0, 0, 0))
         # list of words drawn on screen
         self.word_article_dict = {}
         # result screen
@@ -42,20 +54,21 @@ class MainFrame:
         self._background_list = []
         self._background_list.append(pygame.transform.scale(pygame.image.load("data/gfx/background_sprite2.png")
                                                             .convert(), (self._surface.get_width(),
-                                                                         self._surface.get_height()/2)))
+                                                                         self._surface.get_height() / 2)))
         self._background_list.append(pygame.transform.scale(pygame.image.load("data/gfx/background_sprite3.png")
                                                             .convert(), (self._surface.get_width(),
-                                                                         self._surface.get_height()/2)))
+                                                                         self._surface.get_height() / 2)))
         self.required_bgs = math.ceil(self._surface.get_height() / self._background_list[0].get_height()) + 2
         # platform attributes
-        self._platform_one = Platform((0, self._surface.get_height()-220), (107, 30), "der platform")
-        self._platform_two = Platform((self._width/2-107/2,
-                                       self._surface.get_height()-220), (107, 30), "das platform")
-        self._platform_three = Platform((self._width-107, self._surface.get_height()-220), (107, 30), "die platform")
+        self._platform_one = Platform((0, self._surface.get_height() - 220), (107, 30), "der platform")
+        self._platform_two = Platform((self._width / 2 - 107 / 2,
+                                       self._surface.get_height() - 220), (107, 30), "das platform")
+        self._platform_three = Platform((self._width - 107, self._surface.get_height() - 220), (107, 30),
+                                        "die platform")
         self._platform_group = pygame.sprite.Group(self._platform_one, self._platform_two, self._platform_three)
         # for every 3 platforms in the platform group, blit a randomly generated word on the screen
         self.generate_draw_word(self._platform_group.sprites()[0].rect[0:2])
-        self.max_platforms = 9
+        self.max_platforms = 12
         # fonts
         self.main_font_30 = pygame.font.Font("data/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf", 30)
         self.main_font_50 = pygame.font.Font("data/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf", 50)
@@ -102,14 +115,14 @@ class MainFrame:
             self._surface.fill((0, 128, 128))
             text_on_screen = self.main_font_30.render("A Project by Omar, Ayberk and Michael", True,
                                                       pygame.Color("#6A3940"))
-            self._surface.blit(text_on_screen, (self._surface.get_width()/2 - text_on_screen.get_width()/2,
-                                                self._surface.get_height()/2 - text_on_screen.get_height()/2))
+            self._surface.blit(text_on_screen, (self._surface.get_width() / 2 - text_on_screen.get_width() / 2,
+                                                self._surface.get_height() / 2 - text_on_screen.get_height() / 2))
             pygame.display.update()
             pygame.time.delay(10)
 
     def title_screen(self):
         pygame.mixer.Sound.play(start_sfx)
-        start_button = pygame.rect.Rect(self._surface.get_width()/2-50, 160, 100, 46)
+        start_button = pygame.rect.Rect(self._surface.get_width() / 2 - 50, 160, 100, 46)
         display_ts = True
         logo = self.main_font_50.render("AritkelJump", True, pygame.Color("#6A3940"))
         start_text = self.main_font_20.render("START", True, (0, 0, 0))
@@ -126,12 +139,12 @@ class MainFrame:
                 display_ts = False
             self._surface.fill((0, 128, 128))
             self._surface.blit(self.shadow, (0, 0))
-            self._surface.blit(logo, (self._surface.get_width()/2 - logo.get_width()/2,
-                                      self._surface.get_height()/2 - logo.get_height()/2 +
-                                      math.sin(time.time()*5)*5 - 25))
+            self._surface.blit(logo, (self._surface.get_width() / 2 - logo.get_width() / 2,
+                                      self._surface.get_height() / 2 - logo.get_height() / 2 +
+                                      math.sin(time.time() * 5) * 5 - 25))
             pygame.draw.rect(self._surface, pygame.Color("#700e01"), start_button)
-            self._surface.blit(start_text, (start_button.x+start_text.get_width()/2-5,
-                                            start_button.y+start_text.get_height()/2))
+            self._surface.blit(start_text, (start_button.x + start_text.get_width() / 2 - 5,
+                                            start_button.y + start_text.get_height() / 2))
             pygame.display.update()
             pygame.time.delay(10)
 
@@ -148,11 +161,11 @@ class MainFrame:
         if self.background_scroll > self._surface.get_height():
             self.background_scroll = 0
         # blit the background(s) on the frame
-        start_number = self._surface.get_height()/2
+        start_number = self._surface.get_height() / 2
         for i in range(0, self.required_bgs):
             self._surface.blit(self._background_list[i % 2], (0, start_number +
                                                               self.background_scroll))
-            start_number -= self._surface.get_height()/2
+            start_number -= self._surface.get_height() / 2
         # draw the ground on background
         self._ground.blit_ground(self._surface, scroll)
         # draw the character on the background
@@ -173,6 +186,11 @@ class MainFrame:
         for sub_list in list(self.word_article_dict.items()):
             sub_list[0].scroll_text(scroll)
             sub_list[0].draw_on_surface_alpha(self._surface, 75)
+        # draw UI elements
+        self._surface.blit(self._wooden_frame, (370, -14))
+        self._surface.blit(self._whole_heart, (390, -2))
+        self._surface.blit(self._half_heart, (430, -2))
+        self._surface.blit(self._empty_heart, (470, -2))
         # check if gameover condition is met
         if self.gameover_check():
             self.gameover = True
@@ -217,7 +235,7 @@ class MainFrame:
     def generate_draw_word(self, coordinates: tuple) -> None:
         # prepare coordinates
         a_y = copy.deepcopy(coordinates[1]) - 90
-        a_x = copy.deepcopy(coordinates[0]) + self._surface.get_width()/2
+        a_x = copy.deepcopy(coordinates[0]) + self._surface.get_width() / 2
         # get a word-article combo from the database
         word_article_combo = database.get_random_word()
         # as long as the database returns a duplicate, get another one
@@ -243,5 +261,6 @@ async def main():
         else:
             main_frame.create_draw_menu()
         await asyncio.sleep(0)
+
 
 asyncio.run(main())
