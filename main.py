@@ -49,16 +49,13 @@ class MainFrame:
         self.required_bgs = math.ceil(self._surface.get_height() / self._background_list[0].get_height()) + 2
         # platform attributes
         self._platform_one = Platform((0, self._surface.get_height()-220), (107, 30), "der platform")
-        self._platform_two = Platform((self._width/2-(107/2),
+        self._platform_two = Platform((self._width/2-107/2,
                                        self._surface.get_height()-220), (107, 30), "das platform")
         self._platform_three = Platform((self._width-107, self._surface.get_height()-220), (107, 30), "die platform")
         self._platform_group = pygame.sprite.Group(self._platform_one, self._platform_two, self._platform_three)
-        for platform in self._platform_group:
-            self._platform_group.add(platform.create_new_platforms())
         # for every 3 platforms in the platform group, blit a randomly generated word on the screen
-        for i in range(0, len(self._platform_group), 3):
-            self.generate_draw_word(self._platform_group.sprites()[i+1].rect.center)
-        # self.word_article_dict.pop(list(self.word_article_dict.items())[0][0])
+        self.generate_draw_word(self._platform_group.sprites()[0].rect[0:2])
+        self.max_platforms = 9
         # fonts
         self.main_font_30 = pygame.font.Font("data/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf", 30)
         self.main_font_50 = pygame.font.Font("data/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf", 50)
@@ -141,26 +138,37 @@ class MainFrame:
         self._frame.set_caption("Artikeljump")
         self._frame.set_icon(self._character.image)
 
-    def draw_surface_sprites(self):
+    def draw_update_surface_sprites(self):
         self._surface.fill((0, 0, 0))
         # move character
         scroll = self._character.move(self._ground.rect.y, self._platform_group, self._surface.get_rect()[2:])
         # create background scroll by adding scroll onto it (cumulative variable)
         self.background_scroll += scroll
+        if self.background_scroll > self._surface.get_height():
+            self.background_scroll = 0
         # blit the background(s) on the frame
         start_number = self._surface.get_height()/2
         for i in range(0, self.required_bgs):
             self._surface.blit(self._background_list[i % 2], (0, start_number +
                                                               self.background_scroll))
             start_number -= self._surface.get_height()/2
+
         # draw the ground on background
         self._ground.blit_ground(self._surface, scroll)
         # draw the character on the background
         sprite_list = self._character.create_animation_list()
         self._character.animation(sprite_list, self._surface)
+        # create platforms if current amount is below limit
+        while len(self._platform_group.sprites()) < self.max_platforms:
+            buffer_list = []
+            for i in range(-3, 0, 1):
+                buffer_list.append(self._platform_group.sprites()[i].create_new_platforms())
+            self.generate_draw_word(buffer_list[0].rect[0:2])
+            self._platform_group.add(buffer_list)
         # draw platforms on bg
         for platform in self._platform_group:
-            platform.draw_platform(self._surface, scroll)
+            platform.update(scroll, self._surface.get_height(), self.word_article_dict)
+            platform.draw_platform(self._surface)
         # draw words on bg
         for sub_list in list(self.word_article_dict.items()):
             sub_list[0].scroll_text(scroll)
@@ -204,7 +212,7 @@ class MainFrame:
     def generate_draw_word(self, coordinates: tuple) -> None:
         # prepare coordinates
         a_y = copy.deepcopy(coordinates[1]) - 90
-        a_x = copy.deepcopy(coordinates[0])
+        a_x = copy.deepcopy(coordinates[0]) + self._surface.get_width()/2
         # get a word-article combo from the database
         word_article_combo = database.get_random_word()
         # as long as the database returns a duplicate, get another one
@@ -223,7 +231,7 @@ async def main():
         clock.tick(60)
         main_frame.catch_events()
         if not main_frame.menu_running:
-            main_frame.draw_surface_sprites()
+            main_frame.draw_update_surface_sprites()
         else:
             main_frame.create_draw_menu()
         await asyncio.sleep(0)

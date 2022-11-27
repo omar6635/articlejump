@@ -38,3 +38,4 @@ class Word(SQLObject):
 class Article(SQLObject):
     name = StringCol()
     word = MultipleJoin("Word")
+
