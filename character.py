@@ -79,8 +79,9 @@ class MainCharacter(pygame.sprite.Sprite):
         self.handle_input(s_width)
 
         # gravity
-        self._jump_velocity += self._gravity
-        dy += self._jump_velocity
+        if self.jumping:
+            self._jump_velocity += self._gravity
+            dy += self._jump_velocity
 
         # check collision with platform
         for platform in platform_group:
@@ -91,12 +92,11 @@ class MainCharacter(pygame.sprite.Sprite):
                     if self.jump_velocity > 0:
                         self.rect.bottom = platform.rect.top
                         dy = 0
-                        self.jump_velocity = -20
+                        self.jumping = False
 
         # check collision with ground
         if self.rect.bottom + dy > ground_top:
-            dy = 0
-            self.jump_velocity = -20
+            self.jumping = False
 
         # check if the player has bounced to the top of the screen
         if self.rect.top <= self.scroll_threshold:
@@ -128,6 +128,7 @@ class MainCharacter(pygame.sprite.Sprite):
             self.animation_mode = 0
         if keys[pygame.K_UP] and not self.jumping:
             self.jumping = True
+            self._jump_velocity = -20
 
     def allow_traversal(self, surface_width) -> str:
         """
