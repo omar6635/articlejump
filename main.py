@@ -187,6 +187,9 @@ class MainFrame:
             sub_list[0].scroll_text(scroll)
             sub_list[0].draw_on_surface_alpha(self._surface, 75)
         # draw UI elements
+        # score UI elements
+        self._surface.blit(self._wooden_frame, (-30, -14))
+        # heart UI elements
         self._surface.blit(self._wooden_frame, (370, -14))
         self._surface.blit(self._whole_heart, (390, -2))
         self._surface.blit(self._half_heart, (430, -2))
