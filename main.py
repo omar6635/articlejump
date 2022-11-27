@@ -71,6 +71,7 @@ class MainFrame:
         self._draw_trail = False
         self.running = True
         self.menu_running = False
+        self.gameover = False
         # display splash and title screens
         # self.splash_screen()
         # self.title_screen()
@@ -174,7 +175,7 @@ class MainFrame:
             sub_list[0].draw_on_surface_alpha(self._surface, 75)
         # check if gameover condition is met
         if self.gameover_check():
-            self.running = False
+            self.gameover = True
         # background_scroll the background
         self._frame.update()
 
@@ -235,7 +236,10 @@ async def main():
         clock.tick(60)
         main_frame.catch_events()
         if not main_frame.menu_running:
-            main_frame.draw_update_surface_sprites()
+            if not main_frame.gameover:
+                main_frame.draw_update_surface_sprites()
+            else:
+                pass
         else:
             main_frame.create_draw_menu()
         await asyncio.sleep(0)
