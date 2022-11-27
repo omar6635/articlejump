@@ -64,6 +64,7 @@ class MainFrame:
         self.shadow = pygame.image.load("data/gfx/shadow.png")
         # formatting code
         self.format_panel_screen()
+        # game variables
         self._result_list = [Platform((0, 0), (0, 0), "default")]
         self.background_scroll = 0
         self._force_descent = False
@@ -78,7 +79,6 @@ class MainFrame:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
-                pygame.quit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE and not self.menu_running:
                     self.menu_running = True
@@ -152,7 +152,6 @@ class MainFrame:
             self._surface.blit(self._background_list[i % 2], (0, start_number +
                                                               self.background_scroll))
             start_number -= self._surface.get_height()/2
-
         # draw the ground on background
         self._ground.blit_ground(self._surface, scroll)
         # draw the character on the background
@@ -173,8 +172,15 @@ class MainFrame:
         for sub_list in list(self.word_article_dict.items()):
             sub_list[0].scroll_text(scroll)
             sub_list[0].draw_on_surface_alpha(self._surface, 75)
+        # check if gameover condition is met
+        if self.gameover_check():
+            self.running = False
         # background_scroll the background
         self._frame.update()
+
+    def gameover_check(self):
+        if self._character.rect.top > self._surface.get_height():
+            return True
 
     def create_draw_menu(self):
         while self.menu_running:
@@ -203,11 +209,9 @@ class MainFrame:
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         self.running = False
                         self.menu_running = False
-                        pygame.quit()
                 if event.type == pygame.QUIT:
                     self.running = False
                     self.menu_running = False
-                    pygame.quit()
 
     def generate_draw_word(self, coordinates: tuple) -> None:
         # prepare coordinates
