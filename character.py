@@ -61,10 +61,10 @@ class MainCharacter(pygame.sprite.Sprite):
             image_to_blit.set_colorkey((0, 0, 0))
             surface.blit(image_to_blit, self.rect)
 
-    def check_jump(self, jump_velocity):
-        if jump_velocity > 0:
+    def check_jump(self, dy: int):
+        if dy < 0:
             self.animation_mode = 2
-        else:
+        elif dy > 0:
             self.animation_mode = 3
 
     def move(self, ground_top,  platform_group, screen_dimensions):
@@ -72,6 +72,7 @@ class MainCharacter(pygame.sprite.Sprite):
         scroll = 0
         dx = 0
         dy = 0
+        collision_detected = False
         s_width = screen_dimensions[0]
         self.scroll_threshold = screen_dimensions[1]/2
 
@@ -93,6 +94,12 @@ class MainCharacter(pygame.sprite.Sprite):
                         self.rect.bottom = platform.rect.top
                         dy = 0
                         self.jumping = False
+                        collision_detected = True
+
+        # check if user is hovering over nothing and if so, drop him
+        if self.rect.y != 596 and dy == 0 and not self.jumping and not collision_detected:
+            self.jumping = True
+            self.jump_velocity = 0
 
         # check collision with ground
         if self.rect.bottom + dy > ground_top:
@@ -108,6 +115,7 @@ class MainCharacter(pygame.sprite.Sprite):
         self.rect.x += dx
         self.rect.y += dy + scroll
 
+        self.check_jump(dy)
         return scroll
 
     def handle_input(self, screen_width):
