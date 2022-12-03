@@ -186,17 +186,31 @@ class MainFrame:
         self._surface.blit(self._wooden_frame, (-30, -14))
         # heart UI elements
         self._surface.blit(self._wooden_frame, (370, -14))
-        self._surface.blit(self._whole_heart, (390, -2))
-        self._surface.blit(self._half_heart, (430, -2))
-        self._surface.blit(self._empty_heart, (470, -2))
+        self.draw_hearts()
         # check if gameover condition is met
         if self.gameover_check():
             self.gameover = True
         self._frame.update()
 
+    def draw_hearts(self):
+        whole_hearts = self._character.lives
+        empty_hearts = 3 - self._character.lives
+        first_x_coord = 390
+        x_coord_increment = 40
+        for i in range(whole_hearts):
+            self._surface.blit(self._whole_heart, (first_x_coord, -2))
+            first_x_coord += x_coord_increment
+        for i in range(empty_hearts):
+            self._surface.blit(self._empty_heart, (first_x_coord, -2))
+            first_x_coord += x_coord_increment
+
     def gameover_check(self):
         if self._character.rect.top > self._surface.get_height():
-            return True
+            if self._character.lives > 0:
+                self._character.lives -= 1
+                self._character.rect.midbottom = self._character.last_saved_pos
+            else:
+                return True
 
     def create_draw_menu(self):
         while self.menu_running:

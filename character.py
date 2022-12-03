@@ -21,6 +21,8 @@ class MainCharacter(pygame.sprite.Sprite):
         self.jumping = False
         self.flip = False
         self.scroll_threshold = None
+        self.lives = 3
+        self.last_saved_pos = 0
 
     def create_animation_list(self):
         # create two dimensional list of sprite packs for idle, jumping, dead etc.
@@ -89,6 +91,7 @@ class MainCharacter(pygame.sprite.Sprite):
                         self.rect.bottom = platform.rect.top
                         dy = 0
                         self.jumping = False
+                        self.last_saved_pos = platform.rect.midtop
                         collision_detected = True
 
         # check if user is hovering over nothing and if so, drop him
