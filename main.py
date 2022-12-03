@@ -34,7 +34,7 @@ class MainFrame:
         # create ground platform
         self._ground = Ground((0, self._surface.get_height() - 50, 500, 100))
         # character attributes
-        self._character = MainCharacter((window_width, window_height), self._ground.rect.y)
+        self._character = MainCharacter(self._ground.rect.midtop)
         # UI elements
         self._wooden_frame = load_sprite(
             pygame.image.load("data/gfx/internet_asset_packs/dungeon pack/wooden_frame.png"),
@@ -70,15 +70,14 @@ class MainFrame:
         self.generate_draw_word(self._platform_group.sprites()[0].rect[0:2])
         self.max_platforms = 12
         # fonts
-        self.main_font_30 = pygame.font.Font("data/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf", 30)
-        self.main_font_50 = pygame.font.Font("data/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf", 50)
-        self.main_font_20 = pygame.font.Font("data/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf", 20)
+        self.main_font = "data/fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf"
         # background gfx
         self.shadow = pygame.image.load("data/gfx/shadow.png")
         # formatting code
         self.format_panel_screen()
         # game variables
         self._result_list = [Platform((0, 0), (0, 0), "default")]
+        self.score = 0
         self.background_scroll = 0
         self._force_descent = False
         self._draw_trail = False
@@ -86,8 +85,8 @@ class MainFrame:
         self.menu_running = False
         self.gameover = False
         # display splash and title screens
-        # self.splash_screen()
-        # self.title_screen()
+        #self.splash_screen()
+        #self.title_screen()
 
     def catch_events(self):
         for event in pygame.event.get():
@@ -113,19 +112,18 @@ class MainFrame:
                     pygame.quit()
             # fill the background with teal (a shade of blue)
             self._surface.fill((0, 128, 128))
-            text_on_screen = self.main_font_30.render("A Project by Omar, Ayberk and Michael", True,
-                                                      pygame.Color("#6A3940"))
-            self._surface.blit(text_on_screen, (self._surface.get_width() / 2 - text_on_screen.get_width() / 2,
-                                                self._surface.get_height() / 2 - text_on_screen.get_height() / 2))
+            text_on_screen = Text("A Project by Omar, Ayberk and Michael", pygame.Color("#6A3940"), 30,
+                                  self._surface.get_rect().center, self.main_font)
+            text_on_screen.draw_on_surface(self._surface)
             pygame.display.update()
             pygame.time.delay(10)
 
     def title_screen(self):
         pygame.mixer.Sound.play(start_sfx)
-        start_button = pygame.rect.Rect(self._surface.get_width() / 2 - 50, 160, 100, 46)
+        start_button = pygame.rect.Rect(self._surface.get_rect().centerx-50, self._surface.get_rect().centery+5, 100, 46)
         display_ts = True
-        logo = self.main_font_50.render("AritkelJump", True, pygame.Color("#6A3940"))
-        start_text = self.main_font_20.render("START", True, (0, 0, 0))
+        logo = Text("ArtikelJump", pygame.Color("#6A3940"), 50, self._surface.get_rect().center)
+        start_text = Text("START", (0, 0, 0), 20, start_button.center)
         while display_ts:
             mouse_coords = pygame.mouse.get_pos()
             clicked = False
@@ -139,12 +137,9 @@ class MainFrame:
                 display_ts = False
             self._surface.fill((0, 128, 128))
             self._surface.blit(self.shadow, (0, 0))
-            self._surface.blit(logo, (self._surface.get_width() / 2 - logo.get_width() / 2,
-                                      self._surface.get_height() / 2 - logo.get_height() / 2 +
-                                      math.sin(time.time() * 5) * 5 - 25))
+            logo.draw_on_surface(self._surface, True)
             pygame.draw.rect(self._surface, pygame.Color("#700e01"), start_button)
-            self._surface.blit(start_text, (start_button.x + start_text.get_width() / 2 - 5,
-                                            start_button.y + start_text.get_height() / 2))
+            start_text.draw_on_surface(self._surface)
             pygame.display.update()
             pygame.time.delay(10)
 
@@ -197,7 +192,6 @@ class MainFrame:
         # check if gameover condition is met
         if self.gameover_check():
             self.gameover = True
-        # background_scroll the background
         self._frame.update()
 
     def gameover_check(self):
@@ -249,10 +243,48 @@ class MainFrame:
         # add the Text object and its correct article to dict
         self.word_article_dict[text_obj] = word_article_combo[1]
 
+    def reset_game_variables(self) -> None:
+        self.gameover = False
+        self.score = 0
+        # reset character, ground and platform positions
+        self._ground.rect.x = 0
+        self._ground.rect.y = self._surface.get_size()[1]-50
+        self._character.jumping = False
+        self._character.rect.midbottom = self._ground.rect.midtop
+        self._platform_group.empty()
+        self._platform_group.add(self._platform_one, self._platform_two, self._platform_three)
+        self.word_article_dict = {}
+        self.generate_draw_word(self._platform_group.sprites()[0].rect[0:2])
+
+    # getter and setter decorators
+    @property
+    def surface(self):
+        return self._surface
+
+    @property
+    def frame(self):
+        return self._frame
+
+
+def draw_game_over_text(main_frame):
+    game_over_text = Text("GAME OVER", (255, 255, 255), 50,
+                          (main_frame.surface.get_rect().centerx, main_frame.surface.get_rect().centery - 50),
+                          main_frame.main_font)
+    score_text = Text("SCORE: " + "50", (255, 255, 255), 50,
+                      (main_frame.surface.get_rect().centerx, main_frame.surface.get_rect().centery),
+                      main_frame.main_font)
+    play_again_text = Text("PRESS SPACE TO RESTART", (255, 255, 255), 50,
+                           (main_frame.surface.get_rect().centerx, main_frame.surface.get_rect().centery + 50)
+                           , main_frame.main_font)
+    game_over_text.draw_on_surface(main_frame.surface)
+    score_text.draw_on_surface(main_frame.surface)
+    play_again_text.draw_on_surface(main_frame.surface)
+
 
 async def main():
     main_frame = MainFrame(window_width=500, window_height=700)
     clock = pygame.time.Clock()
+    update_frame = True
     while main_frame.running:
         clock.tick(60)
         main_frame.catch_events()
@@ -260,7 +292,14 @@ async def main():
             if not main_frame.gameover:
                 main_frame.draw_update_surface_sprites()
             else:
-                pass
+                draw_game_over_text(main_frame)
+                if update_frame:
+                    main_frame.frame.update()
+                    update_frame = False
+                key = pygame.key.get_pressed()
+                if key[pygame.K_SPACE]:
+                    update_frame = True
+                    main_frame.reset_game_variables()
         else:
             main_frame.create_draw_menu()
         await asyncio.sleep(0)

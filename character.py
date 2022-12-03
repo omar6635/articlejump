@@ -3,14 +3,14 @@ from load_sprite import load_sprite
 
 
 class MainCharacter(pygame.sprite.Sprite):
-    def __init__(self, coordinates, ground_y):
+    def __init__(self, coordinates):
         super(MainCharacter, self).__init__()
         self.sprite = pygame.image.load("data/gfx/internet_asset_packs/Medieval King Pack 2/Sprites/Idle.png")\
             .convert_alpha()
         # 63, 223, 383 ...
         self.image = load_sprite(self.sprite, 64, 50, 34, 56, 1, (0, 0, 0))
-        self.rect = pygame.Rect(0, 0, 34, 56)
-        self.reset_position(coordinates, ground_y)
+        self.rect = self.image.get_rect()
+        self.rect.midbottom = coordinates
         self._velocity = 3
         self._jump_velocity = 0
         self._gravity = 1
@@ -20,12 +20,7 @@ class MainCharacter(pygame.sprite.Sprite):
         self.animation_mode = 0
         self.jumping = False
         self.flip = False
-        self.on_platform = False
         self.scroll_threshold = None
-
-    def reset_position(self, coordinates, ground_y):
-        self.rect.centerx = coordinates[0]/2
-        self.rect.bottom = ground_y+2
 
     def create_animation_list(self):
         # create two dimensional list of sprite packs for idle, jumping, dead etc.
@@ -179,7 +174,7 @@ class MainCharacter(pygame.sprite.Sprite):
 if __name__ == "__main__":
     pygame.init()
     display = pygame.display.set_mode((500, 500))
-    my_char = MainCharacter((500, 500), 400)
+    my_char = MainCharacter((500, 500))
     run = True
     while run:
         display.fill((55, 55, 55))
