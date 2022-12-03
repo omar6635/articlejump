@@ -261,6 +261,7 @@ class MainFrame:
         self.gameover = False
         self.score = 0
         # reset character, ground and platform positions
+        self._character.lives = 3
         self._ground.rect.x = 0
         self._ground.rect.y = self._surface.get_size()[1]-50
         self._character.jumping = False
