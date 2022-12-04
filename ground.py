@@ -1,5 +1,4 @@
 import pygame
-from text import Text
 
 
 class Ground(pygame.sprite.Sprite):

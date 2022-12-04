@@ -11,7 +11,6 @@ from platforms import Platform
 from result_screen import ResultScreen
 from text import Text
 from load_sprite import load_sprite
-
 # initialize pygame globally for global variables
 pygame.init()
 # database object is defined globally so that any class can access it
@@ -47,6 +46,7 @@ class MainFrame:
                                         52, 133, 14, 15, 1.87, (0, 0, 0))
         # list of words drawn on screen
         self.word_article_dict = {}
+        self.relevant_words_list = []
         # result screen
         # also, the text displays "you win" by default. This is overwritten in the code for wrong answers.
         self._result_screen = ResultScreen("Correct!   ", (0, 255, 0))
@@ -78,6 +78,7 @@ class MainFrame:
         # game variables
         self._result_list = [Platform((0, 0), (0, 0), "default")]
         self.score = 0
+        self.stage = 0
         self.background_scroll = 0
         self._force_descent = False
         self._draw_trail = False
@@ -85,8 +86,8 @@ class MainFrame:
         self.menu_running = False
         self.gameover = False
         # display splash and title screens
-        #self.splash_screen()
-        #self.title_screen()
+        # self.splash_screen()
+        # self.title_screen()
 
     def catch_events(self):
         for event in pygame.event.get():
@@ -149,8 +150,10 @@ class MainFrame:
 
     def draw_update_surface_sprites(self):
         self._surface.fill((0, 0, 0))
+        self.calc_stage()
         # move character
-        scroll = self._character.move(self._ground.rect.y, self._platform_group, self._surface.get_rect()[2:])
+        scroll = self._character.move(self._ground.rect.y, self._platform_group, self._surface.get_rect()[2:],
+                                      self.stage)
         # create background scroll by adding scroll onto it (cumulative variable)
         self.background_scroll += scroll
         if self.background_scroll > self._surface.get_height():
@@ -184,12 +187,19 @@ class MainFrame:
         # draw UI elements
         # score UI elements
         self._surface.blit(self._wooden_frame, (-30, -14))
+        score_text = Text(str(self.score), (0, 0, 0), 35, (15, 13), self.main_font)
+        score_text.draw_on_surface(self._surface)
         # heart UI elements
         self._surface.blit(self._wooden_frame, (370, -14))
         self.draw_hearts()
         # check if gameover condition is met
         if self.gameover_check():
             self.gameover = True
+        # check if user has made correct decision
+        if self._character.on_platform != "":
+            self.check_answer()
+            print(self.relevant_words_list)
+            self._character.on_platform = ""
         self._frame.update()
 
     def draw_hearts(self):
@@ -243,6 +253,17 @@ class MainFrame:
                     self.running = False
                     self.menu_running = False
 
+    def check_answer(self):
+        # check what stage the user is at to make sure the guess is being made for the right word
+        print(str.capitalize(self._character.on_platform[0:3]))
+        print(self.relevant_words_list[self.stage][1])
+        if self.relevant_words_list[self.stage][1] == str.capitalize(self._character.on_platform[0:3]):
+            self.score += 50
+
+    def calc_stage(self):
+        real_scroll = self._ground.rect.y - 766
+        self.stage = real_scroll // 200 + 1
+
     def generate_draw_word(self, coordinates: tuple) -> None:
         # prepare coordinates
         a_y = copy.deepcopy(coordinates[1]) - 90
@@ -256,10 +277,14 @@ class MainFrame:
         text_obj = Text(word_article_combo[0], (0, 0, 0), 40, (a_x, a_y))
         # add the Text object and its correct article to dict
         self.word_article_dict[text_obj] = word_article_combo[1]
+        self.relevant_words_list.append(word_article_combo)
 
     def reset_game_variables(self) -> None:
         self.gameover = False
         self.score = 0
+        self.background_scroll = 0
+        self.stage = 0
+        self._character.platform_stage = 0
         # reset character, ground and platform positions
         self._character.lives = 3
         self._ground.rect.x = 0
@@ -269,6 +294,7 @@ class MainFrame:
         self._platform_group.empty()
         self._platform_group.add(self._platform_one, self._platform_two, self._platform_three)
         self.word_article_dict = {}
+        self.relevant_words_list = []
         self.generate_draw_word(self._platform_group.sprites()[0].rect[0:2])
 
     # getter and setter decorators
@@ -289,8 +315,8 @@ def draw_game_over_text(main_frame):
                       (main_frame.surface.get_rect().centerx, main_frame.surface.get_rect().centery),
                       main_frame.main_font)
     play_again_text = Text("PRESS SPACE TO RESTART", (255, 255, 255), 50,
-                           (main_frame.surface.get_rect().centerx, main_frame.surface.get_rect().centery + 50)
-                           , main_frame.main_font)
+                           (main_frame.surface.get_rect().centerx, main_frame.surface.get_rect().centery + 50),
+                           main_frame.main_font)
     game_over_text.draw_on_surface(main_frame.surface)
     score_text.draw_on_surface(main_frame.surface)
     play_again_text.draw_on_surface(main_frame.surface)

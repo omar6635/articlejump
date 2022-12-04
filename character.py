@@ -22,7 +22,9 @@ class MainCharacter(pygame.sprite.Sprite):
         self.flip = False
         self.scroll_threshold = None
         self.lives = 3
-        self.last_saved_pos = 0
+        self.last_saved_pos = (0, 0)
+        self.on_platform = ""
+        self.platform_stage = -1
 
     def create_animation_list(self):
         # create two dimensional list of sprite packs for idle, jumping, dead etc.
@@ -64,7 +66,7 @@ class MainCharacter(pygame.sprite.Sprite):
         elif dy > 0:
             self.animation_mode = 3
 
-    def move(self, ground_top,  platform_group, screen_dimensions):
+    def move(self, ground_top,  platform_group, screen_dimensions, stage):
         # reset variables
         scroll = 0
         dx = 0
@@ -93,6 +95,9 @@ class MainCharacter(pygame.sprite.Sprite):
                         self.jumping = False
                         self.last_saved_pos = platform.rect.midtop
                         collision_detected = True
+                        if self.platform_stage < stage:
+                            self.on_platform = platform.name
+                            self.platform_stage = stage
 
         # check if user is hovering over nothing and if so, drop him
         if self.rect.y != 596 and dy == 0 and not self.jumping and not collision_detected:
