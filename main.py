@@ -1,10 +1,10 @@
 # a&m's -> attributes and methods
 import pygame
 import database
-import asyncio
 import time
 import math
 import copy
+import random
 from character import MainCharacter
 from ground import Ground
 from platforms import Platform
@@ -44,9 +44,10 @@ class MainFrame:
                                        35, 133, 14, 15, 1.87, (0, 0, 0))
         self._empty_heart = load_sprite(pygame.image.load("data/gfx/internet_asset_packs/dungeonui.v1.png"),
                                         52, 133, 14, 15, 1.87, (0, 0, 0))
-        # list of words drawn on screen
+        # dict of words drawn on screen
         self.word_article_dict = {}
-        self.relevant_words_list = []
+        # list of word-article combos in tuples whose items only get popped in a game over condition
+        self.word_article_list = []
         # result screen
         # also, the text displays "you win" by default. This is overwritten in the code for wrong answers.
         self._result_screen = ResultScreen("Correct!   ", (0, 255, 0))
@@ -60,12 +61,13 @@ class MainFrame:
                                                                          self._surface.get_height() / 2)))
         self.required_bgs = math.ceil(self._surface.get_height() / self._background_list[0].get_height()) + 2
         # platform attributes
-        self._platform_one = Platform((0, self._surface.get_height() - 220), (107, 30), "der platform")
+        self.article_list = ["Der", "Die", "Das"]
+        random.shuffle(self.article_list)
+        self._platform_one = Platform((0, self._surface.get_height() - 220), (107, 30), self.article_list[0])
         self._platform_two = Platform((self._width / 2 - 107 / 2,
-                                       self._surface.get_height() - 220), (107, 30), "das platform")
+                                       self._surface.get_height() - 220), (107, 30), self.article_list[1])
         self._platform_three = Platform((self._width - 107, self._surface.get_height() - 220), (107, 30),
-                                        "die platform")
-        print(self._platform_one.rect)
+                                        self.article_list[2])
         self._platform_group = pygame.sprite.Group(self._platform_one, self._platform_two, self._platform_three)
         # for every 3 platforms in the platform group, blit a randomly generated word on the screen
         self.generate_draw_word(self._platform_group.sprites()[0].rect[0:2])
@@ -122,7 +124,8 @@ class MainFrame:
 
     def title_screen(self):
         pygame.mixer.Sound.play(start_sfx)
-        start_button = pygame.rect.Rect(self._surface.get_rect().centerx-50, self._surface.get_rect().centery+5, 100, 46)
+        start_button = pygame.rect.Rect(self._surface.get_rect().centerx-50, self._surface.get_rect().centery+5, 100,
+                                        46)
         display_ts = True
         logo = Text("ArtikelJump", pygame.Color("#6A3940"), 50, self._surface.get_rect().center)
         start_text = Text("START", (0, 0, 0), 20, start_button.center)
@@ -173,8 +176,9 @@ class MainFrame:
         # create platforms if current amount is below limit
         while len(self._platform_group.sprites()) < self.max_platforms:
             buffer_list = []
+            random.shuffle(self.article_list)
             for i in range(-3, 0, 1):
-                buffer_list.append(self._platform_group.sprites()[i].create_new_platforms())
+                buffer_list.append(self._platform_group.sprites()[i].create_new_platforms(self.article_list[i]))
             self.generate_draw_word(buffer_list[0].rect[0:2])
             self._platform_group.add(buffer_list)
         # draw platforms on bg
@@ -198,7 +202,6 @@ class MainFrame:
             self.gameover = True
         # check if user has made correct decision
         if self._character.on_platform != "":
-            print(self.relevant_words_list)
             self.check_answer()
             self._character.on_platform = ""
         self._frame.update()
@@ -256,9 +259,7 @@ class MainFrame:
 
     def check_answer(self):
         # check what stage the user is at to make sure the guess is being made for the right word
-        print(str.capitalize(self._character.on_platform[0:3]))
-        print(self.relevant_words_list[self.stage][1])
-        if self.relevant_words_list[self.stage][1] == str.capitalize(self._character.on_platform[0:3]):
+        if self.word_article_list[self.stage][1] == self._character.on_platform:
             self.score += 50
 
     def calc_stage(self):
@@ -278,7 +279,7 @@ class MainFrame:
         text_obj = Text(word_article_combo[0], (0, 0, 0), 40, (a_x, a_y))
         # add the Text object and its correct article to dict
         self.word_article_dict[text_obj] = word_article_combo[1]
-        self.relevant_words_list.append(word_article_combo)
+        self.word_article_list.append(word_article_combo)
 
     def reset_game_variables(self) -> None:
         self.gameover = False
@@ -294,15 +295,15 @@ class MainFrame:
         self._character.jumping = False
         self._character.rect.midbottom = self._ground.rect.midtop
         self._platform_group.empty()
-        self._platform_one = Platform((0, self._surface.get_height() - 220), (107, 30), "der platform")
+        random.shuffle(self.article_list)
+        self._platform_one = Platform((0, self._surface.get_height() - 220), (107, 30), self.article_list[0])
         self._platform_two = Platform((self._width / 2 - 107 / 2,
-                                       self._surface.get_height() - 220), (107, 30), "das platform")
+                                       self._surface.get_height() - 220), (107, 30), self.article_list[1])
         self._platform_three = Platform((self._width - 107, self._surface.get_height() - 220), (107, 30),
-                                        "die platform")
+                                        self.article_list[2])
         self._platform_group.add(self._platform_one, self._platform_two, self._platform_three)
-        print(self._platform_one.rect)
         self.word_article_dict = {}
-        self.relevant_words_list = []
+        self.word_article_list = []
         self.generate_draw_word(self._platform_group.sprites()[0].rect[0:2])
 
     # getter and setter decorators
@@ -330,28 +331,24 @@ def draw_game_over_text(main_frame):
     play_again_text.draw_on_surface(main_frame.surface)
 
 
-async def main():
-    main_frame = MainFrame(window_width=500, window_height=700)
+if __name__ == "__main__":
+    game_window = MainFrame(window_width=500, window_height=700)
     clock = pygame.time.Clock()
     update_frame = True
-    while main_frame.running:
+    while game_window.running:
         clock.tick(60)
-        main_frame.catch_events()
-        if not main_frame.menu_running:
-            if not main_frame.gameover:
-                main_frame.draw_update_surface_sprites()
+        game_window.catch_events()
+        if not game_window.menu_running:
+            if not game_window.gameover:
+                game_window.draw_update_surface_sprites()
             else:
-                draw_game_over_text(main_frame)
+                draw_game_over_text(game_window)
                 if update_frame:
-                    main_frame.frame.update()
+                    game_window.frame.update()
                     update_frame = False
                 key = pygame.key.get_pressed()
                 if key[pygame.K_SPACE]:
                     update_frame = True
-                    main_frame.reset_game_variables()
+                    game_window.reset_game_variables()
         else:
-            main_frame.create_draw_menu()
-        await asyncio.sleep(0)
-
-
-asyncio.run(main())
+            game_window.create_draw_menu()

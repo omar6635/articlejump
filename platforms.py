@@ -1,3 +1,4 @@
+from __future__ import annotations
 import pygame
 from text import Text
 
@@ -27,9 +28,9 @@ class Platform(pygame.sprite.Sprite):
         surface.blit(self.image, self.rect)
         surface.blit(self.article.article_surface, self.article.rect)
 
-    def create_new_platforms(self):
+    def create_new_platforms(self, article: str) -> Platform:
         new_y = self.rect.y - 200
-        new_platform_obj = Platform((self.coordinates[0], new_y), self.rect.size, self.name)
+        new_platform_obj = Platform((self.coordinates[0], new_y), self.rect.size, article)
         return new_platform_obj
 
 
