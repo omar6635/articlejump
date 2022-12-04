@@ -65,6 +65,7 @@ class MainFrame:
                                        self._surface.get_height() - 220), (107, 30), "das platform")
         self._platform_three = Platform((self._width - 107, self._surface.get_height() - 220), (107, 30),
                                         "die platform")
+        print(self._platform_one.rect)
         self._platform_group = pygame.sprite.Group(self._platform_one, self._platform_two, self._platform_three)
         # for every 3 platforms in the platform group, blit a randomly generated word on the screen
         self.generate_draw_word(self._platform_group.sprites()[0].rect[0:2])
@@ -197,8 +198,8 @@ class MainFrame:
             self.gameover = True
         # check if user has made correct decision
         if self._character.on_platform != "":
-            self.check_answer()
             print(self.relevant_words_list)
+            self.check_answer()
             self._character.on_platform = ""
         self._frame.update()
 
@@ -284,7 +285,8 @@ class MainFrame:
         self.score = 0
         self.background_scroll = 0
         self.stage = 0
-        self._character.platform_stage = 0
+        self._character.platform_stage = -1
+        self._character.on_platform = ""
         # reset character, ground and platform positions
         self._character.lives = 3
         self._ground.rect.x = 0
@@ -292,7 +294,13 @@ class MainFrame:
         self._character.jumping = False
         self._character.rect.midbottom = self._ground.rect.midtop
         self._platform_group.empty()
+        self._platform_one = Platform((0, self._surface.get_height() - 220), (107, 30), "der platform")
+        self._platform_two = Platform((self._width / 2 - 107 / 2,
+                                       self._surface.get_height() - 220), (107, 30), "das platform")
+        self._platform_three = Platform((self._width - 107, self._surface.get_height() - 220), (107, 30),
+                                        "die platform")
         self._platform_group.add(self._platform_one, self._platform_two, self._platform_three)
+        print(self._platform_one.rect)
         self.word_article_dict = {}
         self.relevant_words_list = []
         self.generate_draw_word(self._platform_group.sprites()[0].rect[0:2])
