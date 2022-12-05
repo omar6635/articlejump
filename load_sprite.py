@@ -1,7 +1,7 @@
 import pygame
 
 
-def load_sprite(sprite, x, y, width, height, scale, color):
+def load_sprite(sprite: pygame.Surface, x, y, width, height, scale, color):
     image = pygame.Surface((width, height)).convert_alpha()
     image.blit(sprite, (0, 0), (x, y, width, height))
     # resize image

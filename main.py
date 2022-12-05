@@ -10,6 +10,7 @@ from ground import Ground
 from platforms import Platform
 from result_screen import ResultScreen
 from text import Text
+from power_up import PowerUp
 from load_sprite import load_sprite
 # initialize pygame globally for global variables
 pygame.init()
@@ -34,6 +35,8 @@ class MainFrame:
         self._ground = Ground((0, self._surface.get_height() - 50, 500, 100))
         # character attributes
         self._character = MainCharacter(self._ground.rect.midtop)
+        # powerup attributes
+        self.powerup = PowerUp((0, self._surface.get_width()), (0, self._character.rect.top))
         # UI elements
         self._wooden_frame = load_sprite(
             pygame.image.load("data/gfx/internet_asset_packs/dungeon pack/wooden_frame.png"),
@@ -80,14 +83,17 @@ class MainFrame:
         self.format_panel_screen()
         # game variables
         self._result_list = [Platform((0, 0), (0, 0), "default")]
-        self.score = 0
+        self.coins = 0
         self.stage = 0
         self.background_scroll = 0
+        self.coin_multipler = 1
+        self.draw_powerup = False
         self._force_descent = False
         self._draw_trail = False
         self.running = True
         self.menu_running = False
         self.gameover = False
+        self.p_double_coins = False
         # display splash and title screens
         # self.splash_screen()
         # self.title_screen()
@@ -190,9 +196,9 @@ class MainFrame:
             sub_list[0].scroll_text(scroll)
             sub_list[0].draw_on_surface_alpha(self._surface, 75)
         # draw UI elements
-        # score UI elements
+        # coins UI elements
         self._surface.blit(self._wooden_frame, (-30, -14))
-        score_text = Text(str(self.score), (0, 0, 0), 35, (15, 13), self.main_font)
+        score_text = Text(str(self.coins), (0, 0, 0), 35, (15, 13), self.main_font)
         score_text.draw_on_surface(self._surface)
         # heart UI elements
         self._surface.blit(self._wooden_frame, (370, -14))
@@ -204,6 +210,28 @@ class MainFrame:
         if self._character.on_platform != "":
             self.check_answer()
             self._character.on_platform = ""
+        # powerup
+        # make it so that there's a 1 in 10 chance a powerup spawns
+        self.assess_draw_powerup()
+        # if draw_powerup evaluates to true, draw powerup
+        if self.draw_powerup:
+            self.powerup.draw_on_screen(self._surface)
+            self.powerup.update(scroll)
+            self.p_double_coins = self._character.check_power_up_collision(self.powerup)
+            if self.p_double_coins:
+                self.powerup.reposition_powerup()
+                self.powerup.timer_started = False
+                self.draw_powerup = False
+                self.powerup.last_time = pygame.time.get_ticks()
+            if self.powerup.draw_timer():
+                self.draw_powerup = False
+        # if user collected the powerup and it's still in effect, double the amount of coins earned
+        if self.p_double_coins:
+            self.coin_multipler = 2
+            if self.powerup.effect_timer():
+                self.p_double_coins = False
+                self.coin_multipler = 1
+        # if timer_started runs out, delete powerup.
         self._frame.update()
 
     def draw_hearts(self):
@@ -217,6 +245,11 @@ class MainFrame:
         for i in range(empty_hearts):
             self._surface.blit(self._empty_heart, (first_x_coord, -2))
             first_x_coord += x_coord_increment
+
+    def assess_draw_powerup(self) -> None:
+        rand_number = random.randrange(0, 100)
+        if rand_number == 5:
+            self.draw_powerup = True
 
     def gameover_check(self):
         if self._character.rect.top > self._surface.get_height():
@@ -260,7 +293,7 @@ class MainFrame:
     def check_answer(self):
         # check what stage the user is at to make sure the guess is being made for the right word
         if self.word_article_list[self.stage][1] == self._character.on_platform:
-            self.score += 50
+            self.coins += 50 * self.coin_multipler
 
     def calc_stage(self):
         real_scroll = self._ground.rect.y - 766
@@ -283,7 +316,7 @@ class MainFrame:
 
     def reset_game_variables(self) -> None:
         self.gameover = False
-        self.score = 0
+        self.coins = 0
         self.background_scroll = 0
         self.stage = 0
         self._character.platform_stage = -1

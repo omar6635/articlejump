@@ -73,7 +73,7 @@ class MainCharacter(pygame.sprite.Sprite):
         dy = 0
         collision_detected = False
         s_width = screen_dimensions[0]
-        self.scroll_threshold = screen_dimensions[1]/2
+        self.scroll_threshold = screen_dimensions[1]/2+150
 
         # process keypresses
         self.handle_input(s_width)
@@ -140,6 +140,14 @@ class MainCharacter(pygame.sprite.Sprite):
         if keys[pygame.K_UP] and not self.jumping:
             self.jumping = True
             self._jump_velocity = -20
+
+    def check_power_up_collision(self, powerup_obj):
+        # FIXME: write proper code for the collision of 2 sprites instead of using a group
+        power_up_group = pygame.sprite.Group()
+        power_up_group.add(powerup_obj)
+        if pygame.sprite.spritecollide(self, power_up_group, False):
+            return True
+        return False
 
     def allow_traversal(self, surface_width) -> str:
         """
