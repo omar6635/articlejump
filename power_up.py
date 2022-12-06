@@ -6,8 +6,8 @@ from load_sprite import load_sprite
 class PowerUp(pygame.sprite.Sprite):
     def __init__(self, x_range, y_range):
         super(PowerUp, self).__init__()
-        self.image = load_sprite(pygame.image.load("data/gfx/internet_asset_packs/coins/coin1_16x16.png"),
-                                 0, 0, 14, 16, 3, (0, 0, 0))
+        self.image = load_sprite(pygame.image.load("data/gfx/internet_asset_packs/coins/coin3_20x20.png"),
+                                 0, 0, 22, 20, 2, (0, 0, 0))
         self.rect = self.image.get_rect()
         self.x_range = x_range
         self.y_range = y_range

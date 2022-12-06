@@ -10,3 +10,5 @@ Animated pixel coins: https://totuslotus.itch.io/pixel-coins
 accessed at 06:01 PM on 23.11.22
 DungeonUI: https://0x72.itch.io/dungeonui
 accessed at 08:30 PM on 27.11.22
+16x16 DungeonTileset II: https://0x72.itch.io/dungeontileset-ii
+accessed at 7:24 PM on 06.12.22

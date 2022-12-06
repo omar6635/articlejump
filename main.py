@@ -66,11 +66,11 @@ class MainFrame:
         # platform attributes
         self.article_list = ["Der", "Die", "Das"]
         random.shuffle(self.article_list)
-        self._platform_one = Platform((0, self._surface.get_height() - 220), (107, 30), self.article_list[0])
+        self._platform_one = Platform((0, self._surface.get_height() - 220), (107, 30), self.article_list[0], False)
         self._platform_two = Platform((self._width / 2 - 107 / 2,
-                                       self._surface.get_height() - 220), (107, 30), self.article_list[1])
+                                       self._surface.get_height() - 220), (107, 30), self.article_list[1], False)
         self._platform_three = Platform((self._width - 107, self._surface.get_height() - 220), (107, 30),
-                                        self.article_list[2])
+                                        self.article_list[2], False)
         self._platform_group = pygame.sprite.Group(self._platform_one, self._platform_two, self._platform_three)
         # for every 3 platforms in the platform group, blit a randomly generated word on the screen
         self.generate_draw_word(self._platform_group.sprites()[0].rect[0:2])
@@ -82,7 +82,6 @@ class MainFrame:
         # formatting code
         self.format_panel_screen()
         # game variables
-        self._result_list = [Platform((0, 0), (0, 0), "default")]
         self.coins = 0
         self.stage = 0
         self.background_scroll = 0
@@ -94,6 +93,8 @@ class MainFrame:
         self.menu_running = False
         self.gameover = False
         self.p_double_coins = False
+        self.moving_platforms = False
+        self.raise_rating = False
         # display splash and title screens
         # self.splash_screen()
         # self.title_screen()
@@ -181,15 +182,21 @@ class MainFrame:
         self._character.animation(sprite_list, self._surface)
         # create platforms if current amount is below limit
         while len(self._platform_group.sprites()) < self.max_platforms:
+            move = False
+            if self.moving_platforms:
+                # 1 in 5 chance that a platform is moving
+                moving_chance = random.randint(1, 5)
+                if moving_chance == 2:
+                    move = True
             buffer_list = []
             random.shuffle(self.article_list)
             for i in range(-3, 0, 1):
-                buffer_list.append(self._platform_group.sprites()[i].create_new_platforms(self.article_list[i]))
+                buffer_list.append(self._platform_group.sprites()[i].create_new_platforms(self.article_list[i], move))
             self.generate_draw_word(buffer_list[0].rect[0:2])
             self._platform_group.add(buffer_list)
         # draw platforms on bg
         for platform in self._platform_group:
-            platform.update(scroll, self._surface.get_height(), self.word_article_dict)
+            platform.update(scroll, self._surface.get_size(), self.word_article_dict)
             platform.draw_platform(self._surface)
         # draw words on bg
         for sub_list in list(self.word_article_dict.items()):
@@ -198,8 +205,7 @@ class MainFrame:
         # draw UI elements
         # coins UI elements
         self._surface.blit(self._wooden_frame, (-30, -14))
-        score_text = Text(str(self.coins), (0, 0, 0), 35, (15, 13), self.main_font)
-        score_text.draw_on_surface(self._surface)
+        self.draw_score()
         # heart UI elements
         self._surface.blit(self._wooden_frame, (370, -14))
         self.draw_hearts()
@@ -210,8 +216,8 @@ class MainFrame:
         if self._character.on_platform != "":
             self.check_answer()
             self._character.on_platform = ""
-        # powerup
-        # make it so that there's a 1 in 10 chance a powerup spawns
+        # powerup 1
+        # make it so that there's a 1 in 1000 chance a powerup spawns
         self.assess_draw_powerup()
         # if draw_powerup evaluates to true, draw powerup
         if self.draw_powerup:
@@ -231,8 +237,24 @@ class MainFrame:
             if self.powerup.effect_timer():
                 self.p_double_coins = False
                 self.coin_multipler = 1
+        # as user progresses, make the game harder by choosing harder words and making the game more dynamic
+        self.raise_difficulty()
         # if timer_started runs out, delete powerup.
         self._frame.update()
+
+    def draw_score(self):
+        coin_sprite = load_sprite(pygame.image.load("data/gfx/internet_asset_packs/coins/coin2_20x20.png"),
+                                  0, 0, 22, 20, 1.2, (0, 0, 0))
+        self._surface.blit(coin_sprite, (0, 0))
+        score_text = Text(" " + str(self.coins), (0, 0, 0), 25, (0, 0), self.main_font)
+        score_text.rect.topleft = (25, 5)
+        score_text.draw_on_surface(self._surface)
+
+    def raise_difficulty(self):
+        if self.coins > 100:
+            self.moving_platforms = True
+        elif self.coins > 1000:
+            self.raise_rating = True
 
     def draw_hearts(self):
         whole_hearts = self._character.lives
@@ -247,7 +269,7 @@ class MainFrame:
             first_x_coord += x_coord_increment
 
     def assess_draw_powerup(self) -> None:
-        rand_number = random.randrange(0, 100)
+        rand_number = random.randrange(0, 500)
         if rand_number == 5:
             self.draw_powerup = True
 
@@ -329,11 +351,11 @@ class MainFrame:
         self._character.rect.midbottom = self._ground.rect.midtop
         self._platform_group.empty()
         random.shuffle(self.article_list)
-        self._platform_one = Platform((0, self._surface.get_height() - 220), (107, 30), self.article_list[0])
+        self._platform_one = Platform((0, self._surface.get_height() - 220), (107, 30), self.article_list[0], False)
         self._platform_two = Platform((self._width / 2 - 107 / 2,
-                                       self._surface.get_height() - 220), (107, 30), self.article_list[1])
+                                       self._surface.get_height() - 220), (107, 30), self.article_list[1], False)
         self._platform_three = Platform((self._width - 107, self._surface.get_height() - 220), (107, 30),
-                                        self.article_list[2])
+                                        self.article_list[2], False)
         self._platform_group.add(self._platform_one, self._platform_two, self._platform_three)
         self.word_article_dict = {}
         self.word_article_list = []

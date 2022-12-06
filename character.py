@@ -25,6 +25,7 @@ class MainCharacter(pygame.sprite.Sprite):
         self.last_saved_pos = (0, 0)
         self.on_platform = ""
         self.platform_stage = -1
+        self.moving_p_velocity = 0
 
     def create_animation_list(self):
         # create two dimensional list of sprite packs for idle, jumping, dead etc.
@@ -95,6 +96,8 @@ class MainCharacter(pygame.sprite.Sprite):
                         self.jumping = False
                         self.last_saved_pos = platform.rect.midtop
                         collision_detected = True
+                        if platform.moving:
+                            dx += (platform.move_direction * platform.move_speed*2)
                         if self.platform_stage < stage:
                             self.on_platform = platform.name
                             self.platform_stage = stage
@@ -115,6 +118,7 @@ class MainCharacter(pygame.sprite.Sprite):
                 scroll = -dy+1
 
         # update rectangle position
+
         self.rect.x += dx
         self.rect.y += dy + scroll
 
