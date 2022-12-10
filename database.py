@@ -25,7 +25,8 @@ class SQLMain:
     def get_random_word():
         query_result = list(Word.select())
         word_to_return_index = randint(0, len(query_result)-1)
-        return query_result[word_to_return_index].name, query_result[word_to_return_index].article_id.name
+        return (query_result[word_to_return_index].name, query_result[word_to_return_index].article_id.name,
+                query_result[word_to_return_index].difficulty)
 
 
 class Word(SQLObject):
@@ -38,4 +39,10 @@ class Word(SQLObject):
 class Article(SQLObject):
     name = StringCol()
     word = MultipleJoin("Word")
+
+
+if __name__ == "__main__":
+    SQLMain()
+    SQLMain.insert_word("Buchstabe", 10, 0, 1)
+    SQLMain.insert_word("Steuer", 5, 0, 3)
 

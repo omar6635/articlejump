@@ -12,6 +12,7 @@ from result_screen import ResultScreen
 from text import Text
 from power_up import PowerUp
 from load_sprite import load_sprite
+from loading_bar import LoadingBar
 # initialize pygame globally for global variables
 pygame.init()
 # database object is defined globally so that any class can access it
@@ -75,6 +76,9 @@ class MainFrame:
         # for every 3 platforms in the platform group, blit a randomly generated word on the screen
         self.generate_draw_word(self._platform_group.sprites()[0].rect[0:2])
         self.max_platforms = 12
+        # loading bar to serve as powerup timer
+        self.loading_bar = LoadingBar(self._surface)
+        self.loading_bar.rescale_lb(1.7)
         # fonts
         self.main_font = "data/fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf"
         # background gfx
@@ -86,15 +90,14 @@ class MainFrame:
         self.stage = 0
         self.background_scroll = 0
         self.coin_multipler = 1
+        self.lowest_word_rating = 0
         self.draw_powerup = False
-        self._force_descent = False
-        self._draw_trail = False
         self.running = True
         self.menu_running = False
         self.gameover = False
         self.p_double_coins = False
         self.moving_platforms = False
-        self.raise_rating = False
+        self.increase_rating = False
         # display splash and title screens
         # self.splash_screen()
         # self.title_screen()
@@ -106,8 +109,6 @@ class MainFrame:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE and not self.menu_running:
                     self.menu_running = True
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                self._draw_trail = not self._draw_trail
 
     def splash_screen(self):
         pygame.mixer.Sound.play(start_sfx)
@@ -218,7 +219,8 @@ class MainFrame:
             self._character.on_platform = ""
         # powerup 1
         # make it so that there's a 1 in 1000 chance a powerup spawns
-        self.assess_draw_powerup()
+        if not self.p_double_coins:
+            self.assess_draw_powerup()
         # if draw_powerup evaluates to true, draw powerup
         if self.draw_powerup:
             self.powerup.draw_on_screen(self._surface)
@@ -228,15 +230,20 @@ class MainFrame:
                 self.powerup.reposition_powerup()
                 self.powerup.timer_started = False
                 self.draw_powerup = False
+                # FIXME: use this for the progress bar
                 self.powerup.last_time = pygame.time.get_ticks()
             if self.powerup.draw_timer():
                 self.draw_powerup = False
         # if user collected the powerup and it's still in effect, double the amount of coins earned
         if self.p_double_coins:
             self.coin_multipler = 2
+            # blit loading bar
+            self.loading_bar.resize_bar(self.powerup.last_time)
+            self.loading_bar.draw_on_screen()
             if self.powerup.effect_timer():
                 self.p_double_coins = False
                 self.coin_multipler = 1
+                self.loading_bar.bar_obj_list.clear()
         # as user progresses, make the game harder by choosing harder words and making the game more dynamic
         self.raise_difficulty()
         # if timer_started runs out, delete powerup.
@@ -251,10 +258,16 @@ class MainFrame:
         score_text.draw_on_surface(self._surface)
 
     def raise_difficulty(self):
-        if self.coins > 100:
+        if self.coins > 2000:
             self.moving_platforms = True
-        elif self.coins > 1000:
-            self.raise_rating = True
+
+        if self.coins % 1000 == 0 and self.increase_rating:
+            self.lowest_word_rating += 1
+            print("word rating increased")
+            self.increase_rating = False
+
+        if self.coins % 1000 != 0:
+            self.increase_rating = True
 
     def draw_hearts(self):
         whole_hearts = self._character.lives
@@ -269,7 +282,7 @@ class MainFrame:
             first_x_coord += x_coord_increment
 
     def assess_draw_powerup(self) -> None:
-        rand_number = random.randrange(0, 500)
+        rand_number = random.randrange(0, 10)
         if rand_number == 5:
             self.draw_powerup = True
 
@@ -328,7 +341,8 @@ class MainFrame:
         # get a word-article combo from the database
         word_article_combo = database.get_random_word()
         # as long as the database returns a duplicate, get another one
-        while word_article_combo[0] in [i[0].text for i in list(self.word_article_dict.items())]:
+        while word_article_combo[0] in [i[0].text for i in list(self.word_article_dict.items())] and \
+                self.lowest_word_rating < word_article_combo[2]:
             word_article_combo = database.get_random_word()
         # create a Text object
         text_obj = Text(word_article_combo[0], (0, 0, 0), 40, (a_x, a_y))
