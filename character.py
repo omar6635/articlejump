@@ -74,6 +74,7 @@ class MainCharacter(pygame.sprite.Sprite):
         dy = 0
         collision_detected = False
         s_width = screen_dimensions[0]
+        stage_changed = False
         self.scroll_threshold = screen_dimensions[1]/2+150
 
         # process keypresses
@@ -101,6 +102,7 @@ class MainCharacter(pygame.sprite.Sprite):
                         if self.platform_stage < stage:
                             self.on_platform = platform.name
                             self.platform_stage = stage
+                            stage_changed = True
 
         # check if user is hovering over nothing and if so, drop him
         if self.rect.y != 596 and dy == 0 and not self.jumping and not collision_detected:
@@ -123,7 +125,7 @@ class MainCharacter(pygame.sprite.Sprite):
         self.rect.y += dy + scroll
 
         self.check_jump(dy)
-        return scroll
+        return scroll, stage_changed
 
     def handle_input(self, screen_width):
         keys = pygame.key.get_pressed()
@@ -155,7 +157,7 @@ class MainCharacter(pygame.sprite.Sprite):
 
     def allow_traversal(self, surface_width) -> str:
         """
-        allows for the user to go beyond the borders and pop out on the other side
+        Allows for the user to go beyond the borders and pop out on the other side
 
         :return: String
         """

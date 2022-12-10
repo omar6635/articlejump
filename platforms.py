@@ -41,7 +41,7 @@ class Platform(pygame.sprite.Sprite):
 
     def draw_platform(self, surface):
         surface.blit(self.image, self.rect)
-        surface.blit(self.article.article_surface, self.article.rect)
+        surface.blit(self.article.text_surface, self.article.rect)
 
     def create_new_platforms(self, article: str, moving: bool) -> Platform:
         new_y = self.rect.y - 200

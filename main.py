@@ -85,6 +85,11 @@ class MainFrame:
         self.shadow = pygame.image.load("data/gfx/shadow.png")
         # formatting code
         self.format_panel_screen()
+        # guess timer variables
+        self.guess_timer_text = Text("0", (0, 0, 0), 30, (15, 50))
+        self.guess_timer_last_time = 0
+        self.guess_timer_var = 10000
+        self.guess_timer_bool = True
         # game variables
         self.coins = 0
         self.stage = 0
@@ -164,8 +169,8 @@ class MainFrame:
         self._surface.fill((0, 0, 0))
         self.calc_stage()
         # move character
-        scroll = self._character.move(self._ground.rect.y, self._platform_group, self._surface.get_rect()[2:],
-                                      self.stage)
+        scroll, stage_changed = self._character.move(self._ground.rect.y, self._platform_group,
+                                                     self._surface.get_rect()[2:], self.stage)
         # create background scroll by adding scroll onto it (cumulative variable)
         self.background_scroll += scroll
         if self.background_scroll > self._surface.get_height():
@@ -211,7 +216,7 @@ class MainFrame:
         self._surface.blit(self._wooden_frame, (370, -14))
         self.draw_hearts()
         # check if gameover condition is met
-        if self.gameover_check():
+        if self.gameover_check(stage_changed):
             self.gameover = True
         # check if user has made correct decision
         if self._character.on_platform != "":
@@ -246,8 +251,19 @@ class MainFrame:
                 self.loading_bar.bar_obj_list.clear()
         # as user progresses, make the game harder by choosing harder words and making the game more dynamic
         self.raise_difficulty()
+        # draw guess timer text
+        self.format_guess_timer(self.guess_timer_method(stage_changed)[1])
+        self.guess_timer_text.draw_on_surface(self._surface)
         # if timer_started runs out, delete powerup.
         self._frame.update()
+
+    def format_guess_timer(self, guess_timer: int) -> None:
+        if guess_timer >= 1000:
+            self.guess_timer_text.change_text(str(guess_timer)[0] + "." + str(guess_timer)[1])
+        elif guess_timer < 1000:
+            self.guess_timer_text.change_text("0." + str(guess_timer)[0])
+        elif guess_timer < 100:
+            self.guess_timer_text.change_text("0.0")
 
     def draw_score(self):
         coin_sprite = load_sprite(pygame.image.load("data/gfx/internet_asset_packs/coins/coin2_20x20.png"),
@@ -260,12 +276,10 @@ class MainFrame:
     def raise_difficulty(self):
         if self.coins > 2000:
             self.moving_platforms = True
-
         if self.coins % 1000 == 0 and self.increase_rating:
             self.lowest_word_rating += 1
             print("word rating increased")
             self.increase_rating = False
-
         if self.coins % 1000 != 0:
             self.increase_rating = True
 
@@ -282,17 +296,18 @@ class MainFrame:
             first_x_coord += x_coord_increment
 
     def assess_draw_powerup(self) -> None:
-        rand_number = random.randrange(0, 10)
+        rand_number = random.randrange(0, 500)
         if rand_number == 5:
             self.draw_powerup = True
 
-    def gameover_check(self):
+    def gameover_check(self, stage_changed):
         if self._character.rect.top > self._surface.get_height():
-            if self._character.lives > 0:
-                self._character.lives -= 1
-                self._character.rect.midbottom = self._character.last_saved_pos
-            else:
-                return True
+            self._character.lives -= 1
+            self._character.rect.midbottom = self._character.last_saved_pos
+        if not self.guess_timer_method(stage_changed)[0]:
+            self._character.lives -= 1
+        if self._character.lives < 0:
+            return True
 
     def create_draw_menu(self):
         while self.menu_running:
@@ -374,6 +389,21 @@ class MainFrame:
         self.word_article_dict = {}
         self.word_article_list = []
         self.generate_draw_word(self._platform_group.sprites()[0].rect[0:2])
+
+    def guess_timer_method(self, stage_changed):
+        if self.guess_timer_bool:
+            self.guess_timer_last_time = pygame.time.get_ticks()
+            self.guess_timer_bool = False
+        current_time = pygame.time.get_ticks()
+        time_change = current_time - self.guess_timer_last_time
+        if time_change <= self.guess_timer_var:
+            print(time_change)
+            if stage_changed:
+                self.guess_timer_bool = True
+            return True, time_change
+        else:
+            self.guess_timer_bool = True
+            return False, time_change
 
     # getter and setter decorators
     @property
