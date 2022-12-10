@@ -370,6 +370,7 @@ class MainFrame:
         self.coins = 0
         self.background_scroll = 0
         self.stage = 0
+        self.guess_timer_bool = True
         self._character.platform_stage = -1
         self._character.on_platform = ""
         # reset character, ground and platform positions
