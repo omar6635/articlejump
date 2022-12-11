@@ -93,7 +93,9 @@ class MainFrame:
         # button objects
         self.resume_button = Button((240, 117), (self._surface.get_rect().centerx, 150),
                                     pygame.image.load("data/gfx/resume_button.png"), 0.6)
-        self.exit_button = Button((240, 117), (self._surface.get_rect().centerx, 300),
+        self.settings_button = Button((240, 117), (self._surface.get_rect().centerx, 300),
+                                      pygame.image.load("data/gfx/resume_button.png"), 0.6)
+        self.exit_button = Button((240, 117), (self._surface.get_rect().centerx, 450),
                                   pygame.image.load("data/gfx/exit_button.png"), 0.6)
         # game variables
         self.coins = 0
@@ -334,6 +336,8 @@ class MainFrame:
             if self.exit_button.draw_on_screen(self._surface):
                 self.running = False
                 self.menu_running = False
+            if self.settings_button.draw_on_screen(self._surface):
+                pass
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.menu_running = False
