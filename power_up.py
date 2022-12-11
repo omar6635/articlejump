@@ -13,30 +13,35 @@ class PowerUp(pygame.sprite.Sprite):
         self.y_range = y_range
         self.rect.centerx = random.randrange(x_range[0], x_range[1]-self.rect.size[0])
         self.rect.centery = random.randrange(*y_range)
-        self.last_time = 0
+        self.last_time_draw = 0
+        self.last_time_effect = 0
         self.disappear = 2000
         self.effect = 2000
         self.timer_started = False
 
     def draw_on_screen(self, screen):
         if not self.timer_started:
-            self.last_time = pygame.time.get_ticks()
+            self.last_time_draw = pygame.time.get_ticks()
             self.timer_started = True
         screen.blit(self.image, self.rect)
 
     def update(self, scroll):
         self.rect.y += scroll
 
-    def draw_timer(self) -> True:
+    def draw_timer(self, pause_timer) -> True:
         current_time = pygame.time.get_ticks()
-        if current_time - self.last_time >= self.disappear:
+        time_delta = current_time - self.last_time_draw - pause_timer
+        if time_delta >= self.disappear:
             self.reposition_powerup()
             self.timer_started = False
+            self.last_time_draw = 0
             return True
 
-    def effect_timer(self):
+    def effect_timer(self, pause_duration):
         current_time = pygame.time.get_ticks()
-        if current_time - self.last_time >= self.effect:
+        time_delta = current_time - self.last_time_effect - pause_duration
+        if time_delta >= self.effect:
+            self.last_time_effect = 0
             return True
 
     def reposition_powerup(self):

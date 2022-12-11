@@ -28,9 +28,9 @@ class LoadingBar(pygame.sprite.Sprite):
         self.bg_image_rect.center = self.surface.get_rect().midbottom
         self.bg_image_rect.centery -= 50
 
-    def resize_bar(self, last_time):
+    def resize_bar(self, last_time, pause_duration):
         current_time = pygame.time.get_ticks()
-        current_progress = current_time - last_time
+        current_progress = current_time - last_time - pause_duration
         bars_needed = self.bg_image.get_size()[0] // self.bar_image.get_size()[0]
         if current_progress <= self.timer:
             self.progress = current_progress / self.timer * (self.bar_image.get_size()[0] * bars_needed)

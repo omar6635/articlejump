@@ -81,8 +81,6 @@ class MainFrame:
         self.loading_bar.rescale_lb(1.7)
         # fonts
         self.main_font = "data/fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf"
-        # background gfx
-        self.shadow = pygame.image.load("data/gfx/shadow.png")
         # formatting code
         self.format_panel_screen()
         # guess timer variables
@@ -96,6 +94,9 @@ class MainFrame:
         self.background_scroll = 0
         self.coin_multipler = 1
         self.lowest_word_rating = 0
+        self.pause_duration_guess_timer = 0
+        self.pause_duration_coin_draw = 0
+        self.pause_duration_coin_effect = 0
         self.draw_powerup = False
         self.running = True
         self.menu_running = False
@@ -154,7 +155,6 @@ class MainFrame:
                 pygame.mixer.Sound.play(jump_sfx)
                 display_ts = False
             self._surface.fill((0, 128, 128))
-            self._surface.blit(self.shadow, (0, 0))
             logo.draw_on_surface(self._surface, True)
             pygame.draw.rect(self._surface, pygame.Color("#700e01"), start_button)
             start_text.draw_on_surface(self._surface)
@@ -235,19 +235,20 @@ class MainFrame:
                 self.powerup.reposition_powerup()
                 self.powerup.timer_started = False
                 self.draw_powerup = False
-                # FIXME: use this for the progress bar
-                self.powerup.last_time = pygame.time.get_ticks()
-            if self.powerup.draw_timer():
+                self.powerup.last_time_effect = pygame.time.get_ticks()
+            if self.powerup.draw_timer(self.pause_duration_coin_draw):
                 self.draw_powerup = False
+                self.pause_duration_coin_draw = 0
         # if user collected the powerup and it's still in effect, double the amount of coins earned
         if self.p_double_coins:
             self.coin_multipler = 2
             # blit loading bar
-            self.loading_bar.resize_bar(self.powerup.last_time)
+            self.loading_bar.resize_bar(self.powerup.last_time_effect, self.pause_duration_coin_effect)
             self.loading_bar.draw_on_screen()
-            if self.powerup.effect_timer():
+            if self.powerup.effect_timer(self.pause_duration_coin_effect):
                 self.p_double_coins = False
                 self.coin_multipler = 1
+                self.pause_duration_coin_effect = 0
                 self.loading_bar.bar_obj_list.clear()
         # as user progresses, make the game harder by choosing harder words and making the game more dynamic
         self.raise_difficulty()
@@ -278,7 +279,6 @@ class MainFrame:
             self.moving_platforms = True
         if self.coins % 1000 == 0 and self.increase_rating:
             self.lowest_word_rating += 1
-            print("word rating increased")
             self.increase_rating = False
         if self.coins % 1000 != 0:
             self.increase_rating = True
@@ -310,7 +310,10 @@ class MainFrame:
             return True
 
     def create_draw_menu(self):
+        pause_timer = 0
         while self.menu_running:
+            if pause_timer == 0:
+                pause_timer = pygame.time.get_ticks()
             resume_button = pygame.Rect(50, 5, 150, 50)
             exit_button = pygame.Rect(50, 105, 150, 50)
             pygame.font.init()
@@ -326,12 +329,18 @@ class MainFrame:
             pygame.draw.rect(self._surface, (255, 0, 0), resume_button)
             self._surface.blit(text_exit, textrect_exit)
             self._surface.blit(text_resume, textrect_resume)
-            self._frame.flip()
+            self._frame.update()
             for event in pygame.event.get():
                 cursor_pos = pygame.mouse.get_pos()
                 if resume_button.collidepoint(cursor_pos):
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         self.menu_running = False
+                        if self.guess_timer_last_time:
+                            self.pause_duration_guess_timer += pygame.time.get_ticks() - pause_timer
+                        if self.powerup.last_time_draw:
+                            self.pause_duration_coin_draw += pygame.time.get_ticks() - pause_timer
+                        if self.powerup.last_time_effect:
+                            self.pause_duration_coin_effect += pygame.time.get_ticks() - pause_timer
                 if exit_button.collidepoint(cursor_pos):
                     if event.type == pygame.MOUSEBUTTONDOWN:
                         self.running = False
@@ -396,14 +405,15 @@ class MainFrame:
             self.guess_timer_last_time = pygame.time.get_ticks()
             self.guess_timer_bool = False
         current_time = pygame.time.get_ticks()
-        time_change = current_time - self.guess_timer_last_time
+        time_change = current_time - self.guess_timer_last_time - self.pause_duration_guess_timer
         if time_change <= self.guess_timer_var:
-            print(time_change)
             if stage_changed:
                 self.guess_timer_bool = True
+                self.pause_duration_guess_timer = 0
             return True, time_change
         else:
             self.guess_timer_bool = True
+            self.pause_duration_guess_timer = 0
             return False, time_change
 
     # getter and setter decorators
