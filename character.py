@@ -145,7 +145,7 @@ class MainCharacter(pygame.sprite.Sprite):
             self.animation_mode = 0
         if keys[pygame.K_UP] and not self.jumping:
             self.jumping = True
-            self._jump_velocity = -20
+            self._jump_velocity = -22
 
     def check_power_up_collision(self, powerup_obj):
         # FIXME: write proper code for the collision of 2 sprites instead of using a group

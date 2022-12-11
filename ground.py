@@ -1,17 +1,18 @@
 import pygame
+from load_sprite import load_sprite
 
 
 class Ground(pygame.sprite.Sprite):
-    def __init__(self, coords_and_dimensions: tuple):
+    def __init__(self, coords: tuple):
         super(Ground, self).__init__()
-        self.image = pygame.image.load("data/gfx/ground_sprite.png").convert_alpha()
-        # self.image = pygame.transform.scale(self.image, (self.image.get_width()*3, self.image.get_height()*3))
-        self.rect = pygame.rect.Rect(coords_and_dimensions[0], coords_and_dimensions[1], coords_and_dimensions[2],
-                                     coords_and_dimensions[3])
+        self.image = load_sprite(pygame.image.load("data/gfx/ground_sprite.png"), 0, 68,
+                                 128, 30, 4, (0, 0, 0))
+        self.rect = self.image.get_rect()
+        self.rect.topleft = coords
 
     def blit_ground(self, surface, scroll):
         self.rect.y += scroll
-        pygame.draw.rect(surface, (0, 255, 0), self.rect)
+        surface.blit(self.image, self.rect)
 
 
 if __name__ == "__main__":
@@ -21,7 +22,8 @@ if __name__ == "__main__":
     run = True
     while run:
         display.fill((55, 55, 55))
-        display.blit(my_ground.image, (0, 300))
+        pygame.draw.rect(display, (255, 255, 255), my_ground.rect, 1)
+        my_ground.blit_ground(display, 0)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False

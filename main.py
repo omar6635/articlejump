@@ -13,6 +13,7 @@ from text import Text
 from power_up import PowerUp
 from load_sprite import load_sprite
 from loading_bar import LoadingBar
+from button import Button
 # initialize pygame globally for global variables
 pygame.init()
 # database object is defined globally so that any class can access it
@@ -33,7 +34,7 @@ class MainFrame:
         self._frame = pygame.display
         self._surface = self._frame.set_mode((self._width, self._height))
         # create ground platform
-        self._ground = Ground((0, self._surface.get_height() - 50, 500, 100))
+        self._ground = Ground((0, self._surface.get_height() - 100))
         # character attributes
         self._character = MainCharacter(self._ground.rect.midtop)
         # powerup attributes
@@ -67,10 +68,10 @@ class MainFrame:
         # platform attributes
         self.article_list = ["Der", "Die", "Das"]
         random.shuffle(self.article_list)
-        self._platform_one = Platform((0, self._surface.get_height() - 220), (107, 30), self.article_list[0], False)
+        self._platform_one = Platform((0, self._surface.get_height() - 270), (107, 30), self.article_list[0], False)
         self._platform_two = Platform((self._width / 2 - 107 / 2,
-                                       self._surface.get_height() - 220), (107, 30), self.article_list[1], False)
-        self._platform_three = Platform((self._width - 107, self._surface.get_height() - 220), (107, 30),
+                                       self._surface.get_height() - 270), (107, 30), self.article_list[1], False)
+        self._platform_three = Platform((self._width - 107, self._surface.get_height() - 270), (107, 30),
                                         self.article_list[2], False)
         self._platform_group = pygame.sprite.Group(self._platform_one, self._platform_two, self._platform_three)
         # for every 3 platforms in the platform group, blit a randomly generated word on the screen
@@ -88,6 +89,12 @@ class MainFrame:
         self.guess_timer_last_time = 0
         self.guess_timer_var = 10000
         self.guess_timer_bool = True
+        # menu attributes
+        # button objects
+        self.resume_button = Button((240, 117), (self._surface.get_rect().centerx, 150),
+                                    pygame.image.load("data/gfx/resume_button.png"), 0.6)
+        self.exit_button = Button((240, 117), (self._surface.get_rect().centerx, 300),
+                                  pygame.image.load("data/gfx/exit_button.png"), 0.6)
         # game variables
         self.coins = 0
         self.stage = 0
@@ -309,45 +316,29 @@ class MainFrame:
         if self._character.lives < 0:
             return True
 
-    def create_draw_menu(self):
+    def main_menu(self):
         pause_timer = 0
+        menu_state = "main"
         while self.menu_running:
             if pause_timer == 0:
                 pause_timer = pygame.time.get_ticks()
-            resume_button = pygame.Rect(50, 5, 150, 50)
-            exit_button = pygame.Rect(50, 105, 150, 50)
-            pygame.font.init()
-            font = pygame.font.SysFont("Helvetica", 40)
-            text_exit = font.render("Exit", True, (0, 225, 255))
-            text_resume = font.render("Resume", True, (0, 255, 255))
-            textrect_exit = text_exit.get_rect()
-            textrect_exit.center = (125, 127)
-            textrect_resume = text_resume.get_rect()
-            textrect_resume.center = (125, 27)
-            self._surface.fill((0, 0, 0))
-            pygame.draw.rect(self._surface, (255, 0, 0), exit_button)
-            pygame.draw.rect(self._surface, (255, 0, 0), resume_button)
-            self._surface.blit(text_exit, textrect_exit)
-            self._surface.blit(text_resume, textrect_resume)
-            self._frame.update()
+            self._surface.fill((0, 128, 128))
+            if self.resume_button.draw_on_screen(self._surface):
+                self.menu_running = False
+                if self.guess_timer_last_time:
+                    self.pause_duration_guess_timer += pygame.time.get_ticks() - pause_timer
+                if self.powerup.last_time_draw:
+                    self.pause_duration_coin_draw += pygame.time.get_ticks() - pause_timer
+                if self.powerup.last_time_effect:
+                    self.pause_duration_coin_effect += pygame.time.get_ticks() - pause_timer
+            if self.exit_button.draw_on_screen(self._surface):
+                self.running = False
+                self.menu_running = False
             for event in pygame.event.get():
-                cursor_pos = pygame.mouse.get_pos()
-                if resume_button.collidepoint(cursor_pos):
-                    if event.type == pygame.MOUSEBUTTONDOWN:
-                        self.menu_running = False
-                        if self.guess_timer_last_time:
-                            self.pause_duration_guess_timer += pygame.time.get_ticks() - pause_timer
-                        if self.powerup.last_time_draw:
-                            self.pause_duration_coin_draw += pygame.time.get_ticks() - pause_timer
-                        if self.powerup.last_time_effect:
-                            self.pause_duration_coin_effect += pygame.time.get_ticks() - pause_timer
-                if exit_button.collidepoint(cursor_pos):
-                    if event.type == pygame.MOUSEBUTTONDOWN:
-                        self.running = False
-                        self.menu_running = False
                 if event.type == pygame.QUIT:
-                    self.running = False
                     self.menu_running = False
+                    self.running = False
+            self._frame.update()
 
     def check_answer(self):
         # check what stage the user is at to make sure the guess is being made for the right word
@@ -385,15 +376,15 @@ class MainFrame:
         # reset character, ground and platform positions
         self._character.lives = 3
         self._ground.rect.x = 0
-        self._ground.rect.y = self._surface.get_size()[1]-50
+        self._ground.rect.y = self._surface.get_size()[1]-100
         self._character.jumping = False
         self._character.rect.midbottom = self._ground.rect.midtop
         self._platform_group.empty()
         random.shuffle(self.article_list)
-        self._platform_one = Platform((0, self._surface.get_height() - 220), (107, 30), self.article_list[0], False)
+        self._platform_one = Platform((0, self._surface.get_height() - 270), (107, 30), self.article_list[0], False)
         self._platform_two = Platform((self._width / 2 - 107 / 2,
-                                       self._surface.get_height() - 220), (107, 30), self.article_list[1], False)
-        self._platform_three = Platform((self._width - 107, self._surface.get_height() - 220), (107, 30),
+                                       self._surface.get_height() - 270), (107, 30), self.article_list[1], False)
+        self._platform_three = Platform((self._width - 107, self._surface.get_height() - 270), (107, 30),
                                         self.article_list[2], False)
         self._platform_group.add(self._platform_one, self._platform_two, self._platform_three)
         self.word_article_dict = {}
@@ -426,11 +417,11 @@ class MainFrame:
         return self._frame
 
 
-def draw_game_over_text(main_frame):
+def draw_game_over_text(main_frame, coins):
     game_over_text = Text("GAME OVER", (255, 255, 255), 50,
                           (main_frame.surface.get_rect().centerx, main_frame.surface.get_rect().centery - 50),
                           main_frame.main_font)
-    score_text = Text("SCORE: " + "50", (255, 255, 255), 50,
+    score_text = Text("SCORE: " + str(coins), (255, 255, 255), 50,
                       (main_frame.surface.get_rect().centerx, main_frame.surface.get_rect().centery),
                       main_frame.main_font)
     play_again_text = Text("PRESS SPACE TO RESTART", (255, 255, 255), 50,
@@ -452,7 +443,7 @@ if __name__ == "__main__":
             if not game_window.gameover:
                 game_window.draw_update_surface_sprites()
             else:
-                draw_game_over_text(game_window)
+                draw_game_over_text(game_window, game_window.coins)
                 if update_frame:
                     game_window.frame.update()
                     update_frame = False
@@ -461,4 +452,4 @@ if __name__ == "__main__":
                     update_frame = True
                     game_window.reset_game_variables()
         else:
-            game_window.create_draw_menu()
+            game_window.main_menu()
