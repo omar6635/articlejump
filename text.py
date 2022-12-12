@@ -4,7 +4,7 @@ import time
 
 
 class Text(pygame.sprite.Sprite):
-    def __init__(self, text: str, color, size: int,  coordinates, font="Helvetica"):
+    def __init__(self, text: str, color, size: int,  coordinates, font="Helvetica", set_midleft=False):
         super(Text, self).__init__()
         pygame.font.init()
         # self.image = pygame.image.load()
@@ -13,8 +13,10 @@ class Text(pygame.sprite.Sprite):
         self.text_font = pygame.font.SysFont(font, size)
         self.text_surface = self.text_font.render(self.text, True, self.color)
         self.rect = self.text_surface.get_rect()
-        self.rect.centerx = coordinates[0]
-        self.rect.centery = coordinates[1]
+        if set_midleft:
+            self.rect.midleft = coordinates
+        else:
+            self.rect.center = coordinates
 
     def draw_on_surface(self, screen: pygame.Surface, animate_text=False) -> None:
         if not animate_text:

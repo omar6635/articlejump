@@ -16,3 +16,5 @@ Graphical User Interface (GUI) Graphics Kit – Free: https://jamiecross.itch.io
 accessed at 02:46 PM on 08.12.22
 FREE PIXEL ART BUTTONS: https://ankousse26.itch.io/free-pixel-art-buttons
 accessed at 01:52 PM on 11.12.22
+Menu Image Sprites: https://github.com/russs123/pygame_tutorials
+accessed at 6:56 PM on 12.12.22

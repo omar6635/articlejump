@@ -22,6 +22,7 @@ class MainCharacter(pygame.sprite.Sprite):
         self.flip = False
         self.scroll_threshold = None
         self.lives = 3
+        self.next_lives = 3
         self.last_saved_pos = (0, 0)
         self.on_platform = ""
         self.platform_stage = -1

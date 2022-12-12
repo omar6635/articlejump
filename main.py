@@ -91,12 +91,30 @@ class MainFrame:
         self.guess_timer_bool = True
         # menu attributes
         # button objects
-        self.resume_button = Button((240, 117), (self._surface.get_rect().centerx, 150),
-                                    pygame.image.load("data/gfx/resume_button.png"), 0.6)
-        self.settings_button = Button((240, 117), (self._surface.get_rect().centerx, 300),
-                                      pygame.image.load("data/gfx/resume_button.png"), 0.6)
-        self.exit_button = Button((240, 117), (self._surface.get_rect().centerx, 450),
-                                  pygame.image.load("data/gfx/exit_button.png"), 0.6)
+        self.resume_button = Button((185, 72), (self._surface.get_rect().centerx, 160),
+                                    pygame.image.load("data/gfx/internet_asset_packs/"
+                                                      "Menu Image Sprites/button_resume.png"), 1)
+        self.settings_button = Button((199, 72), (self._surface.get_rect().centerx, 310),
+                                      pygame.image.load("data/gfx/internet_asset_packs/"
+                                                        "Menu Image Sprites/button_options.png"), 1)
+        self.exit_button = Button((122, 72), (self._surface.get_rect().centerx, 460),
+                                  pygame.image.load("data/gfx/internet_asset_packs/"
+                                                    "Menu Image Sprites/button_quit.png"), 1)
+        self.video_settings_button = Button((341, 72), (self._surface.get_rect().centerx, 150),
+                                            pygame.image.load("data/gfx/internet_asset_packs/"
+                                                              "Menu Image Sprites/button_video.png"), 1)
+        self.audio_settings_button = Button((341, 72), (self._surface.get_rect().centerx, 300),
+                                            pygame.image.load("data/gfx/internet_asset_packs/"
+                                                              "Menu Image Sprites/button_audio.png"), 1)
+        self.key_bindings_button = Button((302, 72), (self._surface.get_rect().centerx, 450),
+                                          pygame.image.load("data/gfx/internet_asset_packs/"
+                                                            "Menu Image Sprites/button_keys.png"), 1)
+        self.back_button = Button((129, 72), (self._surface.get_rect().centerx, 600),
+                                  pygame.image.load("data/gfx/internet_asset_packs/"
+                                                    "Menu Image Sprites/button_back.png"), 1)
+        self.confirm_button = Button((199, 72), (self._surface.get_rect().centerx, 600),
+                                     pygame.image.load("data/gfx/internet_asset_packs/"
+                                                       "Menu Image Sprites/button_confirm.png"), 1)
         # game variables
         self.coins = 0
         self.stage = 0
@@ -321,27 +339,80 @@ class MainFrame:
     def main_menu(self):
         pause_timer = 0
         menu_state = "main"
+        user_input = ""
+        char_lim = 0
+        input_rect = 0
+        passive_color = pygame.Color("gray")
+        input_active = False
         while self.menu_running:
             if pause_timer == 0:
                 pause_timer = pygame.time.get_ticks()
             self._surface.fill((0, 128, 128))
-            if self.resume_button.draw_on_screen(self._surface):
-                self.menu_running = False
-                if self.guess_timer_last_time:
-                    self.pause_duration_guess_timer += pygame.time.get_ticks() - pause_timer
-                if self.powerup.last_time_draw:
-                    self.pause_duration_coin_draw += pygame.time.get_ticks() - pause_timer
-                if self.powerup.last_time_effect:
-                    self.pause_duration_coin_effect += pygame.time.get_ticks() - pause_timer
-            if self.exit_button.draw_on_screen(self._surface):
-                self.running = False
-                self.menu_running = False
-            if self.settings_button.draw_on_screen(self._surface):
-                pass
+            if menu_state == "main":
+                if self.resume_button.draw_on_screen(self._surface):
+                    self.menu_running = False
+                    if self.guess_timer_last_time:
+                        self.pause_duration_guess_timer += pygame.time.get_ticks() - pause_timer
+                    if self.powerup.last_time_draw:
+                        self.pause_duration_coin_draw += pygame.time.get_ticks() - pause_timer
+                    if self.powerup.last_time_effect:
+                        self.pause_duration_coin_effect += pygame.time.get_ticks() - pause_timer
+                if self.exit_button.draw_on_screen(self._surface):
+                    self.running = False
+                    self.menu_running = False
+                if self.settings_button.draw_on_screen(self._surface):
+                    menu_state = "options"
+            elif menu_state[:7] == "options":
+                if self.video_settings_button.draw_on_screen(self._surface):
+                    menu_state = "video_settings"
+                if self.audio_settings_button.draw_on_screen(self._surface):
+                    pass
+                if self.key_bindings_button.draw_on_screen(self._surface):
+                    pass
+                if self.back_button.draw_on_screen(self._surface) and menu_state != "options_register":
+                    menu_state = "main"
+                if menu_state == "options_register":
+                    menu_state = "options"
+            elif menu_state == "video_settings":
+                # heart amount field code
+                char_lim = 1
+                if len(user_input) != 0:
+                    rect_width = len(user_input)*20
+                else:
+                    rect_width = 20
+                input_rect = pygame.rect.Rect(0, 0, rect_width, 30)
+                input_rect.center = (self._surface.get_rect().centerx, 100)
+                static_text_obj = Text("heart amount:", (0, 0, 0), 30, (input_rect.midleft[0]-145,
+                                                                        input_rect.midleft[1]), self.main_font, True)
+                input_text_obj = Text(user_input, (0, 0, 0), 20, (input_rect.midleft[0]+5, input_rect.midleft[1]),
+                                      self.main_font, True)
+                if input_active:
+                    pygame.draw.rect(self._surface, (255, 255, 255), input_rect, 2)
+                else:
+                    pygame.draw.rect(self._surface, passive_color, input_rect, 2)
+                input_text_obj.draw_on_surface(self._surface)
+                static_text_obj.draw_on_surface(self._surface)
+                if self.confirm_button.draw_on_screen(self._surface):
+                    menu_state = "options_register"
+                    if user_input:
+                        self._character.next_lives = int(user_input)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.menu_running = False
                     self.running = False
+                if event.type == pygame.MOUSEBUTTONDOWN and input_rect:
+                    mouse_cursor = pygame.mouse.get_pos()
+                    if input_rect.collidepoint(mouse_cursor):
+                        input_active = True
+                    else:
+                        input_active = False
+                if event.type == pygame.KEYDOWN and menu_state == "video_settings":
+                    if input_active:
+                        if event.key == pygame.K_BACKSPACE:
+                            if len(user_input) != 0:
+                                user_input = user_input[:len(user_input)-1]
+                        elif char_lim != len(user_input) and event.unicode in [str(i) for i in range(1, 10)]:
+                            user_input += event.unicode
             self._frame.update()
 
     def check_answer(self):
@@ -378,7 +449,7 @@ class MainFrame:
         self._character.platform_stage = -1
         self._character.on_platform = ""
         # reset character, ground and platform positions
-        self._character.lives = 3
+        self._character.lives = self._character.next_lives
         self._ground.rect.x = 0
         self._ground.rect.y = self._surface.get_size()[1]-100
         self._character.jumping = False

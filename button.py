@@ -5,7 +5,7 @@ from load_sprite import load_sprite
 class Button(pygame.sprite.Sprite):
     def __init__(self, dimensions: tuple, coordinates: tuple, image, scale):
         super(Button, self).__init__()
-        self.image = load_sprite(image, 30, 93, *dimensions, scale, (0, 0, 0))
+        self.image = load_sprite(image, 0, 2, *dimensions, scale, (0, 128, 128))
         self.rect = self.image.get_rect()
         self.rect.center = coordinates
         self.clicked = False
@@ -28,13 +28,13 @@ class Button(pygame.sprite.Sprite):
 if __name__ == "__main__":
     pygame.init()
     display = pygame.display.set_mode((500, 500))
-    resume_img = pygame.image.load("data/gfx/exit_button.png").convert_alpha()
-    button = Button((240, 117), display.get_rect().center, resume_img, 0.6)
+    resume_img = pygame.image.load("data/gfx/internet_asset_packs/"
+                                   "Menu Image Sprites/button_resume.png")
+    button = Button((185, 72), display.get_rect().center, resume_img, 1)
     run = True
     while run:
-        display.fill((55, 55, 55))
+        display.fill((0, 128, 128))
         # draw rect
-        pygame.draw.rect(display, (255, 255, 255), button.rect, 1)
         button.draw_on_screen(display)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
