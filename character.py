@@ -106,7 +106,7 @@ class MainCharacter(pygame.sprite.Sprite):
                             stage_changed = True
 
         # check if user is hovering over nothing and if so, drop him
-        if self.rect.y != 596 and dy == 0 and not self.jumping and not collision_detected:
+        if self.rect.bottom != ground_top and not self.jumping and not collision_detected:
             self.jumping = True
             self.jump_velocity = 0
 
