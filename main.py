@@ -331,6 +331,7 @@ class MainFrame:
         if self._character.rect.top > self._surface.get_height():
             self._character.lives -= 1
             self._character.rect.midbottom = self._character.last_saved_pos
+            self._character.jump_velocity = -22
         if not self.guess_timer_method(stage_changed)[0]:
             self._character.lives -= 1
         if self._character.lives < 0:
