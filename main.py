@@ -85,7 +85,7 @@ class MainFrame:
         # formatting code
         self.format_panel_screen()
         # guess timer variables
-        self.guess_timer_text = Text("0", (0, 0, 0), 30, (15, 50))
+        self.guess_timer_text = Text("0", (0, 0, 0), 25, (15, 50))
         self.guess_timer_last_time = 0
         self.guess_timer_var = 10000
         self.guess_timer_bool = True
@@ -217,7 +217,6 @@ class MainFrame:
         self._ground.blit_ground(self._surface, move_result_tuple[0])
         # draw the character on the background
         sprite_list = self._character.create_animation_list()
-        pygame.draw.rect(self._surface, (255, 255, 255), self._character.rect, 2)
         self._character.animation(sprite_list, self._surface)
         # create platforms if current amount is below limit
         while len(self._platform_group.sprites()) < self.max_platforms:
@@ -248,6 +247,11 @@ class MainFrame:
         # heart UI elements
         self._surface.blit(self._wooden_frame, (370, -14))
         self.draw_hearts()
+        # guess timer UI elements
+        self._surface.blit(self._wooden_frame, (170, -14))
+        self.format_guess_timer(self.guess_timer_method(move_result_tuple[1])[1])
+        self.guess_timer_text.rect.topleft = (235, -3)
+        self.guess_timer_text.draw_on_surface(self._surface)
         # check if user has made correct decision
         if self._character.on_platform != "":
             self.check_answer()
@@ -282,9 +286,6 @@ class MainFrame:
                 self.loading_bar.bar_obj_list.clear()
         # as user progresses, make the game harder by choosing harder words and making the game more dynamic
         self.raise_difficulty()
-        # draw guess timer text
-        self.format_guess_timer(self.guess_timer_method(move_result_tuple[1])[1])
-        self.guess_timer_text.draw_on_surface(self._surface)
         # if timer_started runs out, delete powerup.
         self._frame.update()
 
@@ -346,11 +347,11 @@ class MainFrame:
     def main_menu(self):
         pause_timer = 0
         menu_state = "main"
-        user_input = ""
+        user_input_ls = [["Heart Amount:", "", 0, False, pygame.rect.Rect(0, 0, 0, 0)],
+                         ["Enable Timer:", "", 0, False, pygame.rect.Rect(0, 0, 0, 0)]]
         char_lim = 0
-        input_rect = 0
+        heart_input_rect = 0
         passive_color = pygame.Color("gray")
-        input_active = False
         while self.menu_running:
             if pause_timer == 0:
                 pause_timer = pygame.time.get_ticks()
@@ -381,45 +382,58 @@ class MainFrame:
                 if menu_state == "options_register":
                     menu_state = "options"
             elif menu_state == "video_settings":
-                # heart amount field code
+                # heart amount selector option
                 char_lim = 1
-                if len(user_input) != 0:
-                    rect_width = len(user_input)*20
-                else:
-                    rect_width = 20
-                input_rect = pygame.rect.Rect(0, 0, rect_width, 30)
-                input_rect.center = (self._surface.get_rect().centerx, 100)
-                static_text_obj = Text("heart amount:", (0, 0, 0), 30, (input_rect.midleft[0]-145,
-                                                                        input_rect.midleft[1]), self.main_font, True)
-                input_text_obj = Text(user_input, (0, 0, 0), 20, (input_rect.midleft[0]+5, input_rect.midleft[1]),
-                                      self.main_font, True)
-                if input_active:
-                    pygame.draw.rect(self._surface, (255, 255, 255), input_rect, 2)
-                else:
-                    pygame.draw.rect(self._surface, passive_color, input_rect, 2)
-                input_text_obj.draw_on_surface(self._surface)
-                static_text_obj.draw_on_surface(self._surface)
+
+                # draw objects to surface
+                for counter, i in enumerate(user_input_ls):
+                    # check how many chars are in input rect and adjust size
+                    rect_color = pygame.Color("gray")
+                    if len(i[1]) != 0:
+                        i[2] = len(i[1]) * 7 + 10
+                    else:
+                        i[2] = 10
+                    if i[3]:
+                        rect_color = pygame.Color("white")
+                    # create option static text
+                    option_static_text = Text(i[0], (0, 0, 0), 30, (self.confirm_button.rect.center[0], (counter+1)*100),
+                                              self.main_font)
+                    # set the input rect
+                    i[4] = pygame.rect.Rect(0, 0, i[2], 30)
+                    i[4].midleft = (option_static_text.rect.midright[0]+5, (counter+1)*100)
+                    # create input static text
+                    input_static_text = Text(i[1], (0, 0, 0), 20, (i[4].midleft[0]+5, i[4].midleft[1]), self.main_font,
+                                             True)
+                    # draw text variables onto surface
+                    option_static_text.draw_on_surface(self._surface)
+                    input_static_text.draw_on_surface(self._surface)
+                    pygame.draw.rect(self._surface, rect_color, i[4], 2)
+
                 if self.confirm_button.draw_on_screen(self._surface):
                     menu_state = "options_register"
-                    if user_input:
-                        self._character.next_lives = int(user_input)
+                    if user_input_ls[0][1]:
+                        self._character.next_lives = int(user_input_ls[0][1])
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.menu_running = False
                     self.running = False
-                if event.type == pygame.MOUSEBUTTONDOWN and input_rect:
-                    mouse_cursor = pygame.mouse.get_pos()
-                    if input_rect.collidepoint(mouse_cursor):
-                        input_active = True
-                    else:
-                        input_active = False
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        # check if input rect is active or not
+                        for i in user_input_ls:
+                            mouse_cursor = pygame.mouse.get_pos()
+                            if i[4].collidepoint(mouse_cursor):
+                                i[3] = True
+                            else:
+                                i[3] = False
                 if event.type == pygame.KEYDOWN and menu_state == "video_settings":
-                    if input_active:
-                        if event.key == pygame.K_BACKSPACE:
-                            if len(user_input) != 0:
-                                user_input = user_input[:len(user_input)-1]
-                        elif char_lim != len(user_input) and event.unicode in [str(i) for i in range(1, 10)]:
-                            user_input += event.unicode
+                    for e in user_input_ls:
+                        if e[3]:
+                            if event.key == pygame.K_BACKSPACE:
+                                if len(e[1]) != 0:
+                                    e[1] = e[1][:len(e[1])-1]
+                            elif char_lim != len(e[1]) and event.unicode in [str(i) for i in range(1, 10)]:
+                                e[1] += event.unicode
+
             self._frame.update()
 
     def check_answer(self):
