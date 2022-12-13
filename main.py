@@ -35,10 +35,6 @@ class MainFrame:
         self._surface = self._frame.set_mode((self._width, self._height))
         # create ground platform
         self._ground = Ground((0, self._surface.get_height() - 100))
-        # character attributes
-        self._character = MainCharacter(self._ground.rect.midtop)
-        # powerup attributes
-        self.powerup = PowerUp((0, self._surface.get_width()), (0, self._character.rect.top))
         # UI elements
         self._wooden_frame = load_sprite(
             pygame.image.load("data/gfx/internet_asset_packs/dungeon pack/wooden_frame.png"),
@@ -74,6 +70,10 @@ class MainFrame:
         self._platform_three = Platform((self._width - 107, self._surface.get_height() - 270), (107, 30),
                                         self.article_list[2], False)
         self._platform_group = pygame.sprite.Group(self._platform_one, self._platform_two, self._platform_three)
+        # character attributes
+        self._character = MainCharacter(self._ground.rect.midtop, list(self._platform_two.rect.midtop))
+        # powerup attributes
+        self.powerup = PowerUp((0, self._surface.get_width()), (0, self._character.rect.top))
         # for every 3 platforms in the platform group, blit a randomly generated word on the screen
         self.generate_draw_word(self._platform_group.sprites()[0].rect[0:2])
         self.max_platforms = 12
@@ -115,6 +115,7 @@ class MainFrame:
         self.confirm_button = Button((199, 72), (self._surface.get_rect().centerx, 600),
                                      pygame.image.load("data/gfx/internet_asset_packs/"
                                                        "Menu Image Sprites/button_confirm.png"), 1)
+
         # game variables
         self.coins = 0
         self.stage = 0
@@ -196,10 +197,14 @@ class MainFrame:
         self._surface.fill((0, 0, 0))
         self.calc_stage()
         # move character
-        scroll, stage_changed = self._character.move(self._ground.rect.y, self._platform_group,
-                                                     self._surface.get_rect()[2:], self.stage)
+        # move_result_tuple = (scroll, stage_changed)
+        move_result_tuple = self._character.move(self._ground.rect.y, self._platform_group,
+                                                 self._surface.get_rect()[2:], self.stage)
+        # check if gameover condition is met
+        if self.gameover_check(move_result_tuple[1]):
+            self.gameover = True
         # create background scroll by adding scroll onto it (cumulative variable)
-        self.background_scroll += scroll
+        self.background_scroll += move_result_tuple[0]
         if self.background_scroll > self._surface.get_height():
             self.background_scroll = 0
         # blit the background(s) on the frame
@@ -209,9 +214,10 @@ class MainFrame:
                                                               self.background_scroll))
             start_number -= self._surface.get_height() / 2
         # draw the ground on background
-        self._ground.blit_ground(self._surface, scroll)
+        self._ground.blit_ground(self._surface, move_result_tuple[0])
         # draw the character on the background
         sprite_list = self._character.create_animation_list()
+        pygame.draw.rect(self._surface, (255, 255, 255), self._character.rect, 2)
         self._character.animation(sprite_list, self._surface)
         # create platforms if current amount is below limit
         while len(self._platform_group.sprites()) < self.max_platforms:
@@ -229,11 +235,11 @@ class MainFrame:
             self._platform_group.add(buffer_list)
         # draw platforms on bg
         for platform in self._platform_group:
-            platform.update(scroll, self._surface.get_size(), self.word_article_dict)
+            platform.update(move_result_tuple[0], self._surface.get_size(), self.word_article_dict)
             platform.draw_platform(self._surface)
         # draw words on bg
         for sub_list in list(self.word_article_dict.items()):
-            sub_list[0].scroll_text(scroll)
+            sub_list[0].scroll_text(move_result_tuple[0])
             sub_list[0].draw_on_surface_alpha(self._surface, 75)
         # draw UI elements
         # coins UI elements
@@ -242,9 +248,6 @@ class MainFrame:
         # heart UI elements
         self._surface.blit(self._wooden_frame, (370, -14))
         self.draw_hearts()
-        # check if gameover condition is met
-        if self.gameover_check(stage_changed):
-            self.gameover = True
         # check if user has made correct decision
         if self._character.on_platform != "":
             self.check_answer()
@@ -256,7 +259,7 @@ class MainFrame:
         # if draw_powerup evaluates to true, draw powerup
         if self.draw_powerup:
             self.powerup.draw_on_screen(self._surface)
-            self.powerup.update(scroll)
+            self.powerup.update(move_result_tuple[0])
             self.p_double_coins = self._character.check_power_up_collision(self.powerup)
             if self.p_double_coins:
                 self.powerup.reposition_powerup()
@@ -280,7 +283,7 @@ class MainFrame:
         # as user progresses, make the game harder by choosing harder words and making the game more dynamic
         self.raise_difficulty()
         # draw guess timer text
-        self.format_guess_timer(self.guess_timer_method(stage_changed)[1])
+        self.format_guess_timer(self.guess_timer_method(move_result_tuple[1])[1])
         self.guess_timer_text.draw_on_surface(self._surface)
         # if timer_started runs out, delete powerup.
         self._frame.update()
@@ -330,8 +333,11 @@ class MainFrame:
     def gameover_check(self, stage_changed):
         if self._character.rect.top > self._surface.get_height():
             self._character.lives -= 1
-            self._character.rect.midbottom = self._character.last_saved_pos
-            self._character.jump_velocity = -22
+            if self._character.last_saved_pos in [list(platform.rect.midtop) for platform in self._platform_group.sprites()]:
+                self._character.rect.midbottom = self._character.last_saved_pos
+            else:
+                self._character.last_saved_pos = list(self._platform_group.sprites()[1].rect.midtop)
+                self._character.rect.midbottom = self._character.last_saved_pos
         if not self.guess_timer_method(stage_changed)[0]:
             self._character.lives -= 1
         if self._character.lives < 0:
@@ -449,6 +455,7 @@ class MainFrame:
         self.guess_timer_bool = True
         self._character.platform_stage = -1
         self._character.on_platform = ""
+        self.moving_platforms = False
         # reset character, ground and platform positions
         self._character.lives = self._character.next_lives
         self._ground.rect.x = 0

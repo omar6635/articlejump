@@ -3,7 +3,7 @@ from load_sprite import load_sprite
 
 
 class MainCharacter(pygame.sprite.Sprite):
-    def __init__(self, coordinates):
+    def __init__(self, coordinates, last_saved_pos):
         super(MainCharacter, self).__init__()
         self.sprite = pygame.image.load("data/gfx/internet_asset_packs/Medieval King Pack 2/Sprites/Idle.png")\
             .convert_alpha()
@@ -23,7 +23,7 @@ class MainCharacter(pygame.sprite.Sprite):
         self.scroll_threshold = None
         self.lives = 3
         self.next_lives = 3
-        self.last_saved_pos = (0, 0)
+        self.last_saved_pos = last_saved_pos
         self.on_platform = ""
         self.platform_stage = -1
         self.moving_p_velocity = 0
@@ -89,39 +89,36 @@ class MainCharacter(pygame.sprite.Sprite):
         # check collision with platform
         for platform in platform_group:
             # collision in the y direction
-            if platform.rect.colliderect(self.rect.x, self.rect.y + dy, self.rect.width, self.rect.height):
+            if platform.rect.colliderect(self.rect.x, self.rect.y + dy + 5, self.rect.width, self.rect.height):
                 # check if above the platform
                 if self.rect.bottom < platform.rect.centery:
-                    if self.jump_velocity > 0:
+                    if self._jump_velocity > 0:
                         self.rect.bottom = platform.rect.top
                         dy = 0
                         self.jumping = False
-                        self.last_saved_pos = platform.rect.midtop
                         collision_detected = True
+                        self.last_saved_pos = list(platform.rect.midtop)
                         if platform.moving:
                             dx += (platform.move_direction * platform.move_speed*2)
                         if self.platform_stage < stage:
                             self.on_platform = platform.name
                             self.platform_stage = stage
                             stage_changed = True
-
         # check if user is hovering over nothing and if so, drop him
-        if self.rect.bottom != ground_top and not self.jumping and not collision_detected:
-            self.jumping = True
-            self.jump_velocity = 0
-
-        # check collision with ground
-        if self.rect.bottom + dy > ground_top:
-            self.jumping = False
+        if self.rect.bottom != ground_top:
+            if not self.jumping:
+                if not collision_detected:
+                    self.jumping = True
+                    self._jump_velocity = 0
 
         # check if the player has bounced to the top of the screen
         if self.rect.top <= self.scroll_threshold:
             # if player is jumping
-            if self.jump_velocity < 0:
+            if self._jump_velocity < 0:
                 scroll = -dy+1
+                self.last_saved_pos[1] += scroll
 
         # update rectangle position
-
         self.rect.x += dx
         self.rect.y += dy + scroll
 

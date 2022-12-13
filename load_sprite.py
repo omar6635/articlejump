@@ -16,11 +16,11 @@ if __name__ == "__main__":
     wooden_frame = load_sprite(pygame.image.load("data/gfx/internet_asset_packs/dungeon pack/wooden_frame.png"),
                                0, 0, 530, 174, 0.3, (0, 0, 0))
     whole_heart = load_sprite(pygame.image.load("data/gfx/internet_asset_packs/dungeonui.v1.png"),
-                                    20, 133, 14, 15, 2, (0, 0, 0))
+                              20, 133, 14, 15, 2, (0, 0, 0))
     half_heart = load_sprite(pygame.image.load("data/gfx/internet_asset_packs/dungeonui.v1.png"),
-                                   35, 133, 14, 15, 2, (0, 0, 0))
+                             35, 133, 14, 15, 2, (0, 0, 0))
     empty_heart = load_sprite(pygame.image.load("data/gfx/internet_asset_packs/dungeonui.v1.png"),
-                                    50, 133, 14, 15, 2, (0, 0, 0))
+                              50, 133, 14, 15, 2, (0, 0, 0))
     run = True
     while run:
         display.fill((255, 255, 255))
