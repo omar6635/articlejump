@@ -133,6 +133,7 @@ class MainFrame:
         self.moving_platforms = False
         self.increase_rating = False
         self.punish_articles = False
+        self.reverse_inputs_var = False
         # display splash and title screens
         # self.splash_screen()
         # self.title_screen()
@@ -199,10 +200,10 @@ class MainFrame:
         self.calc_stage()
         # move character
         # move_result_tuple = (scroll, stage_changed)
-        move_result_tuple = self._character.move(self._ground.rect.y, self._platform_group,
-                                                 self._surface.get_rect()[2:], self.stage)
+        scroll, stage_changed = self._character.move(self._ground.rect.y, self._platform_group,
+                                                     self._surface.get_rect()[2:], self.stage, self.reverse_inputs_var)
         # create background scroll by adding scroll onto it (cumulative variable)
-        self.background_scroll += move_result_tuple[0]
+        self.background_scroll += scroll
         if self.background_scroll > self._surface.get_height():
             self.background_scroll = 0
         # blit the background(s) on the frame
@@ -212,7 +213,7 @@ class MainFrame:
                                                               self.background_scroll))
             start_number -= self._surface.get_height() / 2
         # draw the ground on background
-        self._ground.blit_ground(self._surface, move_result_tuple[0])
+        self._ground.blit_ground(self._surface, scroll)
         # draw the character on the background
         sprite_list = self._character.create_animation_list()
         self._character.animation(sprite_list, self._surface)
@@ -232,11 +233,11 @@ class MainFrame:
             self._platform_group.add(buffer_list)
         # draw platforms on bg
         for platform in self._platform_group:
-            platform.update(move_result_tuple[0], self._surface.get_size(), self.word_article_dict)
+            platform.update(scroll, self._surface.get_size(), self.word_article_dict)
             platform.draw_platform(self._surface)
         # draw words on bg
         for sub_list in list(self.word_article_dict.items()):
-            sub_list[0].scroll_text(move_result_tuple[0])
+            sub_list[0].scroll_text(scroll)
             sub_list[0].draw_on_surface_alpha(self._surface, 75)
         # draw UI elements
         # Animated pixel coins UI elements
@@ -246,12 +247,12 @@ class MainFrame:
         self._surface.blit(self._wooden_frame, (370, -14))
         self.draw_hearts()
         # check if gameover condition is met
-        if self.gameover_check(move_result_tuple[1]):
+        if self.gameover_check(stage_changed):
             self.gameover = True
         # guess timer UI elements & logic
         if self.show_guess_timer:
             self._surface.blit(self._wooden_frame, (170, -14))
-            self.format_guess_timer(self.guess_timer_method(move_result_tuple[1])[1])
+            self.format_guess_timer(self.guess_timer_method(stage_changed)[1])
             self.guess_timer_text.rect.topleft = (235, -3)
             self.guess_timer_text.draw_on_surface(self._surface)
         # check if user has made correct decision
@@ -259,15 +260,20 @@ class MainFrame:
             if not self.check_answer():
                 self.deduct_hearts()
             self._character.on_platform = ""
-        # powerup & debuff logic + UI
+        # powerup logic + UI
         # make it so that there's a 1 in 500 chance a powerup spawns
-        if not self.powerup.power_up_active:
-            self.powerup.assess_draw_powerup()
-        self.powerup.draw_on_screen(self._surface, move_result_tuple, self._character)
-        # 1 in a 500 chance debuff spawnspowerup.
-        if not self.debuff.power_up_active:
-            self.powerup.assess_draw_powerup()
+        self.powerup.assess_draw_powerup()
+        if self.powerup.draw_powerup and not self.debuff.power_up_active:
+            self.powerup.draw_on_screen(self._surface, scroll, self._character)
         self.double_coins()
+        # debuff logic + UI
+        # 1 in a 500 chance debuff spawnspowerup.
+        self.powerup.assess_draw_powerup()
+        # reverse the player's left and right inputs if debuff is picked up
+        self.debuff.assess_draw_powerup()
+        if self.debuff.draw_powerup and not self.powerup.power_up_active:
+            self.debuff.draw_on_screen(self._surface, scroll, self._character)
+        self.reverse_inputs_method()
         # as user progresses, make the game harder by choosing harder words and making the game more dynamic
         self.raise_difficulty()
         # if timer_started runs out, delete powerup.
@@ -278,17 +284,25 @@ class MainFrame:
         if self.powerup.power_up_active:
             self.coin_multipler = 2
             # blit loading bar
-            self.loading_bar.resize_bar(self.powerup.last_time_effect, self.powerup.pause_duration_coin_effect)
+            self.loading_bar.resize_bar(self.powerup.last_time_effect, self.powerup.pause_duration_effect)
             self.loading_bar.draw_on_screen()
             if self.powerup.effect_timer():
                 self.powerup.power_up_active = False
                 self.coin_multipler = 1
-                self.powerup.pause_duration_coin_effect = 0
+                self.powerup.pause_duration_effect = 0
                 self.loading_bar.bar_obj_list.clear()
 
-    def debuff(self):
-        pass
-    
+    def reverse_inputs_method(self):
+        if self.debuff.power_up_active:
+            self.reverse_inputs_var = True
+            self.loading_bar.resize_bar(self.debuff.last_time_effect, self.debuff.pause_duration_effect)
+            self.loading_bar.draw_on_screen()
+            if self.debuff.effect_timer():
+                self.debuff.power_up_active = False
+                self.reverse_inputs_var = False
+                self.debuff.pause_duration_effect = 0
+                self.loading_bar.bar_obj_list.clear()
+
     def format_guess_timer(self, guess_timer: int) -> None:
         if guess_timer >= 1000:
             self.guess_timer_text.change_text(str(guess_timer)[0] + "." + str(guess_timer)[1])
@@ -385,9 +399,9 @@ class MainFrame:
                     if self.guess_timer_last_time:
                         self.pause_duration_guess_timer += pygame.time.get_ticks() - pause_timer
                     if self.powerup.last_time_draw:
-                        self.powerup.pause_duration_coin_draw += pygame.time.get_ticks() - pause_timer
+                        self.powerup.pause_duration_draw += pygame.time.get_ticks() - pause_timer
                     if self.powerup.last_time_effect:
-                        self.powerup.pause_duration_coin_effect += pygame.time.get_ticks() - pause_timer
+                        self.powerup.pause_duration_effect += pygame.time.get_ticks() - pause_timer
                 if self.exit_button.draw_on_screen(self._surface):
                     self.running = False
                     self.menu_running = False

@@ -69,7 +69,7 @@ class MainCharacter(pygame.sprite.Sprite):
         elif dy > 0:
             self.animation_mode = 3
 
-    def move(self, ground_top,  platform_group, screen_dimensions, stage):
+    def move(self, ground_top,  platform_group, screen_dimensions, stage, reverse_inputs: bool):
         # reset variables
         scroll = 0
         dx = 0
@@ -80,7 +80,7 @@ class MainCharacter(pygame.sprite.Sprite):
         self.scroll_threshold = screen_dimensions[1]/2+150
 
         # process keypresses
-        self.handle_input(s_width)
+        self.handle_input(s_width, reverse_inputs)
 
         # gravity
         if self.jumping:
@@ -126,17 +126,23 @@ class MainCharacter(pygame.sprite.Sprite):
         self.check_jump(dy)
         return scroll, stage_changed
 
-    def handle_input(self, screen_width):
+    def handle_input(self, screen_width, reverse_inputs: bool):
         keys = pygame.key.get_pressed()
         if keys[pygame.K_RIGHT]:
             if self.allow_traversal(screen_width) != "r border":
-                self.rect.x += self.velocity
+                if not reverse_inputs:
+                    self.rect.x += self._velocity
+                else:
+                    self.rect.x -= self._velocity
                 if not self.jumping:
                     self.animation_mode = 1
                 self.flip = False
         elif keys[pygame.K_LEFT]:
             if self.allow_traversal(screen_width) != "l border":
-                self.rect.x -= self.velocity
+                if not reverse_inputs:
+                    self.rect.x -= self._velocity
+                else:
+                    self.rect.x += self._velocity
                 if not self.jumping:
                     self.animation_mode = 1
                 self.flip = True
