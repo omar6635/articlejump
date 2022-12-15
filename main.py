@@ -89,6 +89,7 @@ class MainFrame:
         self.guess_timer_last_time = 0
         self.guess_timer_var = 10000
         self.guess_timer_bool = True
+        self.show_guess_timer = True
         # menu attributes
         # button objects
         self.resume_button = Button((185, 72), (self._surface.get_rect().centerx, 160),
@@ -132,6 +133,8 @@ class MainFrame:
         self.p_double_coins = False
         self.moving_platforms = False
         self.increase_rating = False
+        self.punish_articles = False
+
         # display splash and title screens
         # self.splash_screen()
         # self.title_screen()
@@ -247,14 +250,16 @@ class MainFrame:
         # check if gameover condition is met
         if self.gameover_check(move_result_tuple[1]):
             self.gameover = True
-        # guess timer UI elements
-        self._surface.blit(self._wooden_frame, (170, -14))
-        self.format_guess_timer(self.guess_timer_method(move_result_tuple[1])[1])
-        self.guess_timer_text.rect.topleft = (235, -3)
-        self.guess_timer_text.draw_on_surface(self._surface)
+        # guess timer UI elements & logic
+        if self.show_guess_timer:
+            self._surface.blit(self._wooden_frame, (170, -14))
+            self.format_guess_timer(self.guess_timer_method(move_result_tuple[1])[1])
+            self.guess_timer_text.rect.topleft = (235, -3)
+            self.guess_timer_text.draw_on_surface(self._surface)
         # check if user has made correct decision
         if self._character.on_platform != "":
-            self.check_answer()
+            if not self.check_answer():
+                self.deduct_hearts()
             self._character.on_platform = ""
         # powerup 1
         # make it so that there's a 1 in 1000 chance a powerup spawns
@@ -348,17 +353,18 @@ class MainFrame:
         if (self._character.lives[1]+self._character.lives[0]) <= 0:
             return True
         if self._character.rect.top > self._surface.get_height():
-            self.manage_hearts()
+            self.deduct_hearts()
             if self._character.last_saved_pos in [list(platform.rect.midtop)
                                                   for platform in self._platform_group.sprites()]:
                 self._character.rect.midbottom = self._character.last_saved_pos
             else:
                 self._character.last_saved_pos = list(self._platform_group.sprites()[1].rect.midtop)
                 self._character.rect.midbottom = self._character.last_saved_pos
-        if not self.guess_timer_method(stage_changed)[0]:
-            self.manage_hearts()
+        if self.show_guess_timer:
+            if not self.guess_timer_method(stage_changed)[0]:
+                self.deduct_hearts()
 
-    def manage_hearts(self):
+    def deduct_hearts(self):
         if self._character.lives_pos == 0:
             self._character.lives[0] -= 1
             if self._character.lives[1]:
@@ -375,9 +381,9 @@ class MainFrame:
     def main_menu(self):
         pause_timer = 0
         menu_state = "main"
-        user_input_ls = [["Heart Amount:", "", 0, False, pygame.rect.Rect(0, 0, 0, 0), (1, 7)],
-                         ["Enable Timer:", "", 0, False, pygame.rect.Rect(0, 0, 0, 0), (0, 2)],
-                         ["Article evaluation:", "", 0, False, pygame.rect.Rect(0, 0, 0, 0), (0, 2)]]
+        user_input_ls = [["Heart Amount:", "", 0, False, pygame.rect.Rect(0, 0, 0, 0), (1, 7), 1],
+                         ["Disable Guess Timer:", "", 0, False, pygame.rect.Rect(0, 0, 0, 0), (0, 2), 1],
+                         ["Article evaluation:", "", 0, False, pygame.rect.Rect(0, 0, 0, 0), (0, 2), 1]]
         while self.menu_running:
             if pause_timer == 0:
                 pause_timer = pygame.time.get_ticks()
@@ -419,8 +425,8 @@ class MainFrame:
                     if i[3]:
                         rect_color = pygame.Color("white")
                     # create option static text
-                    option_static_text = Text(i[0], (0, 0, 0), 30, (self.confirm_button.rect.center[0], (counter+1)*100),
-                                              self.main_font)
+                    option_static_text = Text(i[0], (0, 0, 0), 30, (self.confirm_button.rect.center[0],
+                                                                    (counter+1)*100), self.main_font)
                     # set the input rect
                     i[4] = pygame.rect.Rect(0, 0, i[2], 30)
                     i[4].midleft = (option_static_text.rect.midright[0]+5, (counter+1)*100)
@@ -431,16 +437,29 @@ class MainFrame:
                     option_static_text.draw_on_surface(self._surface)
                     input_static_text.draw_on_surface(self._surface)
                     pygame.draw.rect(self._surface, rect_color, i[4], 2)
-
                 if self.confirm_button.draw_on_screen(self._surface):
                     menu_state = "options_register"
                     if user_input_ls[0][1]:
+                        # change in-game life amount (takes effect after user dies)
                         self._character.next_lives = [0, 0, 0]
                         if int(user_input_ls[0][1]) <= 3:
                             self._character.next_lives[0] = int(user_input_ls[0][1])
                         else:
                             self._character.next_lives[0] = int(user_input_ls[0][1]) - 3
                             self._character.next_lives[1] = int(user_input_ls[0][1]) - self._character.next_lives[0]
+                    # Remove guess timer if true
+                    if user_input_ls[1][1] == "1":
+                        self.show_guess_timer = False
+                    elif user_input_ls[1][1] == "0":
+                        self.show_guess_timer = True
+                    # Wrong articles cause a loss of hearts if true
+                    if user_input_ls[2][1] == "1":
+                        self.punish_articles = True
+                    elif user_input_ls[2][1] == "0":
+                        self.punish_articles = False
+                        if self._character.lives[0] == 1 and not self._character.lives[1] or not \
+                                self._character.lives[0] and self._character.lives[1] == 1:
+                            print("MA I FOUND A CHEATA!")
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.menu_running = False
@@ -459,15 +478,18 @@ class MainFrame:
                             if event.key == pygame.K_BACKSPACE:
                                 if len(e[1]) != 0:
                                     e[1] = e[1][:len(e[1])-1]
-                            elif event.unicode in [str(i) for i in range(*e[5])]:
+                            elif event.unicode in [str(i) for i in range(*e[5])] and len(e[1]) < e[6]:
                                 e[1] += event.unicode
 
             self._frame.update()
 
-    def check_answer(self):
+    def check_answer(self) -> bool:
         # check what stage the user is at to make sure the guess is being made for the right word
         if self.word_article_list[self.stage][1] == self._character.on_platform:
             self.coins += 50 * self.coin_multipler
+        elif self.punish_articles and self.word_article_list[self.stage][1] != self._character.on_platform:
+            return False
+        return True
 
     def calc_stage(self):
         real_scroll = self._ground.rect.y - 766
