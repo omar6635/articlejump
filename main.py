@@ -72,8 +72,11 @@ class MainFrame:
         self._platform_group = pygame.sprite.Group(self._platform_one, self._platform_two, self._platform_three)
         # character attributes
         self._character = MainCharacter(self._ground.rect.midtop, list(self._platform_two.rect.midtop))
-        # powerup attributes
-        self.powerup = PowerUp((0, self._surface.get_width()), (0, self._character.rect.top))
+        # powerup & debuff attributes
+        self.powerup = PowerUp((0, self._surface.get_width()), (0, self._character.rect.top),
+                               "data/gfx/internet_asset_packs/Animated pixel coins/coin2_20x20.png")
+        self.debuff = PowerUp((0, self._surface.get_width()), (0, self._character.rect.top),
+                              "data/gfx/internet_asset_packs/Animated pixel coins/coin3_20x20.png")
         # for every 3 platforms in the platform group, blit a randomly generated word on the screen
         self.generate_draw_word(self._platform_group.sprites()[0].rect[0:2])
         self.max_platforms = 12
@@ -124,17 +127,12 @@ class MainFrame:
         self.coin_multipler = 1
         self.lowest_word_rating = 0
         self.pause_duration_guess_timer = 0
-        self.pause_duration_coin_draw = 0
-        self.pause_duration_coin_effect = 0
-        self.draw_powerup = False
         self.running = True
         self.menu_running = False
         self.gameover = False
-        self.p_double_coins = False
         self.moving_platforms = False
         self.increase_rating = False
         self.punish_articles = False
-
         # display splash and title screens
         # self.splash_screen()
         # self.title_screen()
@@ -241,7 +239,7 @@ class MainFrame:
             sub_list[0].scroll_text(move_result_tuple[0])
             sub_list[0].draw_on_surface_alpha(self._surface, 75)
         # draw UI elements
-        # coins UI elements
+        # Animated pixel coins UI elements
         self._surface.blit(self._wooden_frame, (-30, -14))
         self.draw_score()
         # heart UI elements
@@ -261,39 +259,36 @@ class MainFrame:
             if not self.check_answer():
                 self.deduct_hearts()
             self._character.on_platform = ""
-        # powerup 1
-        # make it so that there's a 1 in 1000 chance a powerup spawns
-        if not self.p_double_coins:
-            self.assess_draw_powerup()
-        # if draw_powerup evaluates to true, draw powerup
-        if self.draw_powerup:
-            self.powerup.draw_on_screen(self._surface)
-            self.powerup.update(move_result_tuple[0])
-            self.p_double_coins = self._character.check_power_up_collision(self.powerup)
-            if self.p_double_coins:
-                self.powerup.reposition_powerup()
-                self.powerup.timer_started = False
-                self.draw_powerup = False
-                self.powerup.last_time_effect = pygame.time.get_ticks()
-            if self.powerup.draw_timer(self.pause_duration_coin_draw):
-                self.draw_powerup = False
-                self.pause_duration_coin_draw = 0
-        # if user collected the powerup and it's still in effect, double the amount of coins earned
-        if self.p_double_coins:
-            self.coin_multipler = 2
-            # blit loading bar
-            self.loading_bar.resize_bar(self.powerup.last_time_effect, self.pause_duration_coin_effect)
-            self.loading_bar.draw_on_screen()
-            if self.powerup.effect_timer(self.pause_duration_coin_effect):
-                self.p_double_coins = False
-                self.coin_multipler = 1
-                self.pause_duration_coin_effect = 0
-                self.loading_bar.bar_obj_list.clear()
+        # powerup & debuff logic + UI
+        # make it so that there's a 1 in 500 chance a powerup spawns
+        if not self.powerup.power_up_active:
+            self.powerup.assess_draw_powerup()
+        self.powerup.draw_on_screen(self._surface, move_result_tuple, self._character)
+        # 1 in a 500 chance debuff spawnspowerup.
+        if not self.debuff.power_up_active:
+            self.powerup.assess_draw_powerup()
+        self.double_coins()
         # as user progresses, make the game harder by choosing harder words and making the game more dynamic
         self.raise_difficulty()
         # if timer_started runs out, delete powerup.
         self._frame.update()
 
+    def double_coins(self):
+        # if user collected the powerup and it's still in effect, double the amount of Animated pixel coins earned
+        if self.powerup.power_up_active:
+            self.coin_multipler = 2
+            # blit loading bar
+            self.loading_bar.resize_bar(self.powerup.last_time_effect, self.powerup.pause_duration_coin_effect)
+            self.loading_bar.draw_on_screen()
+            if self.powerup.effect_timer():
+                self.powerup.power_up_active = False
+                self.coin_multipler = 1
+                self.powerup.pause_duration_coin_effect = 0
+                self.loading_bar.bar_obj_list.clear()
+
+    def debuff(self):
+        pass
+    
     def format_guess_timer(self, guess_timer: int) -> None:
         if guess_timer >= 1000:
             self.guess_timer_text.change_text(str(guess_timer)[0] + "." + str(guess_timer)[1])
@@ -303,7 +298,8 @@ class MainFrame:
             self.guess_timer_text.change_text("0.0")
 
     def draw_score(self):
-        coin_sprite = load_sprite(pygame.image.load("data/gfx/internet_asset_packs/coins/coin2_20x20.png"),
+        coin_sprite = load_sprite(pygame.image.load(
+            "data/gfx/internet_asset_packs/Animated pixel coins/coin2_20x20.png"),
                                   0, 0, 22, 20, 1.2, (0, 0, 0))
         self._surface.blit(coin_sprite, (0, 0))
         score_text = Text(" " + str(self.coins), (0, 0, 0), 25, (0, 0), self.main_font)
@@ -343,11 +339,6 @@ class MainFrame:
         for i in range(self._character.lives[2]):
             self._surface.blit(self._empty_heart, (first_x_coord, -2))
             first_x_coord -= x_coord_increment
-
-    def assess_draw_powerup(self) -> None:
-        rand_number = random.randrange(0, 500)
-        if rand_number == 5:
-            self.draw_powerup = True
 
     def gameover_check(self, stage_changed):
         if (self._character.lives[1]+self._character.lives[0]) <= 0:
@@ -394,9 +385,9 @@ class MainFrame:
                     if self.guess_timer_last_time:
                         self.pause_duration_guess_timer += pygame.time.get_ticks() - pause_timer
                     if self.powerup.last_time_draw:
-                        self.pause_duration_coin_draw += pygame.time.get_ticks() - pause_timer
+                        self.powerup.pause_duration_coin_draw += pygame.time.get_ticks() - pause_timer
                     if self.powerup.last_time_effect:
-                        self.pause_duration_coin_effect += pygame.time.get_ticks() - pause_timer
+                        self.powerup.pause_duration_coin_effect += pygame.time.get_ticks() - pause_timer
                 if self.exit_button.draw_on_screen(self._surface):
                     self.running = False
                     self.menu_running = False
@@ -459,7 +450,7 @@ class MainFrame:
                         self.punish_articles = False
                         if self._character.lives[0] == 1 and not self._character.lives[1] or not \
                                 self._character.lives[0] and self._character.lives[1] == 1:
-                            print("MA I FOUND A CHEATA!")
+                            print("MA I FOUND A CHEATAH!")
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.menu_running = False
