@@ -522,6 +522,7 @@ class MainFrame:
         self.background_scroll = 0
         self.stage = 0
         self.guess_timer_bool = True
+        self.lowest_word_rating = 0
         self._character.platform_stage = -1
         self._character.on_platform = ""
         self.moving_platforms = False
