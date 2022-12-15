@@ -200,9 +200,6 @@ class MainFrame:
         # move_result_tuple = (scroll, stage_changed)
         move_result_tuple = self._character.move(self._ground.rect.y, self._platform_group,
                                                  self._surface.get_rect()[2:], self.stage)
-        # check if gameover condition is met
-        if self.gameover_check(move_result_tuple[1]):
-            self.gameover = True
         # create background scroll by adding scroll onto it (cumulative variable)
         self.background_scroll += move_result_tuple[0]
         if self.background_scroll > self._surface.get_height():
@@ -247,6 +244,9 @@ class MainFrame:
         # heart UI elements
         self._surface.blit(self._wooden_frame, (370, -14))
         self.draw_hearts()
+        # check if gameover condition is met
+        if self.gameover_check(move_result_tuple[1]):
+            self.gameover = True
         # guess timer UI elements
         self._surface.blit(self._wooden_frame, (170, -14))
         self.format_guess_timer(self.guess_timer_method(move_result_tuple[1])[1])
@@ -315,16 +315,29 @@ class MainFrame:
             self.increase_rating = True
 
     def draw_hearts(self):
-        whole_hearts = self._character.lives
-        empty_hearts = 3 - self._character.lives
         first_x_coord = 390
         x_coord_increment = 40
-        for i in range(whole_hearts):
-            self._surface.blit(self._whole_heart, (first_x_coord, -2))
-            first_x_coord += x_coord_increment
-        for i in range(empty_hearts):
+        max_hearts = 0
+        break_loops = False
+        for i in range(2):
+            for x in range(self._character.lives[i]):
+                if i == 0:
+                    self._surface.blit(self._whole_heart, (first_x_coord, -2))
+                if i == 1:
+                    self._surface.blit(self._half_heart, (first_x_coord-2, -2))
+                if max_hearts < 2:
+                    max_hearts += 1
+                else:
+                    max_hearts = 0
+                    break_loops = True
+                    break
+                first_x_coord += x_coord_increment
+            if break_loops:
+                break
+        first_x_coord = 470
+        for i in range(self._character.lives[2]):
             self._surface.blit(self._empty_heart, (first_x_coord, -2))
-            first_x_coord += x_coord_increment
+            first_x_coord -= x_coord_increment
 
     def assess_draw_powerup(self) -> None:
         rand_number = random.randrange(0, 500)
@@ -332,26 +345,39 @@ class MainFrame:
             self.draw_powerup = True
 
     def gameover_check(self, stage_changed):
+        if (self._character.lives[1]+self._character.lives[0]) <= 0:
+            return True
         if self._character.rect.top > self._surface.get_height():
-            self._character.lives -= 1
-            if self._character.last_saved_pos in [list(platform.rect.midtop) for platform in self._platform_group.sprites()]:
+            self.manage_hearts()
+            if self._character.last_saved_pos in [list(platform.rect.midtop)
+                                                  for platform in self._platform_group.sprites()]:
                 self._character.rect.midbottom = self._character.last_saved_pos
             else:
                 self._character.last_saved_pos = list(self._platform_group.sprites()[1].rect.midtop)
                 self._character.rect.midbottom = self._character.last_saved_pos
         if not self.guess_timer_method(stage_changed)[0]:
-            self._character.lives -= 1
-        if self._character.lives < 0:
-            return True
+            self.manage_hearts()
+
+    def manage_hearts(self):
+        if self._character.lives_pos == 0:
+            self._character.lives[0] -= 1
+            if self._character.lives[1]:
+                self._character.lives_pos += 1
+            else:
+                self._character.lives_pos += 2
+        elif self._character.lives_pos == 1:
+            self._character.lives[1] -= 1
+            self._character.lives_pos += 1
+        if self._character.lives_pos == 2:
+            self._character.lives[2] += 1
+            self._character.lives_pos = 0
 
     def main_menu(self):
         pause_timer = 0
         menu_state = "main"
-        user_input_ls = [["Heart Amount:", "", 0, False, pygame.rect.Rect(0, 0, 0, 0)],
-                         ["Enable Timer:", "", 0, False, pygame.rect.Rect(0, 0, 0, 0)]]
-        char_lim = 0
-        heart_input_rect = 0
-        passive_color = pygame.Color("gray")
+        user_input_ls = [["Heart Amount:", "", 0, False, pygame.rect.Rect(0, 0, 0, 0), (1, 7)],
+                         ["Enable Timer:", "", 0, False, pygame.rect.Rect(0, 0, 0, 0), (0, 2)],
+                         ["Article evaluation:", "", 0, False, pygame.rect.Rect(0, 0, 0, 0), (0, 2)]]
         while self.menu_running:
             if pause_timer == 0:
                 pause_timer = pygame.time.get_ticks()
@@ -382,9 +408,6 @@ class MainFrame:
                 if menu_state == "options_register":
                     menu_state = "options"
             elif menu_state == "video_settings":
-                # heart amount selector option
-                char_lim = 1
-
                 # draw objects to surface
                 for counter, i in enumerate(user_input_ls):
                     # check how many chars are in input rect and adjust size
@@ -412,26 +435,31 @@ class MainFrame:
                 if self.confirm_button.draw_on_screen(self._surface):
                     menu_state = "options_register"
                     if user_input_ls[0][1]:
-                        self._character.next_lives = int(user_input_ls[0][1])
+                        self._character.next_lives = [0, 0, 0]
+                        if int(user_input_ls[0][1]) <= 3:
+                            self._character.next_lives[0] = int(user_input_ls[0][1])
+                        else:
+                            self._character.next_lives[0] = int(user_input_ls[0][1]) - 3
+                            self._character.next_lives[1] = int(user_input_ls[0][1]) - self._character.next_lives[0]
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.menu_running = False
                     self.running = False
-                    if event.type == pygame.MOUSEBUTTONDOWN:
-                        # check if input rect is active or not
-                        for i in user_input_ls:
-                            mouse_cursor = pygame.mouse.get_pos()
-                            if i[4].collidepoint(mouse_cursor):
-                                i[3] = True
-                            else:
-                                i[3] = False
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    # check if input rect is active or not
+                    for i in user_input_ls:
+                        mouse_cursor = pygame.mouse.get_pos()
+                        if i[4].collidepoint(mouse_cursor):
+                            i[3] = True
+                        else:
+                            i[3] = False
                 if event.type == pygame.KEYDOWN and menu_state == "video_settings":
                     for e in user_input_ls:
                         if e[3]:
                             if event.key == pygame.K_BACKSPACE:
                                 if len(e[1]) != 0:
                                     e[1] = e[1][:len(e[1])-1]
-                            elif char_lim != len(e[1]) and event.unicode in [str(i) for i in range(1, 10)]:
+                            elif event.unicode in [str(i) for i in range(*e[5])]:
                                 e[1] += event.unicode
 
             self._frame.update()
@@ -471,7 +499,7 @@ class MainFrame:
         self._character.on_platform = ""
         self.moving_platforms = False
         # reset character, ground and platform positions
-        self._character.lives = self._character.next_lives
+        self._character.lives = copy.deepcopy(self._character.next_lives)
         self._ground.rect.x = 0
         self._ground.rect.y = self._surface.get_size()[1]-100
         self._character.jumping = False
