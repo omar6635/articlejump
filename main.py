@@ -135,7 +135,7 @@ class MainFrame:
         self.punish_articles = False
         self.reverse_inputs_var = False
         # display splash and title screens
-        # self.splash_screen()
+        self.splash_screen()
         self.title_screen()
 
     def catch_events(self):
