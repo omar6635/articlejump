@@ -45,8 +45,6 @@ class MainFrame:
                                         52, 133, 14, 15, 1.87, (0, 0, 0))
         # dict of words drawn on screen
         self.word_article_dict = {}
-        # list of word-article combos in tuples whose items only get popped in a game over condition
-        self.word_article_list = []
         # create background list and variable for number of backgrounds required to fill screens
         self._background_list = []
         self._background_list.append(pygame.transform.scale(pygame.image.load("data/gfx/background_sprite2.png")
@@ -489,10 +487,11 @@ class MainFrame:
 
     def check_answer(self) -> bool:
         # check what stage the user is at to make sure the guess is being made for the right word
-        if self.word_article_list[self.stage-1][1] == self._character.on_platform:
+        if list(self.word_article_dict.items())[0][1] == self._character.on_platform:
             self.coins += 50 * self.coin_multipler
-        elif self.punish_articles and self.word_article_list[self.stage-1][1] != self._character.on_platform:
+        elif self.punish_articles and list(self.word_article_dict.items())[0][1] != self._character.on_platform:
             return False
+        print(list(self.word_article_dict.items()))
         return True
 
     def calc_stage(self):
@@ -514,7 +513,6 @@ class MainFrame:
         text_obj = Text(word_article_combo[0], (0, 0, 0), 40, (a_x, a_y))
         # add the Text object and its correct article to dict
         self.word_article_dict[text_obj] = word_article_combo[1]
-        self.word_article_list.append(word_article_combo)
 
     def reset_game_variables(self) -> None:
         self.gameover = False
@@ -541,7 +539,6 @@ class MainFrame:
                                        self.article_list[2], False)
         self.platform_group.add(self.platform_one, self.platform_two, self.platform_three)
         self.word_article_dict = {}
-        self.word_article_list = []
         self.generate_draw_word(self.platform_group.sprites()[0].rect[0:2])
 
     def guess_timer_method(self, stage_changed):
