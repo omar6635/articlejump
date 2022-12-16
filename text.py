@@ -1,9 +1,10 @@
 import pygame
 import math
 import time
+from sprite import Sprite
 
 
-class Text(pygame.sprite.Sprite):
+class Text(Sprite):
     def __init__(self, text: str, color, size: int,  coordinates, font="Helvetica", set_midleft=False):
         super(Text, self).__init__()
         pygame.font.init()

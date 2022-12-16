@@ -1,8 +1,9 @@
 import pygame
 from load_sprite import load_sprite
+from sprite import Sprite
 
 
-class Button(pygame.sprite.Sprite):
+class Button(Sprite):
     def __init__(self, dimensions: tuple, coordinates: tuple, image, scale):
         super(Button, self).__init__()
         self.image = load_sprite(image, 0, 2, *dimensions, scale, (0, 128, 128))

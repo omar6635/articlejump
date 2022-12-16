@@ -1,8 +1,9 @@
 import pygame
 from load_sprite import load_sprite
+from sprite import Sprite
 
 
-class Ground(pygame.sprite.Sprite):
+class Ground(Sprite):
     def __init__(self, coords: tuple):
         super(Ground, self).__init__()
         self.image = load_sprite(pygame.image.load("data/gfx/ground_sprite.png"), 0, 68,

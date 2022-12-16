@@ -3,9 +3,10 @@ import pygame
 import random
 from load_sprite import load_sprite
 from text import Text
+from sprite import Sprite
 
 
-class Platform(pygame.sprite.Sprite):
+class Platform(Sprite):
     def __init__(self, coordinates, name, moving_platform):
         # calling parent class constructor in order to get access to its a&m's
         super(Platform, self).__init__()
@@ -41,9 +42,9 @@ class Platform(pygame.sprite.Sprite):
                 key_list = [i[0] for i in list(word_dict.items())]
                 word_dict.pop(key_list[0])
 
-    def draw_platform(self, surface):
-        surface.blit(self.image, self.rect)
-        surface.blit(self.article.text_surface, self.article.rect)
+    def draw_platform(self, screen):
+        screen.blit(self.image, self.rect)
+        screen.blit(self.article.text_surface, self.article.rect)
 
     def create_new_platforms(self, article: str, moving: bool) -> Platform:
         new_y = self.rect.y - 200

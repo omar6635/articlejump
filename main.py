@@ -8,7 +8,6 @@ import random
 from character import MainCharacter
 from ground import Ground
 from platforms import Platform
-from result_screen import ResultScreen
 from text import Text
 from power_up import PowerUp
 from load_sprite import load_sprite
@@ -49,9 +48,6 @@ class MainFrame:
         self.word_article_dict = {}
         # list of word-article combos in tuples whose items only get popped in a game over condition
         self.word_article_list = []
-        # result screen
-        # also, the text displays "you win" by default. This is overwritten in the code for wrong answers.
-        self._result_screen = ResultScreen("Correct!   ", (0, 255, 0))
         # create background list and variable for number of backgrounds required to fill screens
         self._background_list = []
         self._background_list.append(pygame.transform.scale(pygame.image.load("data/gfx/background_sprite2.png")
@@ -82,7 +78,7 @@ class MainFrame:
         self.max_platforms = 12
         # loading bar to serve as powerup timer
         self.loading_bar = LoadingBar(self._surface)
-        self.loading_bar.rescale_lb(1.7)
+        self.loading_bar.rescale_lb(1.7, self._surface)
         # fonts
         self.main_font = "data/fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf"
         # formatting code
@@ -290,7 +286,7 @@ class MainFrame:
             self.coin_multipler = 2
             # blit loading bar
             self.loading_bar.resize_bar(self.powerup.last_time_effect, self.powerup.pause_duration_effect)
-            self.loading_bar.draw_on_screen()
+            self.loading_bar.draw_on_screen(self._surface)
             if self.powerup.effect_timer():
                 self.powerup.power_up_active = False
                 self.coin_multipler = 1
@@ -301,7 +297,7 @@ class MainFrame:
         if self.debuff.power_up_active:
             self.reverse_inputs_var = True
             self.loading_bar.resize_bar(self.debuff.last_time_effect, self.debuff.pause_duration_effect)
-            self.loading_bar.draw_on_screen()
+            self.loading_bar.draw_on_screen(self._surface)
             if self.debuff.effect_timer():
                 self.debuff.power_up_active = False
                 self.reverse_inputs_var = False
