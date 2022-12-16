@@ -135,7 +135,7 @@ class MainFrame:
         self.punish_articles = False
         self.reverse_inputs_var = False
         # display splash and title screens
-        self.splash_screen()
+        # self.splash_screen()
         self.title_screen()
 
     def catch_events(self):
@@ -168,11 +168,12 @@ class MainFrame:
 
     def title_screen(self):
         pygame.mixer.Sound.play(start_sfx)
-        start_button = pygame.rect.Rect(self._surface.get_rect().centerx-50, self._surface.get_rect().centery+5, 100,
+        start_button = pygame.rect.Rect(self._surface.get_rect().centerx-50, 100, 100,
                                         46)
         display_ts = True
-        logo = Text("ArtikelJump", pygame.Color("#6A3940"), 50, self._surface.get_rect().center)
+        logo = Text("ArtikelJump", pygame.Color("#6A3940"), 50, (start_button.midtop[0], start_button.midtop[1]-3))
         start_text = Text("START", (0, 0, 0), 20, start_button.center)
+        instruction_text = Text("", pygame.Color("#6A3940"), 27, (0, 0), self.main_font)
         while display_ts:
             mouse_coords = pygame.mouse.get_pos()
             clicked = False
@@ -188,6 +189,9 @@ class MainFrame:
             logo.draw_on_surface(self._surface, True)
             pygame.draw.rect(self._surface, pygame.Color("#700e01"), start_button)
             start_text.draw_on_surface(self._surface)
+            # draw instructions
+            instruction_text.draw_multiline_text(self._surface, (0, start_button.midbottom[1]+50),
+                                                 read_instructions("instructions.txt"))
             pygame.display.update()
             pygame.time.delay(10)
 
@@ -571,6 +575,8 @@ class MainFrame:
     def frame(self):
         return self._frame
 
+# functions
+
 
 def draw_game_over_text(main_frame, coins):
     game_over_text = Text("GAME OVER", (255, 255, 255), 50,
@@ -585,6 +591,11 @@ def draw_game_over_text(main_frame, coins):
     game_over_text.draw_on_surface(main_frame.surface)
     score_text.draw_on_surface(main_frame.surface)
     play_again_text.draw_on_surface(main_frame.surface)
+
+
+def read_instructions(file_path: str) -> list:
+    with open(file_path) as file:
+        return [line.split() for line in file.readlines()]
 
 
 if __name__ == "__main__":
