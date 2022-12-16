@@ -491,7 +491,6 @@ class MainFrame:
             self.coins += 50 * self.coin_multipler
         elif self.punish_articles and list(self.word_article_dict.items())[0][1] != self._character.on_platform:
             return False
-        print(list(self.word_article_dict.items()))
         return True
 
     def calc_stage(self):
