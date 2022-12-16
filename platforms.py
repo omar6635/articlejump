@@ -47,7 +47,6 @@ class Platform(pygame.sprite.Sprite):
 
     def create_new_platforms(self, article: str, moving: bool) -> Platform:
         new_y = self.rect.y - 200
-        print(self.rect.size)
         new_platform_obj = Platform((self.coordinates[0], new_y), article, moving)
         return new_platform_obj
 

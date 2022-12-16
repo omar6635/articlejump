@@ -1,4 +1,4 @@
-jump 1, 2 & start sfx: https://creatorassets.com/a/8-bit-jump-sound-effects
+jump 1, 2, 3 & start sfx: https://creatorassets.com/a/8-bit-jump-sound-effects
 accessed at 7:09 PM on 21.11.22
 death sfx: https://github.com/PolyMarsDev/Flappuccino
 accessed at 06:24 on 21.11.22
@@ -8,4 +8,5 @@ power_up sfx: https://creatorassets.com/a/8-bit-powerup-sound-effects
 accessed at 07:34 on 21.11.22
 explosion sfx: https://creatorassets.com/a/8bit-explosion-sound-effects
 accessed at 07:46 on 21.11.22
-start sfx:
+dead sfx: https://www.youtube.com/watch?v=8Xt1kUK71lc
+accessed at 01:55 on 16.11.22

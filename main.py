@@ -20,8 +20,8 @@ pygame.init()
 database = database.SQLMain()
 # sfx
 jump_sfx = pygame.mixer.Sound("data/sfx/jump2.mp3")
-dead_sfx = pygame.mixer.Sound("data/sfx/dead.wav")
-coin_collect_sfx = pygame.mixer.Sound("data/sfx/coin collect.wav")
+lost_life_sfx = pygame.mixer.Sound("data/sfx/lost_life.wav")
+dead_sfx = pygame.mixer.Sound("data/sfx/dead.mp3")
 explosion_sfx = pygame.mixer.Sound("data/sfx/explosion.wav")
 power_up_sfx = pygame.mixer.Sound("data/sfx/power_up.wav")
 start_sfx = pygame.mixer.Sound("data/sfx/start.mp3")
@@ -135,8 +135,8 @@ class MainFrame:
         self.punish_articles = False
         self.reverse_inputs_var = False
         # display splash and title screens
-        # self.splash_screen()
-        # self.title_screen()
+        self.splash_screen()
+        self.title_screen()
 
     def catch_events(self):
         for event in pygame.event.get():
@@ -249,6 +249,7 @@ class MainFrame:
         # check if gameover condition is met
         if self.gameover_check(stage_changed):
             self.gameover = True
+            dead_sfx.play()
         # guess timer UI elements & logic
         if self.show_guess_timer:
             self._surface.blit(self._wooden_frame, (170, -14))
@@ -382,6 +383,7 @@ class MainFrame:
         if self._character.lives_pos == 2:
             self._character.lives[2] += 1
             self._character.lives_pos = 0
+        lost_life_sfx.play()
 
     def main_menu(self):
         pause_timer = 0

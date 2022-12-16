@@ -28,6 +28,7 @@ class MainCharacter(pygame.sprite.Sprite):
         self.on_platform = ""
         self.platform_stage = -1
         self.moving_p_velocity = 0
+        self.jump_sfx = 0
 
     def create_animation_list(self):
         # create two dimensional list of sprite packs for idle, jumping, dead etc.
@@ -84,6 +85,9 @@ class MainCharacter(pygame.sprite.Sprite):
 
         # gravity
         if self.jumping:
+            if self.jump_sfx:
+                self.jump_sfx.play()
+                self.jump_sfx = 0
             self._jump_velocity += self._gravity
             dy += self._jump_velocity
 
@@ -155,6 +159,7 @@ class MainCharacter(pygame.sprite.Sprite):
         if keys[pygame.K_UP] and not self.jumping:
             self.jumping = True
             self._jump_velocity = -22
+            self.jump_sfx = pygame.mixer.Sound("data/sfx/jump3.mp3")
 
     def check_power_up_collision(self, powerup_obj):
         # FIXME: write proper code for the collision of 2 sprites instead of using a group
