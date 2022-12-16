@@ -29,11 +29,10 @@ start_sfx = pygame.mixer.Sound("data/sfx/start.mp3")
 class MainFrame:
     def __init__(self, window_width, window_height):
         # display attributes
-        self._width, self._height = window_width, window_height
-        self._frame = pygame.display
-        self._surface = self._frame.set_mode((self._width, self._height))
+        self.width, self.height = window_width, window_height
+        self.surface = pygame.display.set_mode((self.width, self.height))
         # create ground platform
-        self._ground = Ground((0, self._surface.get_height() - 100))
+        self._ground = Ground((0, self.surface.get_height() - 100))
         # UI elements
         self._wooden_frame = load_sprite(
             pygame.image.load("data/gfx/internet_asset_packs/dungeon pack/wooden_frame.png"),
@@ -51,34 +50,34 @@ class MainFrame:
         # create background list and variable for number of backgrounds required to fill screens
         self._background_list = []
         self._background_list.append(pygame.transform.scale(pygame.image.load("data/gfx/background_sprite2.png")
-                                                            .convert(), (self._surface.get_width(),
-                                                                         self._surface.get_height() / 2)))
+                                                            .convert(), (self.surface.get_width(),
+                                                                         self.surface.get_height() / 2)))
         self._background_list.append(pygame.transform.scale(pygame.image.load("data/gfx/background_sprite3.png")
-                                                            .convert(), (self._surface.get_width(),
-                                                                         self._surface.get_height() / 2)))
-        self.required_bgs = math.ceil(self._surface.get_height() / self._background_list[0].get_height()) + 2
+                                                            .convert(), (self.surface.get_width(),
+                                                                         self.surface.get_height() / 2)))
+        self.required_bgs = math.ceil(self.surface.get_height() / self._background_list[0].get_height()) + 2
         # platform attributes
         self.article_list = ["Der", "Die", "Das"]
         random.shuffle(self.article_list)
-        self._platform_one = Platform((61, self._surface.get_height() - 270), self.article_list[0], False)
-        self._platform_two = Platform((self._surface.get_rect().centerx,
-                                       self._surface.get_height() - 270), self.article_list[1], False)
-        self._platform_three = Platform((self._width - 61, self._surface.get_height() - 270),
-                                        self.article_list[2], False)
-        self._platform_group = pygame.sprite.Group(self._platform_one, self._platform_two, self._platform_three)
+        self.platform_one = Platform((61, self.surface.get_height() - 270), self.article_list[0], False)
+        self.platform_two = Platform((self.surface.get_rect().centerx,
+                                      self.surface.get_height() - 270), self.article_list[1], False)
+        self.platform_three = Platform((self.width - 61, self.surface.get_height() - 270),
+                                       self.article_list[2], False)
+        self.platform_group = pygame.sprite.Group(self.platform_one, self.platform_two, self.platform_three)
         # character attributes
-        self._character = MainCharacter(self._ground.rect.midtop, list(self._platform_two.rect.midtop))
+        self._character = MainCharacter(self._ground.rect.midtop, list(self.platform_two.rect.midtop))
         # powerup & debuff attributes
-        self.powerup = PowerUp((0, self._surface.get_width()), (0, self._character.rect.top),
+        self.powerup = PowerUp((0, self.surface.get_width()), (0, self._character.rect.top),
                                "data/gfx/internet_asset_packs/Animated pixel coins/coin2_20x20.png")
-        self.debuff = PowerUp((0, self._surface.get_width()), (0, self._character.rect.top),
+        self.debuff = PowerUp((0, self.surface.get_width()), (0, self._character.rect.top),
                               "data/gfx/internet_asset_packs/Animated pixel coins/coin3_20x20.png")
         # for every 3 platforms in the platform group, blit a randomly generated word on the screen
-        self.generate_draw_word(self._platform_group.sprites()[0].rect[0:2])
+        self.generate_draw_word(self.platform_group.sprites()[0].rect[0:2])
         self.max_platforms = 12
         # loading bar to serve as powerup timer
-        self.loading_bar = LoadingBar(self._surface)
-        self.loading_bar.rescale_lb(1.7, self._surface)
+        self.loading_bar = LoadingBar(self.surface)
+        self.loading_bar.rescale_lb(1.7, self.surface)
         # fonts
         self.main_font = "data/fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf"
         # formatting code
@@ -91,28 +90,28 @@ class MainFrame:
         self.show_guess_timer = True
         # menu attributes
         # button objects
-        self.resume_button = Button((185, 72), (self._surface.get_rect().centerx, 160),
+        self.resume_button = Button((185, 72), (self.surface.get_rect().centerx, 160),
                                     pygame.image.load("data/gfx/internet_asset_packs/"
                                                       "Menu Image Sprites/button_resume.png"), 1)
-        self.settings_button = Button((199, 72), (self._surface.get_rect().centerx, 310),
+        self.settings_button = Button((199, 72), (self.surface.get_rect().centerx, 310),
                                       pygame.image.load("data/gfx/internet_asset_packs/"
                                                         "Menu Image Sprites/button_options.png"), 1)
-        self.exit_button = Button((122, 72), (self._surface.get_rect().centerx, 460),
+        self.exit_button = Button((122, 72), (self.surface.get_rect().centerx, 460),
                                   pygame.image.load("data/gfx/internet_asset_packs/"
                                                     "Menu Image Sprites/button_quit.png"), 1)
-        self.video_settings_button = Button((341, 72), (self._surface.get_rect().centerx, 150),
+        self.video_settings_button = Button((341, 72), (self.surface.get_rect().centerx, 150),
                                             pygame.image.load("data/gfx/internet_asset_packs/"
                                                               "Menu Image Sprites/button_video.png"), 1)
-        self.audio_settings_button = Button((341, 72), (self._surface.get_rect().centerx, 300),
+        self.audio_settings_button = Button((341, 72), (self.surface.get_rect().centerx, 300),
                                             pygame.image.load("data/gfx/internet_asset_packs/"
                                                               "Menu Image Sprites/button_audio.png"), 1)
-        self.key_bindings_button = Button((302, 72), (self._surface.get_rect().centerx, 450),
+        self.key_bindings_button = Button((302, 72), (self.surface.get_rect().centerx, 450),
                                           pygame.image.load("data/gfx/internet_asset_packs/"
                                                             "Menu Image Sprites/button_keys.png"), 1)
-        self.back_button = Button((129, 72), (self._surface.get_rect().centerx, 600),
+        self.back_button = Button((129, 72), (self.surface.get_rect().centerx, 600),
                                   pygame.image.load("data/gfx/internet_asset_packs/"
                                                     "Menu Image Sprites/button_back.png"), 1)
-        self.confirm_button = Button((199, 72), (self._surface.get_rect().centerx, 600),
+        self.confirm_button = Button((199, 72), (self.surface.get_rect().centerx, 600),
                                      pygame.image.load("data/gfx/internet_asset_packs/"
                                                        "Menu Image Sprites/button_confirm.png"), 1)
 
@@ -131,8 +130,8 @@ class MainFrame:
         self.punish_articles = False
         self.reverse_inputs_var = False
         # display splash and title screens
-        self.splash_screen()
-        self.title_screen()
+        # self.splash_screen()
+        # self.title_screen()
 
     def catch_events(self):
         for event in pygame.event.get():
@@ -155,16 +154,16 @@ class MainFrame:
                 if event.type == pygame.QUIT:
                     pygame.quit()
             # fill the background with teal (a shade of blue)
-            self._surface.fill((0, 128, 128))
+            self.surface.fill((0, 128, 128))
             text_on_screen = Text("A Project by Omar, Ayberk and Michael", pygame.Color("#6A3940"), 30,
-                                  self._surface.get_rect().center, self.main_font)
-            text_on_screen.draw_on_surface(self._surface)
+                                  self.surface.get_rect().center, self.main_font)
+            text_on_screen.draw_on_surface(self.surface)
             pygame.display.update()
             pygame.time.delay(10)
 
     def title_screen(self):
         pygame.mixer.Sound.play(start_sfx)
-        start_button = pygame.rect.Rect(self._surface.get_rect().centerx-50, 100, 100,
+        start_button = pygame.rect.Rect(self.surface.get_rect().centerx - 50, 100, 100,
                                         46)
         display_ts = True
         logo = Text("ArtikelJump", pygame.Color("#6A3940"), 50, (start_button.midtop[0], start_button.midtop[1]-3))
@@ -181,44 +180,43 @@ class MainFrame:
             if clicked and start_button.collidepoint(mouse_coords):
                 pygame.mixer.Sound.play(jump_sfx)
                 display_ts = False
-            self._surface.fill((0, 128, 128))
-            logo.draw_on_surface(self._surface, True)
-            pygame.draw.rect(self._surface, pygame.Color("#700e01"), start_button)
-            start_text.draw_on_surface(self._surface)
+            self.surface.fill((0, 128, 128))
+            logo.draw_on_surface(self.surface, True)
+            pygame.draw.rect(self.surface, pygame.Color("#700e01"), start_button)
+            start_text.draw_on_surface(self.surface)
             # draw instructions
-            instruction_text.draw_multiline_text(self._surface, (0, start_button.midbottom[1]+50),
+            instruction_text.draw_multiline_text(self.surface, (0, start_button.midbottom[1] + 50),
                                                  read_instructions("instructions.txt"))
             pygame.display.update()
             pygame.time.delay(10)
 
     def format_panel_screen(self):
-        self._frame.set_caption("Artikeljump")
-        self._frame.set_icon(self._character.image)
+        pygame.display.set_caption("Artikeljump")
+        pygame.display.set_icon(self._character.image)
 
     def draw_update_surface_sprites(self):
-        self._surface.fill((0, 0, 0))
+        self.surface.fill((0, 0, 0))
         self.calc_stage()
         # move character
-        # move_result_tuple = (scroll, stage_changed)
-        scroll, stage_changed = self._character.move(self._ground.rect.y, self._platform_group,
-                                                     self._surface.get_rect()[2:], self.stage, self.reverse_inputs_var)
+        scroll, stage_changed = self._character.move(self._ground.rect.y, self.platform_group,
+                                                     self.surface.get_rect()[2:], self.stage, self.reverse_inputs_var)
         # create background scroll by adding scroll onto it (cumulative variable)
         self.background_scroll += scroll
-        if self.background_scroll > self._surface.get_height():
+        if self.background_scroll > self.surface.get_height():
             self.background_scroll = 0
         # blit the background(s) on the frame
-        start_number = self._surface.get_height() / 2
+        start_number = self.surface.get_height() / 2
         for i in range(0, self.required_bgs):
-            self._surface.blit(self._background_list[i % 2], (0, start_number +
-                                                              self.background_scroll))
-            start_number -= self._surface.get_height() / 2
+            self.surface.blit(self._background_list[i % 2], (0, start_number +
+                                                             self.background_scroll))
+            start_number -= self.surface.get_height() / 2
         # draw the ground on background
-        self._ground.blit_ground(self._surface, scroll)
+        self._ground.blit_ground(self.surface, scroll)
         # draw the character on the background
         sprite_list = self._character.create_animation_list()
-        self._character.animation(sprite_list, self._surface)
+        self._character.animation(sprite_list, self.surface)
         # create platforms if current amount is below limit
-        while len(self._platform_group.sprites()) < self.max_platforms:
+        while len(self.platform_group.sprites()) < self.max_platforms:
             move = False
             if self.moving_platforms:
                 # 1 in 5 chance that a platform is moving
@@ -228,23 +226,23 @@ class MainFrame:
             buffer_list = []
             random.shuffle(self.article_list)
             for i in range(-3, 0, 1):
-                buffer_list.append(self._platform_group.sprites()[i].create_new_platforms(self.article_list[i], move))
+                buffer_list.append(self.platform_group.sprites()[i].create_new_platforms(self.article_list[i], move))
             self.generate_draw_word(buffer_list[0].rect[0:2])
-            self._platform_group.add(buffer_list)
+            self.platform_group.add(buffer_list)
         # draw platforms on bg
-        for platform in self._platform_group:
-            platform.update(scroll, self._surface.get_size(), self.word_article_dict)
-            platform.draw_platform(self._surface)
+        for platform in self.platform_group:
+            platform.update(scroll, self.surface.get_size(), self.word_article_dict)
+            platform.draw_platform(self.surface)
         # draw words on bg
         for sub_list in list(self.word_article_dict.items()):
             sub_list[0].scroll_text(scroll)
-            sub_list[0].draw_on_surface_alpha(self._surface, 75)
+            sub_list[0].draw_on_surface_alpha(self.surface, 75)
         # draw UI elements
         # Animated pixel coins UI elements
-        self._surface.blit(self._wooden_frame, (-30, -14))
+        self.surface.blit(self._wooden_frame, (-30, -14))
         self.draw_score()
         # heart UI elements
-        self._surface.blit(self._wooden_frame, (370, -14))
+        self.surface.blit(self._wooden_frame, (370, -14))
         self.draw_hearts()
         # check if gameover condition is met
         if self.gameover_check(stage_changed):
@@ -252,10 +250,10 @@ class MainFrame:
             dead_sfx.play()
         # guess timer UI elements & logic
         if self.show_guess_timer:
-            self._surface.blit(self._wooden_frame, (170, -14))
+            self.surface.blit(self._wooden_frame, (170, -14))
             self.format_guess_timer(self.guess_timer_method(stage_changed)[1])
             self.guess_timer_text.rect.topleft = (235, -3)
-            self.guess_timer_text.draw_on_surface(self._surface)
+            self.guess_timer_text.draw_on_surface(self.surface)
         # check if user has made correct decision
         if self._character.on_platform != "":
             if not self.check_answer():
@@ -265,7 +263,7 @@ class MainFrame:
         # make it so that there's a 1 in 500 chance a powerup spawns
         self.powerup.assess_draw_powerup()
         if self.powerup.draw_powerup and not self.debuff.power_up_active:
-            self.powerup.draw_on_screen(self._surface, scroll, self._character)
+            self.powerup.draw_on_screen(self.surface, scroll, self._character)
         self.double_coins()
         # debuff logic + UI
         # 1 in a 500 chance debuff spawnspowerup.
@@ -273,12 +271,12 @@ class MainFrame:
         # reverse the player's left and right inputs if debuff is picked up
         self.debuff.assess_draw_powerup()
         if self.debuff.draw_powerup and not self.powerup.power_up_active:
-            self.debuff.draw_on_screen(self._surface, scroll, self._character)
+            self.debuff.draw_on_screen(self.surface, scroll, self._character)
         self.reverse_inputs_method()
         # as user progresses, make the game harder by choosing harder words and making the game more dynamic
         self.raise_difficulty()
-        # if timer_started runs out, delete powerup.
-        self._frame.update()
+        # update the display
+        pygame.display.update()
 
     def double_coins(self):
         # if user collected the powerup and it's still in effect, double the amount of Animated pixel coins earned
@@ -286,7 +284,7 @@ class MainFrame:
             self.coin_multipler = 2
             # blit loading bar
             self.loading_bar.resize_bar(self.powerup.last_time_effect, self.powerup.pause_duration_effect)
-            self.loading_bar.draw_on_screen(self._surface)
+            self.loading_bar.draw_on_screen(self.surface)
             if self.powerup.effect_timer():
                 self.powerup.power_up_active = False
                 self.coin_multipler = 1
@@ -297,7 +295,7 @@ class MainFrame:
         if self.debuff.power_up_active:
             self.reverse_inputs_var = True
             self.loading_bar.resize_bar(self.debuff.last_time_effect, self.debuff.pause_duration_effect)
-            self.loading_bar.draw_on_screen(self._surface)
+            self.loading_bar.draw_on_screen(self.surface)
             if self.debuff.effect_timer():
                 self.debuff.power_up_active = False
                 self.reverse_inputs_var = False
@@ -316,10 +314,10 @@ class MainFrame:
         coin_sprite = load_sprite(pygame.image.load(
             "data/gfx/internet_asset_packs/Animated pixel coins/coin2_20x20.png"),
                                   0, 0, 22, 20, 1.2, (0, 0, 0))
-        self._surface.blit(coin_sprite, (0, 0))
+        self.surface.blit(coin_sprite, (0, 0))
         score_text = Text(" " + str(self.coins), (0, 0, 0), 25, (0, 0), self.main_font)
         score_text.rect.topleft = (25, 5)
-        score_text.draw_on_surface(self._surface)
+        score_text.draw_on_surface(self.surface)
 
     def raise_difficulty(self):
         if self.coins > 2000:
@@ -338,9 +336,9 @@ class MainFrame:
         for i in range(2):
             for x in range(self._character.lives[i]):
                 if i == 0:
-                    self._surface.blit(self._whole_heart, (first_x_coord, -2))
+                    self.surface.blit(self._whole_heart, (first_x_coord, -2))
                 if i == 1:
-                    self._surface.blit(self._half_heart, (first_x_coord-2, -2))
+                    self.surface.blit(self._half_heart, (first_x_coord - 2, -2))
                 if max_hearts < 2:
                     max_hearts += 1
                 else:
@@ -352,19 +350,19 @@ class MainFrame:
                 break
         first_x_coord = 470
         for i in range(self._character.lives[2]):
-            self._surface.blit(self._empty_heart, (first_x_coord, -2))
+            self.surface.blit(self._empty_heart, (first_x_coord, -2))
             first_x_coord -= x_coord_increment
 
     def gameover_check(self, stage_changed):
         if (self._character.lives[1]+self._character.lives[0]) <= 0:
             return True
-        if self._character.rect.top > self._surface.get_height():
+        if self._character.rect.top > self.surface.get_height():
             self.deduct_hearts()
             if self._character.last_saved_pos in [list(platform.rect.midtop)
-                                                  for platform in self._platform_group.sprites()]:
+                                                  for platform in self.platform_group.sprites()]:
                 self._character.rect.midbottom = self._character.last_saved_pos
             else:
-                self._character.last_saved_pos = list(self._platform_group.sprites()[1].rect.midtop)
+                self._character.last_saved_pos = list(self.platform_group.sprites()[1].rect.midtop)
                 self._character.rect.midbottom = self._character.last_saved_pos
         if self.show_guess_timer:
             if not self.guess_timer_method(stage_changed)[0]:
@@ -394,9 +392,9 @@ class MainFrame:
         while self.menu_running:
             if pause_timer == 0:
                 pause_timer = pygame.time.get_ticks()
-            self._surface.fill((0, 128, 128))
+            self.surface.fill((0, 128, 128))
             if menu_state == "main":
-                if self.resume_button.draw_on_screen(self._surface):
+                if self.resume_button.draw_on_screen(self.surface):
                     self.menu_running = False
                     if self.guess_timer_last_time:
                         self.pause_duration_guess_timer += pygame.time.get_ticks() - pause_timer
@@ -404,19 +402,19 @@ class MainFrame:
                         self.powerup.pause_duration_draw += pygame.time.get_ticks() - pause_timer
                     if self.powerup.last_time_effect:
                         self.powerup.pause_duration_effect += pygame.time.get_ticks() - pause_timer
-                if self.exit_button.draw_on_screen(self._surface):
+                if self.exit_button.draw_on_screen(self.surface):
                     self.running = False
                     self.menu_running = False
-                if self.settings_button.draw_on_screen(self._surface):
+                if self.settings_button.draw_on_screen(self.surface):
                     menu_state = "options"
             elif menu_state[:7] == "options":
-                if self.video_settings_button.draw_on_screen(self._surface):
+                if self.video_settings_button.draw_on_screen(self.surface):
                     menu_state = "video_settings"
-                if self.audio_settings_button.draw_on_screen(self._surface):
+                if self.audio_settings_button.draw_on_screen(self.surface):
                     pass
-                if self.key_bindings_button.draw_on_screen(self._surface):
+                if self.key_bindings_button.draw_on_screen(self.surface):
                     pass
-                if self.back_button.draw_on_screen(self._surface) and menu_state != "options_register":
+                if self.back_button.draw_on_screen(self.surface) and menu_state != "options_register":
                     menu_state = "main"
                 if menu_state == "options_register":
                     menu_state = "options"
@@ -441,10 +439,10 @@ class MainFrame:
                     input_static_text = Text(i[1], (0, 0, 0), 20, (i[4].midleft[0]+5, i[4].midleft[1]), self.main_font,
                                              True)
                     # draw text variables onto surface
-                    option_static_text.draw_on_surface(self._surface)
-                    input_static_text.draw_on_surface(self._surface)
-                    pygame.draw.rect(self._surface, rect_color, i[4], 2)
-                if self.confirm_button.draw_on_screen(self._surface):
+                    option_static_text.draw_on_surface(self.surface)
+                    input_static_text.draw_on_surface(self.surface)
+                    pygame.draw.rect(self.surface, rect_color, i[4], 2)
+                if self.confirm_button.draw_on_screen(self.surface):
                     menu_state = "options_register"
                     if user_input_ls[0][1]:
                         # change in-game life amount (takes effect after user dies)
@@ -487,25 +485,25 @@ class MainFrame:
                                     e[1] = e[1][:len(e[1])-1]
                             elif event.unicode in [str(i) for i in range(*e[5])] and len(e[1]) < e[6]:
                                 e[1] += event.unicode
-
-            self._frame.update()
+            pygame.display.update()
 
     def check_answer(self) -> bool:
         # check what stage the user is at to make sure the guess is being made for the right word
-        if self.word_article_list[self.stage][1] == self._character.on_platform:
+        if self.word_article_list[self.stage-1][1] == self._character.on_platform:
             self.coins += 50 * self.coin_multipler
-        elif self.punish_articles and self.word_article_list[self.stage][1] != self._character.on_platform:
+        elif self.punish_articles and self.word_article_list[self.stage-1][1] != self._character.on_platform:
             return False
         return True
 
     def calc_stage(self):
         real_scroll = self._ground.rect.y - 766
-        self.stage = real_scroll // 200 + 1
+        self.stage = (real_scroll // 195)
+        self.stage += 1
 
     def generate_draw_word(self, coordinates: tuple) -> None:
         # prepare coordinates
         a_y = copy.deepcopy(coordinates[1]) - 90
-        a_x = copy.deepcopy(coordinates[0]) + self._surface.get_width() / 2
+        a_x = copy.deepcopy(coordinates[0]) + self.surface.get_width() / 2
         # get a word-article combo from the database
         word_article_combo = database.get_random_word()
         # as long as the database returns a duplicate, get another one
@@ -531,20 +529,20 @@ class MainFrame:
         # reset character, ground and platform positions
         self._character.lives = copy.deepcopy(self._character.next_lives)
         self._ground.rect.x = 0
-        self._ground.rect.y = self._surface.get_size()[1]-100
+        self._ground.rect.y = self.surface.get_size()[1] - 100
         self._character.jumping = False
         self._character.rect.midbottom = self._ground.rect.midtop
-        self._platform_group.empty()
+        self.platform_group.empty()
         random.shuffle(self.article_list)
-        self._platform_one = Platform((61, self._surface.get_height() - 270), self.article_list[0], False)
-        self._platform_two = Platform((self._surface.get_rect().centerx,
-                                       self._surface.get_height() - 270), self.article_list[1], False)
-        self._platform_three = Platform((self._width - 61, self._surface.get_height() - 270),
-                                        self.article_list[2], False)
-        self._platform_group.add(self._platform_one, self._platform_two, self._platform_three)
+        self.platform_one = Platform((61, self.surface.get_height() - 270), self.article_list[0], False)
+        self.platform_two = Platform((self.surface.get_rect().centerx,
+                                      self.surface.get_height() - 270), self.article_list[1], False)
+        self.platform_three = Platform((self.width - 61, self.surface.get_height() - 270),
+                                       self.article_list[2], False)
+        self.platform_group.add(self.platform_one, self.platform_two, self.platform_three)
         self.word_article_dict = {}
         self.word_article_list = []
-        self.generate_draw_word(self._platform_group.sprites()[0].rect[0:2])
+        self.generate_draw_word(self.platform_group.sprites()[0].rect[0:2])
 
     def guess_timer_method(self, stage_changed):
         if self.guess_timer_bool:
@@ -561,15 +559,6 @@ class MainFrame:
             self.guess_timer_bool = True
             self.pause_duration_guess_timer = 0
             return False, time_change
-
-    # getter and setter decorators
-    @property
-    def surface(self):
-        return self._surface
-
-    @property
-    def frame(self):
-        return self._frame
 
 # functions
 
@@ -607,7 +596,7 @@ if __name__ == "__main__":
             else:
                 draw_game_over_text(game_window, game_window.coins)
                 if update_frame:
-                    game_window.frame.update()
+                    pygame.display.update()
                     update_frame = False
                 key = pygame.key.get_pressed()
                 if key[pygame.K_SPACE]:
