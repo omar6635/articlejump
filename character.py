@@ -132,20 +132,24 @@ class MainCharacter(pygame.sprite.Sprite):
             if self.allow_traversal(screen_width) != "r border":
                 if not reverse_inputs:
                     self.rect.x += self._velocity
+                    self.flip = False
                 else:
                     self.rect.x -= self._velocity
+                    self.flip = True
                 if not self.jumping:
                     self.animation_mode = 1
-                self.flip = False
+
         elif keys[pygame.K_LEFT]:
             if self.allow_traversal(screen_width) != "l border":
                 if not reverse_inputs:
                     self.rect.x -= self._velocity
+                    self.flip = True
                 else:
                     self.rect.x += self._velocity
+                    self.flip = False
                 if not self.jumping:
                     self.animation_mode = 1
-                self.flip = True
+
         else:
             self.animation_mode = 0
         if keys[pygame.K_UP] and not self.jumping:

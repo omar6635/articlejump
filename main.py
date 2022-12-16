@@ -64,10 +64,10 @@ class MainFrame:
         # platform attributes
         self.article_list = ["Der", "Die", "Das"]
         random.shuffle(self.article_list)
-        self._platform_one = Platform((0, self._surface.get_height() - 270), (107, 30), self.article_list[0], False)
-        self._platform_two = Platform((self._width / 2 - 107 / 2,
-                                       self._surface.get_height() - 270), (107, 30), self.article_list[1], False)
-        self._platform_three = Platform((self._width - 107, self._surface.get_height() - 270), (107, 30),
+        self._platform_one = Platform((61, self._surface.get_height() - 270), self.article_list[0], False)
+        self._platform_two = Platform((self._surface.get_rect().centerx,
+                                       self._surface.get_height() - 270), self.article_list[1], False)
+        self._platform_three = Platform((self._width - 61, self._surface.get_height() - 270),
                                         self.article_list[2], False)
         self._platform_group = pygame.sprite.Group(self._platform_one, self._platform_two, self._platform_three)
         # character attributes
@@ -534,10 +534,10 @@ class MainFrame:
         self._character.rect.midbottom = self._ground.rect.midtop
         self._platform_group.empty()
         random.shuffle(self.article_list)
-        self._platform_one = Platform((0, self._surface.get_height() - 270), (107, 30), self.article_list[0], False)
-        self._platform_two = Platform((self._width / 2 - 107 / 2,
-                                       self._surface.get_height() - 270), (107, 30), self.article_list[1], False)
-        self._platform_three = Platform((self._width - 107, self._surface.get_height() - 270), (107, 30),
+        self._platform_one = Platform((61, self._surface.get_height() - 270), self.article_list[0], False)
+        self._platform_two = Platform((self._surface.get_rect().centerx,
+                                       self._surface.get_height() - 270), self.article_list[1], False)
+        self._platform_three = Platform((self._width - 61, self._surface.get_height() - 270),
                                         self.article_list[2], False)
         self._platform_group.add(self._platform_one, self._platform_two, self._platform_three)
         self.word_article_dict = {}
