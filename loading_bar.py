@@ -17,7 +17,6 @@ class LoadingBar(Sprite):
         self.bar_image_rect.midleft = self.bg_image_rect.midleft
         self.bar_obj_list = []
         self.progress = 0
-        self.timer = 2000
 
     def draw_on_screen(self, screen: pygame.Surface):
         for obj_rect in self.bar_obj_list:
@@ -28,12 +27,12 @@ class LoadingBar(Sprite):
         self.bg_image_rect.center = screen.get_rect().midbottom
         self.bg_image_rect.centery -= 50
 
-    def resize_bar(self, last_time, pause_duration):
+    def resize_bar(self, last_time, pause_duration, effect_timer):
         current_time = pygame.time.get_ticks()
         current_progress = current_time - last_time - pause_duration
         bars_needed = self.bg_image.get_size()[0] // self.bar_image.get_size()[0]
-        if current_progress <= self.timer:
-            self.progress = current_progress / self.timer * (self.bar_image.get_size()[0] * bars_needed)
+        if current_progress <= effect_timer:
+            self.progress = current_progress / effect_timer * (self.bar_image.get_size()[0] * bars_needed)
             x_offset = self.progress // self.bar_image.get_size()[0] * self.bar_image.get_size()[0]
             bar_object_rect = self.bg_image_rect.x + x_offset, self.bg_image_rect.y+3
             self.bar_obj_list.append(bar_object_rect)
@@ -62,7 +61,7 @@ if __name__ == "__main__":
                 running = False
                 pygame.quit()
         display.fill((0, 0, 0))
-        loading_bar.resize_bar(outer_last_time, display)
+        loading_bar.resize_bar(outer_last_time, display, 10000)
         loading_bar.draw_on_screen(display)
         pygame.display.update()
         clock.tick(60)

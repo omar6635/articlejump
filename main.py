@@ -281,7 +281,8 @@ class MainFrame:
         if self.powerup.power_up_active:
             self.coin_multipler = 2
             # blit loading bar
-            self.loading_bar.resize_bar(self.powerup.last_time_effect, self.powerup.pause_duration_effect)
+            self.loading_bar.resize_bar(self.powerup.last_time_effect, self.powerup.pause_duration_effect,
+                                        self.powerup.effect)
             self.loading_bar.draw_on_screen(self.surface)
             if self.powerup.effect_timer():
                 self.powerup.power_up_active = False
@@ -292,7 +293,8 @@ class MainFrame:
     def reverse_inputs_method(self):
         if self.debuff.power_up_active:
             self.reverse_inputs_var = True
-            self.loading_bar.resize_bar(self.debuff.last_time_effect, self.debuff.pause_duration_effect)
+            self.loading_bar.resize_bar(self.debuff.last_time_effect, self.debuff.pause_duration_effect,
+                                        self.debuff.effect)
             self.loading_bar.draw_on_screen(self.surface)
             if self.debuff.effect_timer():
                 self.debuff.power_up_active = False
@@ -386,7 +388,9 @@ class MainFrame:
         menu_state = "main"
         user_input_ls = [["Heart Amount:", "", 0, False, pygame.rect.Rect(0, 0, 0, 0), (1, 7), 1],
                          ["Disable Guess Timer:", "", 0, False, pygame.rect.Rect(0, 0, 0, 0), (0, 2), 1],
-                         ["Article evaluation:", "", 0, False, pygame.rect.Rect(0, 0, 0, 0), (0, 2), 1]]
+                         ["Article Evaluation:", "", 0, False, pygame.rect.Rect(0, 0, 0, 0), (0, 2), 1],
+                         ["Powerup & Debuff Duration (in seconds):", "", 0, False, pygame.rect.Rect(0, 0, 0, 0),
+                          (1, 10), 1]]
         while self.menu_running:
             if pause_timer == 0:
                 pause_timer = pygame.time.get_ticks()
@@ -463,6 +467,10 @@ class MainFrame:
                         if self._character.lives[0] == 1 and not self._character.lives[1] or not \
                                 self._character.lives[0] and self._character.lives[1] == 1:
                             print("MA I FOUND A CHEATAH!")
+                    if user_input_ls[3][1]:
+                        self.powerup.effect = int(user_input_ls[3][1])*1000
+                        self.debuff.effect = int(user_input_ls[3][1])*1000
+                        print("here")
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.menu_running = False
