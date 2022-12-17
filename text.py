@@ -8,7 +8,6 @@ class Text(Sprite):
     def __init__(self, text: str, color, size: int,  coordinates, font="Helvetica", set_midleft=False):
         super(Text, self).__init__()
         pygame.font.init()
-        # self.image = pygame.image.load()
         self.text = text
         self.color = color
         self.text_font = pygame.font.SysFont(font, size)

@@ -32,28 +32,28 @@ class MainFrame:
         self.width, self.height = window_width, window_height
         self.surface = pygame.display.set_mode((self.width, self.height))
         # create ground platform
-        self._ground = Ground((0, self.surface.get_height() - 100))
+        self.ground = Ground((0, self.surface.get_height() - 100))
         # UI elements
-        self._wooden_frame = load_sprite(
+        self.wooden_frame = load_sprite(
             pygame.image.load("data/gfx/internet_asset_packs/dungeon pack/wooden_frame.png"),
             0, 0, 530, 174, 0.3, (0, 0, 0))
-        self._whole_heart = load_sprite(pygame.image.load("data/gfx/internet_asset_packs/dungeonui.v1.png"),
-                                        20, 133, 14, 15, 1.87, (0, 0, 0))
-        self._half_heart = load_sprite(pygame.image.load("data/gfx/internet_asset_packs/dungeonui.v1.png"),
-                                       35, 133, 14, 15, 1.87, (0, 0, 0))
-        self._empty_heart = load_sprite(pygame.image.load("data/gfx/internet_asset_packs/dungeonui.v1.png"),
-                                        52, 133, 14, 15, 1.87, (0, 0, 0))
+        self.whole_heart = load_sprite(pygame.image.load("data/gfx/internet_asset_packs/dungeonui.v1.png"),
+                                       20, 133, 14, 15, 1.87, (0, 0, 0))
+        self.half_heart = load_sprite(pygame.image.load("data/gfx/internet_asset_packs/dungeonui.v1.png"),
+                                      35, 133, 14, 15, 1.87, (0, 0, 0))
+        self.empty_heart = load_sprite(pygame.image.load("data/gfx/internet_asset_packs/dungeonui.v1.png"),
+                                       52, 133, 14, 15, 1.87, (0, 0, 0))
         # dict of words drawn on screen
         self.word_article_dict = {}
         # create background list and variable for number of backgrounds required to fill screens
-        self._background_list = []
-        self._background_list.append(pygame.transform.scale(pygame.image.load("data/gfx/background_sprite2.png")
-                                                            .convert(), (self.surface.get_width(),
+        self.background_list = []
+        self.background_list.append(pygame.transform.scale(pygame.image.load("data/gfx/background_sprite2.png")
+                                                           .convert(), (self.surface.get_width(),
                                                                          self.surface.get_height() / 2)))
-        self._background_list.append(pygame.transform.scale(pygame.image.load("data/gfx/background_sprite3.png")
-                                                            .convert(), (self.surface.get_width(),
+        self.background_list.append(pygame.transform.scale(pygame.image.load("data/gfx/background_sprite3.png")
+                                                           .convert(), (self.surface.get_width(),
                                                                          self.surface.get_height() / 2)))
-        self.required_bgs = math.ceil(self.surface.get_height() / self._background_list[0].get_height()) + 2
+        self.required_bgs = math.ceil(self.surface.get_height() / self.background_list[0].get_height()) + 2
         # platform attributes
         self.article_list = ["Der", "Die", "Das"]
         random.shuffle(self.article_list)
@@ -64,11 +64,11 @@ class MainFrame:
                                        self.article_list[2], False)
         self.platform_group = pygame.sprite.Group(self.platform_one, self.platform_two, self.platform_three)
         # character attributes
-        self._character = MainCharacter(self._ground.rect.midtop, list(self.platform_two.rect.midtop))
+        self.character = MainCharacter(self.ground.rect.midtop, list(self.platform_two.rect.midtop))
         # powerup & debuff attributes
-        self.powerup = PowerUp((0, self.surface.get_width()), (0, self._character.rect.top),
+        self.powerup = PowerUp((0, self.surface.get_width()), (0, self.character.rect.top),
                                "data/gfx/internet_asset_packs/Animated pixel coins/coin2_20x20.png")
-        self.debuff = PowerUp((0, self.surface.get_width()), (0, self._character.rect.top),
+        self.debuff = PowerUp((0, self.surface.get_width()), (0, self.character.rect.top),
                               "data/gfx/internet_asset_packs/Animated pixel coins/coin3_20x20.png")
         # for every 3 platforms in the platform group, blit a randomly generated word on the screen
         self.generate_draw_word(self.platform_group.sprites()[0].rect[0:2])
@@ -190,13 +190,13 @@ class MainFrame:
 
     def format_panel_screen(self):
         pygame.display.set_caption("Artikeljump")
-        pygame.display.set_icon(self._character.image)
+        pygame.display.set_icon(self.character.image)
 
     def draw_update_surface_sprites(self):
         self.surface.fill((0, 0, 0))
         self.calc_stage()
         # move character
-        scroll, stage_changed = self._character.move(self._ground.rect.y, self.platform_group,
+        scroll, stage_changed = self.character.move(self.ground.rect.y, self.platform_group,
                                                      self.surface.get_rect()[2:], self.stage, self.reverse_inputs_var)
         # create background scroll by adding scroll onto it (cumulative variable)
         self.background_scroll += scroll
@@ -205,14 +205,14 @@ class MainFrame:
         # blit the background(s) on the frame
         start_number = self.surface.get_height() / 2
         for i in range(0, self.required_bgs):
-            self.surface.blit(self._background_list[i % 2], (0, start_number +
-                                                             self.background_scroll))
+            self.surface.blit(self.background_list[i % 2], (0, start_number +
+                                                            self.background_scroll))
             start_number -= self.surface.get_height() / 2
         # draw the ground on background
-        self._ground.blit_ground(self.surface, scroll)
+        self.ground.blit_ground(self.surface, scroll)
         # draw the character on the background
-        sprite_list = self._character.create_animation_list()
-        self._character.animation(sprite_list, self.surface)
+        sprite_list = self.character.create_animation_list()
+        self.character.animation(sprite_list, self.surface)
         # create platforms if current amount is below limit
         while len(self.platform_group.sprites()) < self.max_platforms:
             move = False
@@ -237,10 +237,10 @@ class MainFrame:
             sub_list[0].draw_on_surface_alpha(self.surface, 75)
         # draw UI elements
         # Animated pixel coins UI elements
-        self.surface.blit(self._wooden_frame, (-30, -14))
+        self.surface.blit(self.wooden_frame, (-30, -14))
         self.draw_score()
         # heart UI elements
-        self.surface.blit(self._wooden_frame, (370, -14))
+        self.surface.blit(self.wooden_frame, (370, -14))
         self.draw_hearts()
         # check if gameover condition is met
         if self.gameover_check(stage_changed):
@@ -248,20 +248,20 @@ class MainFrame:
             dead_sfx.play()
         # guess timer UI elements & logic
         if self.show_guess_timer:
-            self.surface.blit(self._wooden_frame, (170, -14))
+            self.surface.blit(self.wooden_frame, (170, -14))
             self.format_guess_timer(self.guess_timer_method(stage_changed)[1])
             self.guess_timer_text.rect.topleft = (235, -3)
             self.guess_timer_text.draw_on_surface(self.surface)
         # check if user has made correct decision
-        if self._character.on_platform != "":
+        if self.character.on_platform != "":
             if not self.check_answer():
                 self.deduct_hearts()
-            self._character.on_platform = ""
+            self.character.on_platform = ""
         # powerup logic + UI
         # make it so that there's a 1 in 500 chance a powerup spawns
         self.powerup.assess_draw_powerup()
         if self.powerup.draw_powerup and not self.debuff.power_up_active:
-            self.powerup.draw_on_screen(self.surface, scroll, self._character)
+            self.powerup.draw_on_screen(self.surface, scroll, self.character)
         self.double_coins()
         # debuff logic + UI
         # 1 in a 500 chance debuff spawnspowerup.
@@ -269,7 +269,7 @@ class MainFrame:
         # reverse the player's left and right inputs if debuff is picked up
         self.debuff.assess_draw_powerup()
         if self.debuff.draw_powerup and not self.powerup.power_up_active:
-            self.debuff.draw_on_screen(self.surface, scroll, self._character)
+            self.debuff.draw_on_screen(self.surface, scroll, self.character)
         self.reverse_inputs_method()
         # as user progresses, make the game harder by choosing harder words and making the game more dynamic
         self.raise_difficulty()
@@ -334,11 +334,11 @@ class MainFrame:
         max_hearts = 0
         break_loops = False
         for i in range(2):
-            for x in range(self._character.lives[i]):
+            for x in range(self.character.lives[i]):
                 if i == 0:
-                    self.surface.blit(self._whole_heart, (first_x_coord, -2))
+                    self.surface.blit(self.whole_heart, (first_x_coord, -2))
                 if i == 1:
-                    self.surface.blit(self._half_heart, (first_x_coord - 2, -2))
+                    self.surface.blit(self.half_heart, (first_x_coord - 2, -2))
                 if max_hearts < 2:
                     max_hearts += 1
                 else:
@@ -349,38 +349,38 @@ class MainFrame:
             if break_loops:
                 break
         first_x_coord = 470
-        for i in range(self._character.lives[2]):
-            self.surface.blit(self._empty_heart, (first_x_coord, -2))
+        for i in range(self.character.lives[2]):
+            self.surface.blit(self.empty_heart, (first_x_coord, -2))
             first_x_coord -= x_coord_increment
 
     def gameover_check(self, stage_changed):
-        if (self._character.lives[1]+self._character.lives[0]) <= 0:
+        if (self.character.lives[1] + self.character.lives[0]) <= 0:
             return True
-        if self._character.rect.top > self.surface.get_height():
+        if self.character.rect.top > self.surface.get_height():
             self.deduct_hearts()
-            if self._character.last_saved_pos in [list(platform.rect.midtop)
-                                                  for platform in self.platform_group.sprites()]:
-                self._character.rect.midbottom = self._character.last_saved_pos
+            if self.character.last_saved_pos in [list(platform.rect.midtop)
+                                                 for platform in self.platform_group.sprites()]:
+                self.character.rect.midbottom = self.character.last_saved_pos
             else:
-                self._character.last_saved_pos = list(self.platform_group.sprites()[1].rect.midtop)
-                self._character.rect.midbottom = self._character.last_saved_pos
+                self.character.last_saved_pos = list(self.platform_group.sprites()[1].rect.midtop)
+                self.character.rect.midbottom = self.character.last_saved_pos
         if self.show_guess_timer:
             if not self.guess_timer_method(stage_changed)[0]:
                 self.deduct_hearts()
 
     def deduct_hearts(self):
-        if self._character.lives_pos == 0:
-            self._character.lives[0] -= 1
-            if self._character.lives[1]:
-                self._character.lives_pos += 1
+        if self.character.lives_pos == 0:
+            self.character.lives[0] -= 1
+            if self.character.lives[1]:
+                self.character.lives_pos += 1
             else:
-                self._character.lives_pos += 2
-        elif self._character.lives_pos == 1:
-            self._character.lives[1] -= 1
-            self._character.lives_pos += 1
-        if self._character.lives_pos == 2:
-            self._character.lives[2] += 1
-            self._character.lives_pos = 0
+                self.character.lives_pos += 2
+        elif self.character.lives_pos == 1:
+            self.character.lives[1] -= 1
+            self.character.lives_pos += 1
+        if self.character.lives_pos == 2:
+            self.character.lives[2] += 1
+            self.character.lives_pos = 0
         lost_life_sfx.play()
 
     def main_menu(self):
@@ -448,12 +448,12 @@ class MainFrame:
                     menu_state = "options_register"
                     if user_input_ls[0][1]:
                         # change in-game life amount (takes effect after user dies)
-                        self._character.next_lives = [0, 0, 0]
+                        self.character.next_lives = [0, 0, 0]
                         if int(user_input_ls[0][1]) <= 3:
-                            self._character.next_lives[0] = int(user_input_ls[0][1])
+                            self.character.next_lives[0] = int(user_input_ls[0][1])
                         else:
-                            self._character.next_lives[0] = int(user_input_ls[0][1]) - 3
-                            self._character.next_lives[1] = int(user_input_ls[0][1]) - self._character.next_lives[0]
+                            self.character.next_lives[0] = int(user_input_ls[0][1]) - 3
+                            self.character.next_lives[1] = int(user_input_ls[0][1]) - self.character.next_lives[0]
                     # Remove guess timer if true
                     if user_input_ls[1][1] == "1":
                         self.show_guess_timer = False
@@ -464,8 +464,8 @@ class MainFrame:
                         self.punish_articles = True
                     elif user_input_ls[2][1] == "0":
                         self.punish_articles = False
-                        if self._character.lives[0] == 1 and not self._character.lives[1] or not \
-                                self._character.lives[0] and self._character.lives[1] == 1:
+                        if self.character.lives[0] == 1 and not self.character.lives[1] or not \
+                                self.character.lives[0] and self.character.lives[1] == 1:
                             print("MA I FOUND A CHEATAH!")
                     if user_input_ls[3][1]:
                         self.powerup.effect = int(user_input_ls[3][1])*1000
@@ -495,14 +495,14 @@ class MainFrame:
 
     def check_answer(self) -> bool:
         # check what stage the user is at to make sure the guess is being made for the right word
-        if list(self.word_article_dict.items())[0][1] == self._character.on_platform:
+        if list(self.word_article_dict.items())[0][1] == self.character.on_platform:
             self.coins += 50 * self.coin_multipler
-        elif self.punish_articles and list(self.word_article_dict.items())[0][1] != self._character.on_platform:
+        elif self.punish_articles and list(self.word_article_dict.items())[0][1] != self.character.on_platform:
             return False
         return True
 
     def calc_stage(self):
-        real_scroll = self._ground.rect.y - 766
+        real_scroll = self.ground.rect.y - 766
         self.stage = (real_scroll // 195)
         self.stage += 1
 
@@ -528,15 +528,15 @@ class MainFrame:
         self.stage = 0
         self.guess_timer_bool = True
         self.lowest_word_rating = 0
-        self._character.platform_stage = -1
-        self._character.on_platform = ""
+        self.character.platform_stage = -1
+        self.character.on_platform = ""
         self.moving_platforms = False
         # reset character, ground and platform positions
-        self._character.lives = copy.deepcopy(self._character.next_lives)
-        self._ground.rect.x = 0
-        self._ground.rect.y = self.surface.get_size()[1] - 100
-        self._character.jumping = False
-        self._character.rect.midbottom = self._ground.rect.midtop
+        self.character.lives = copy.deepcopy(self.character.next_lives)
+        self.ground.rect.x = 0
+        self.ground.rect.y = self.surface.get_size()[1] - 100
+        self.character.jumping = False
+        self.character.rect.midbottom = self.ground.rect.midtop
         self.platform_group.empty()
         random.shuffle(self.article_list)
         self.platform_one = Platform((61, self.surface.get_height() - 270), self.article_list[0], False)

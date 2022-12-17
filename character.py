@@ -11,9 +11,9 @@ class MainCharacter(pygame.sprite.Sprite):
         self.image = load_sprite(self.sprite, 64, 50, 34, 56, 1, (0, 0, 0))
         self.rect = self.image.get_rect()
         self.rect.midbottom = coordinates
-        self._velocity = 3
-        self._jump_velocity = 0
-        self._gravity = 1
+        self.velocity = 3
+        self.jump_velocity = 0
+        self.gravity = 1
         self.last_time = pygame.time.get_ticks()
         self.animation_cooldown = 100
         self.frame = 0
@@ -88,8 +88,8 @@ class MainCharacter(pygame.sprite.Sprite):
             if self.jump_sfx:
                 self.jump_sfx.play()
                 self.jump_sfx = 0
-            self._jump_velocity += self._gravity
-            dy += self._jump_velocity
+            self.jump_velocity += self.gravity
+            dy += self.jump_velocity
 
         # check collision with platform
         for platform in platform_group:
@@ -97,7 +97,7 @@ class MainCharacter(pygame.sprite.Sprite):
             if platform.rect.colliderect(self.rect.x, self.rect.y + dy + 5, self.rect.width, self.rect.height):
                 # check if above the platform
                 if self.rect.bottom < platform.rect.centery:
-                    if self._jump_velocity > 0:
+                    if self.jump_velocity > 0:
                         self.rect.bottom = platform.rect.top
                         dy = 0
                         self.jumping = False
@@ -114,12 +114,12 @@ class MainCharacter(pygame.sprite.Sprite):
             if not self.jumping:
                 if not collision_detected:
                     self.jumping = True
-                    self._jump_velocity = 0
+                    self.jump_velocity = 0
 
         # check if the player has bounced to the top of the screen
         if self.rect.top <= self.scroll_threshold:
             # if player is jumping
-            if self._jump_velocity < 0:
+            if self.jump_velocity < 0:
                 scroll = -dy+1
                 self.last_saved_pos[1] += scroll
 
@@ -135,10 +135,10 @@ class MainCharacter(pygame.sprite.Sprite):
         if keys[pygame.K_RIGHT]:
             if self.allow_traversal(screen_width) != "r border":
                 if not reverse_inputs:
-                    self.rect.x += self._velocity
+                    self.rect.x += self.velocity
                     self.flip = False
                 else:
-                    self.rect.x -= self._velocity
+                    self.rect.x -= self.velocity
                     self.flip = True
                 if not self.jumping:
                     self.animation_mode = 1
@@ -146,10 +146,10 @@ class MainCharacter(pygame.sprite.Sprite):
         elif keys[pygame.K_LEFT]:
             if self.allow_traversal(screen_width) != "l border":
                 if not reverse_inputs:
-                    self.rect.x -= self._velocity
+                    self.rect.x -= self.velocity
                     self.flip = True
                 else:
-                    self.rect.x += self._velocity
+                    self.rect.x += self.velocity
                     self.flip = False
                 if not self.jumping:
                     self.animation_mode = 1
@@ -158,7 +158,7 @@ class MainCharacter(pygame.sprite.Sprite):
             self.animation_mode = 0
         if keys[pygame.K_UP] and not self.jumping:
             self.jumping = True
-            self._jump_velocity = -22
+            self.jump_velocity = -22
             self.jump_sfx = pygame.mixer.Sound("data/sfx/jump3.mp3")
 
     def check_power_up_collision(self, powerup_obj):
@@ -181,30 +181,6 @@ class MainCharacter(pygame.sprite.Sprite):
         if self.rect.bottomright[0] > surface_width+self.rect.size[0]/2:
             self.rect.x = -1 * self.rect.size[0]/2
             return "r border"
-
-    @property
-    def velocity(self):
-        return self._velocity
-
-    @velocity.setter
-    def velocity(self, val):
-        self._velocity = val
-
-    @property
-    def jump_velocity(self):
-        return self._jump_velocity
-
-    @jump_velocity.setter
-    def jump_velocity(self, val):
-        self._jump_velocity = val
-
-    @property
-    def gravity(self):
-        return self._gravity
-
-    @gravity.setter
-    def gravity(self, val):
-        self._gravity = val
 
 
 if __name__ == "__main__":
