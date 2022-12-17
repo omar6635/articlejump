@@ -1,1 +1,10 @@
-# articlejump
+# Articlejump
+### Description
+This is a grammar learning game where one learns the correct genders of different words in German.
+It takes inspiration from Doodle Jump and similar platformers, modeling their simplicity while building on it. You start out with 6 lives and a 10-second guess timer that deducts one life if it expires.
+Coins can be collected by guessing the correct article. The options provide more difficulty dynamics such as an adjustable heart amount, article punishment and more.
+The golden coin power up doubles coins earned and the crimson coin reverses left and right movement.
+### Controls
+Jump - Up Arrow<br>
+Move Left - Left Arrow<br>
+Move Right - Right Arrow
