@@ -1,10 +1,11 @@
 from sqlobject import *
+from sqlobject.sqlite import builder
 from random import randint
 
 
 class SQLMain:
     def __init__(self):
-        self.connection = sqlhub.processConnection = connectionForURI("sqlite: word_article_database.db3")
+        self.connection = sqlhub.processConnection = builder()('word_article_database.db3')
         Word.createTable(ifNotExists=True)
         Article.createTable(ifNotExists=True)
 
@@ -43,6 +44,4 @@ class Article(SQLObject):
 
 if __name__ == "__main__":
     SQLMain()
-    SQLMain.insert_word("Buchstabe", 10, 0, 1)
-    SQLMain.insert_word("Steuer", 5, 0, 3)
 

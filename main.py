@@ -197,7 +197,7 @@ class MainFrame:
         self.calc_stage()
         # move character
         scroll, stage_changed = self.character.move(self.ground.rect.y, self.platform_group,
-                                                     self.surface.get_rect()[2:], self.stage, self.reverse_inputs_var)
+                                                    self.surface.get_rect()[2:], self.stage, self.reverse_inputs_var)
         # create background scroll by adding scroll onto it (cumulative variable)
         self.background_scroll += scroll
         if self.background_scroll > self.surface.get_height():
