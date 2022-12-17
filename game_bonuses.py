@@ -1,6 +1,6 @@
 import pygame
 import random
-from load_sprite import load_sprite
+from game_functions import load_sprite
 from abc import ABC
 
 

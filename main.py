@@ -1,4 +1,5 @@
-# a&m's -> attributes and methods
+# a&m's
+# -> attributes and methods
 import pygame
 import database
 import time
@@ -10,12 +11,14 @@ from ground import Ground
 from platforms import Platform
 from text import Text
 from power_up import PowerUp
-from load_sprite import load_sprite
+from game_functions import load_sprite, read_instructions, draw_game_over_text
 from loading_bar import LoadingBar
 from button import Button
-# initialize pygame globally for global variables
+# initialize pygame
+# -> global for global variables
 pygame.init()
-# database object is defined globally so that any class can access it
+# database object
+# -> defined globally so that any class can access it
 database = database.SQLMain()
 # sfx
 jump_sfx = pygame.mixer.Sound("data/sfx/jump2.mp3")
@@ -31,30 +34,21 @@ class MainFrame:
         # display attributes
         self.width, self.height = window_width, window_height
         self.surface = pygame.display.set_mode((self.width, self.height))
-        # create ground platform
+        # game object attributes
+        # ground
         self.ground = Ground((0, self.surface.get_height() - 100))
-        # UI elements
-        self.wooden_frame = load_sprite(
-            pygame.image.load("data/gfx/internet_asset_packs/dungeon pack/wooden_frame.png"),
-            0, 0, 530, 174, 0.3, (0, 0, 0))
-        self.whole_heart = load_sprite(pygame.image.load("data/gfx/internet_asset_packs/dungeonui.v1.png"),
-                                       20, 133, 14, 15, 1.87, (0, 0, 0))
-        self.half_heart = load_sprite(pygame.image.load("data/gfx/internet_asset_packs/dungeonui.v1.png"),
-                                      35, 133, 14, 15, 1.87, (0, 0, 0))
-        self.empty_heart = load_sprite(pygame.image.load("data/gfx/internet_asset_packs/dungeonui.v1.png"),
-                                       52, 133, 14, 15, 1.87, (0, 0, 0))
-        # dict of words drawn on screen
-        self.word_article_dict = {}
-        # create background list and variable for number of backgrounds required to fill screens
+        # background
+        # -> create background list to hold backgrounds for infinite scroll effect
         self.background_list = []
         self.background_list.append(pygame.transform.scale(pygame.image.load("data/gfx/background_sprite2.png")
                                                            .convert(), (self.surface.get_width(),
-                                                                         self.surface.get_height() / 2)))
+                                                                        self.surface.get_height() / 2)))
         self.background_list.append(pygame.transform.scale(pygame.image.load("data/gfx/background_sprite3.png")
                                                            .convert(), (self.surface.get_width(),
-                                                                         self.surface.get_height() / 2)))
+                                                                        self.surface.get_height() / 2)))
+        # -> variable for number of backgrounds it takes to fill the screen
         self.required_bgs = math.ceil(self.surface.get_height() / self.background_list[0].get_height()) + 2
-        # platform attributes
+        # platform
         self.article_list = ["Der", "Die", "Das"]
         random.shuffle(self.article_list)
         self.platform_one = Platform((61, self.surface.get_height() - 270), self.article_list[0], False)
@@ -63,30 +57,29 @@ class MainFrame:
         self.platform_three = Platform((self.width - 61, self.surface.get_height() - 270),
                                        self.article_list[2], False)
         self.platform_group = pygame.sprite.Group(self.platform_one, self.platform_two, self.platform_three)
-        # character attributes
+        # -> every word currently on display coupled with the correct articles. Used for validation.
+        self.word_article_dict = {}
+        # -> for every 3 platforms in the platform group, blit a randomly generated word on the screen
+        self.generate_word_article_combos(self.platform_group.sprites()[0].rect[0:2])
+        self.max_platforms = 12
+        # character
         self.character = MainCharacter(self.ground.rect.midtop, list(self.platform_two.rect.midtop))
-        # powerup & debuff attributes
+        # powerup & debuff
         self.powerup = PowerUp((0, self.surface.get_width()), (0, self.character.rect.top),
                                "data/gfx/internet_asset_packs/Animated pixel coins/coin2_20x20.png")
         self.debuff = PowerUp((0, self.surface.get_width()), (0, self.character.rect.top),
                               "data/gfx/internet_asset_packs/Animated pixel coins/coin3_20x20.png")
-        # for every 3 platforms in the platform group, blit a randomly generated word on the screen
-        self.generate_draw_word(self.platform_group.sprites()[0].rect[0:2])
-        self.max_platforms = 12
-        # loading bar to serve as powerup timer
+        # loading bar
+        # -> serves as a timer for powerup & debuff
         self.loading_bar = LoadingBar(self.surface)
         self.loading_bar.rescale_lb(1.7, self.surface)
-        # fonts
-        self.main_font = "data/fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf"
-        # formatting code
-        self.format_panel_screen()
-        # guess timer variables
+        # guess timer
         self.guess_timer_text = Text("0", (0, 0, 0), 25, (15, 50))
         self.guess_timer_last_time = 0
         self.guess_timer_var = 10000
         self.guess_timer_bool = True
         self.show_guess_timer = True
-        # menu attributes
+        # main menu attributes
         # button objects
         self.resume_button = Button((185, 72), (self.surface.get_rect().centerx, 160),
                                     pygame.image.load("data/gfx/internet_asset_packs/"
@@ -112,8 +105,18 @@ class MainFrame:
         self.confirm_button = Button((199, 72), (self.surface.get_rect().centerx, 600),
                                      pygame.image.load("data/gfx/internet_asset_packs/"
                                                        "Menu Image Sprites/button_confirm.png"), 1)
-
+        # UI elements
+        self.wooden_frame = load_sprite(
+            pygame.image.load("data/gfx/internet_asset_packs/dungeon pack/wooden_frame.png"),
+            0, 0, 530, 174, 0.3, (0, 0, 0))
+        self.whole_heart = load_sprite(pygame.image.load("data/gfx/internet_asset_packs/dungeonui.v1.png"),
+                                       20, 133, 14, 15, 1.87, (0, 0, 0))
+        self.half_heart = load_sprite(pygame.image.load("data/gfx/internet_asset_packs/dungeonui.v1.png"),
+                                      35, 133, 14, 15, 1.87, (0, 0, 0))
+        self.empty_heart = load_sprite(pygame.image.load("data/gfx/internet_asset_packs/dungeonui.v1.png"),
+                                       52, 133, 14, 15, 1.87, (0, 0, 0))
         # game variables
+        self.main_font = "data/fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf"
         self.coins = 0
         self.stage = 0
         self.background_scroll = 0
@@ -127,11 +130,18 @@ class MainFrame:
         self.increase_rating = False
         self.punish_articles = False
         self.reverse_inputs_var = False
-        # display splash and title screens
-        # self.splash_screen()
-        # self.title_screen()
+        # splash and title screens
+        self.splash_screen()
+        self.title_screen()
+        # format frame
+        self.format_panel_screen()
 
     def catch_events(self):
+        """
+        Catch and process different events from the gameloop.
+
+        :return: None
+        """
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
@@ -140,6 +150,11 @@ class MainFrame:
                     self.menu_running = True
 
     def splash_screen(self):
+        """
+        An intro overlay displayed at the start of the game. Precedes the title screen.
+
+        :return: None
+        """
         pygame.mixer.Sound.play(start_sfx)
         previous_time = time.time()
         splash_screen_timer = 0
@@ -151,7 +166,6 @@ class MainFrame:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
-            # fill the background with teal (a shade of blue)
             self.surface.fill((0, 128, 128))
             text_on_screen = Text("A Project by Omar, Ayberk and Michael", pygame.Color("#6A3940"), 30,
                                   self.surface.get_rect().center, self.main_font)
@@ -160,6 +174,12 @@ class MainFrame:
             pygame.time.delay(10)
 
     def title_screen(self):
+        """
+        A preparatory screen with relevant information about game mechanics. Clicking on start
+        starts the gameloop.
+
+        :return: None
+        """
         pygame.mixer.Sound.play(start_sfx)
         start_button = pygame.rect.Rect(self.surface.get_rect().centerx - 50, 100, 100,
                                         46)
@@ -189,35 +209,97 @@ class MainFrame:
             pygame.time.delay(10)
 
     def format_panel_screen(self):
+        """
+        Format the frame to prepare it for display.
+
+        :return: None
+        """
         pygame.display.set_caption("Artikeljump")
         pygame.display.set_icon(self.character.image)
 
-    def draw_update_surface_sprites(self):
+    def game_loop(self):
+        """
+        The game loop where all necessary updates to game objects are made.
+
+        :return: None
+        """
+        # -> fill surface with black to upate objects
         self.surface.fill((0, 0, 0))
         self.calc_stage()
-        # move character
         scroll, stage_changed = self.character.move(self.ground.rect.y, self.platform_group,
                                                     self.surface.get_rect()[2:], self.stage, self.reverse_inputs_var)
-        # create background scroll by adding scroll onto it (cumulative variable)
+        # -> create background scroll by adding scroll onto it (cumulative variable)
         self.background_scroll += scroll
         if self.background_scroll > self.surface.get_height():
             self.background_scroll = 0
-        # blit the background(s) on the frame
+        # generate platforms
+        self.generate_platforms()
+        # -> check for a gameover condition
+        if self.gameover_check(stage_changed):
+            self.gameover = True
+            dead_sfx.play()
+        # -> check if player has made correct decision
+        if self.character.on_platform != "":
+            if not self.check_answer():
+                self.deduct_hearts()
+            self.character.on_platform = ""
+        # -> as player progresses, make the game harder by choosing harder words and making the game more dynamic
+        self.raise_difficulty()
+        # draw objects
+        # background
         start_number = self.surface.get_height() / 2
         for i in range(0, self.required_bgs):
             self.surface.blit(self.background_list[i % 2], (0, start_number +
                                                             self.background_scroll))
             start_number -= self.surface.get_height() / 2
-        # draw the ground on background
+        # ground
         self.ground.blit_ground(self.surface, scroll)
-        # draw the character on the background
+        # character
         sprite_list = self.character.create_animation_list()
         self.character.animation(sprite_list, self.surface)
-        # create platforms if current amount is below limit
+        # platforms
+        for platform in self.platform_group:
+            platform.update(scroll, self.surface.get_size(), self.word_article_dict)
+            platform.draw_platform(self.surface)
+        # words
+        for sub_list in list(self.word_article_dict.items()):
+            sub_list[0].scroll_text(scroll)
+            sub_list[0].draw_on_surface_alpha(self.surface, 75)
+        # score
+        self.surface.blit(self.wooden_frame, (-30, -14))
+        self.draw_score()
+        # lives
+        self.surface.blit(self.wooden_frame, (370, -14))
+        self.draw_hearts()
+        # guess timer
+        if self.show_guess_timer:
+            self.surface.blit(self.wooden_frame, (170, -14))
+            self.format_guess_timer(self.guess_timer_method(stage_changed)[1])
+            self.guess_timer_text.rect.topleft = (235, -3)
+            self.guess_timer_text.draw_on_surface(self.surface)
+        # powerup
+        self.powerup.assess_draw_powerup()
+        if self.powerup.draw_powerup and not self.debuff.power_up_active:
+            self.powerup.draw_on_screen(self.surface, scroll, self.character)
+        self.double_coins()
+        # debuff
+        self.debuff.assess_draw_powerup()
+        if self.debuff.draw_powerup and not self.powerup.power_up_active:
+            self.debuff.draw_on_screen(self.surface, scroll, self.character)
+        self.reverse_inputs_method()
+        # update the display
+        pygame.display.update()
+
+    def generate_platforms(self) -> None:
+        """
+        Create platforms if current amount is below limit.
+
+        :return: None
+        """
         while len(self.platform_group.sprites()) < self.max_platforms:
             move = False
             if self.moving_platforms:
-                # 1 in 5 chance that a platform is moving
+                # -> one in a five chance that a platform is moving
                 moving_chance = random.randint(1, 5)
                 if moving_chance == 2:
                     move = True
@@ -225,59 +307,15 @@ class MainFrame:
             random.shuffle(self.article_list)
             for i in range(-3, 0, 1):
                 buffer_list.append(self.platform_group.sprites()[i].create_new_platforms(self.article_list[i], move))
-            self.generate_draw_word(buffer_list[0].rect[0:2])
+            self.generate_word_article_combos(buffer_list[0].rect[0:2])
             self.platform_group.add(buffer_list)
-        # draw platforms on bg
-        for platform in self.platform_group:
-            platform.update(scroll, self.surface.get_size(), self.word_article_dict)
-            platform.draw_platform(self.surface)
-        # draw words on bg
-        for sub_list in list(self.word_article_dict.items()):
-            sub_list[0].scroll_text(scroll)
-            sub_list[0].draw_on_surface_alpha(self.surface, 75)
-        # draw UI elements
-        # Animated pixel coins UI elements
-        self.surface.blit(self.wooden_frame, (-30, -14))
-        self.draw_score()
-        # heart UI elements
-        self.surface.blit(self.wooden_frame, (370, -14))
-        self.draw_hearts()
-        # check if gameover condition is met
-        if self.gameover_check(stage_changed):
-            self.gameover = True
-            dead_sfx.play()
-        # guess timer UI elements & logic
-        if self.show_guess_timer:
-            self.surface.blit(self.wooden_frame, (170, -14))
-            self.format_guess_timer(self.guess_timer_method(stage_changed)[1])
-            self.guess_timer_text.rect.topleft = (235, -3)
-            self.guess_timer_text.draw_on_surface(self.surface)
-        # check if user has made correct decision
-        if self.character.on_platform != "":
-            if not self.check_answer():
-                self.deduct_hearts()
-            self.character.on_platform = ""
-        # powerup logic + UI
-        # make it so that there's a 1 in 500 chance a powerup spawns
-        self.powerup.assess_draw_powerup()
-        if self.powerup.draw_powerup and not self.debuff.power_up_active:
-            self.powerup.draw_on_screen(self.surface, scroll, self.character)
-        self.double_coins()
-        # debuff logic + UI
-        # 1 in a 500 chance debuff spawnspowerup.
-        self.powerup.assess_draw_powerup()
-        # reverse the player's left and right inputs if debuff is picked up
-        self.debuff.assess_draw_powerup()
-        if self.debuff.draw_powerup and not self.powerup.power_up_active:
-            self.debuff.draw_on_screen(self.surface, scroll, self.character)
-        self.reverse_inputs_method()
-        # as user progresses, make the game harder by choosing harder words and making the game more dynamic
-        self.raise_difficulty()
-        # update the display
-        pygame.display.update()
 
     def double_coins(self):
-        # if user collected the powerup and it's still in effect, double the amount of Animated pixel coins earned
+        """
+        Double the coins earned from jumping on the correct platform. Called when player collects a golden coin.
+
+        :return: None
+        """
         if self.powerup.power_up_active:
             self.coin_multipler = 2
             # blit loading bar
@@ -291,6 +329,11 @@ class MainFrame:
                 self.loading_bar.bar_obj_list.clear()
 
     def reverse_inputs_method(self):
+        """
+        Invert player input to increase game difficulty. Called when player collects a crimson coin.
+
+        :return: None
+        """
         if self.debuff.power_up_active:
             self.reverse_inputs_var = True
             self.loading_bar.resize_bar(self.debuff.last_time_effect, self.debuff.pause_duration_effect,
@@ -303,6 +346,12 @@ class MainFrame:
                 self.loading_bar.bar_obj_list.clear()
 
     def format_guess_timer(self, guess_timer: int) -> None:
+        """
+        Format the guess timer in the top center.
+
+        :param guess_timer: integer time in milliseconds
+        :return: None
+        """
         if guess_timer >= 1000:
             self.guess_timer_text.change_text(str(guess_timer)[0] + "." + str(guess_timer)[1])
         elif guess_timer < 1000:
@@ -311,6 +360,11 @@ class MainFrame:
             self.guess_timer_text.change_text("0.0")
 
     def draw_score(self):
+        """
+        Blit amassed coins in the top left.
+
+        :return: None
+        """
         coin_sprite = load_sprite(pygame.image.load(
             "data/gfx/internet_asset_packs/Animated pixel coins/coin2_20x20.png"),
                                   0, 0, 22, 20, 1.2, (0, 0, 0))
@@ -320,6 +374,11 @@ class MainFrame:
         score_text.draw_on_surface(self.surface)
 
     def raise_difficulty(self):
+        """
+        If coins collected surpasses a predetermined threshold, enable difficulty dynamics.
+
+        :return: None
+        """
         if self.coins > 1000:
             self.moving_platforms = True
         if self.coins % 1000 == 0 and self.increase_rating:
@@ -329,6 +388,11 @@ class MainFrame:
             self.increase_rating = True
 
     def draw_hearts(self):
+        """
+        Blit hearts in the top right.
+
+        :return: None
+        """
         first_x_coord = 390
         x_coord_increment = 40
         max_hearts = 0
@@ -353,7 +417,14 @@ class MainFrame:
             self.surface.blit(self.empty_heart, (first_x_coord, -2))
             first_x_coord -= x_coord_increment
 
-    def gameover_check(self, stage_changed):
+    def gameover_check(self, stage_changed: bool) -> bool:
+        """
+        Check whether certain life-loss conditions are met and deduct hearts (e.g. falling off platform).
+        Triggers a game over condition if lives have been exhausted.
+
+        :param stage_changed: bool designating stage change.
+        :return: bool
+        """
         if (self.character.lives[1] + self.character.lives[0]) <= 0:
             return True
         if self.character.rect.top > self.surface.get_height():
@@ -367,8 +438,15 @@ class MainFrame:
         if self.show_guess_timer:
             if not self.guess_timer_method(stage_changed)[0]:
                 self.deduct_hearts()
+        return False
 
     def deduct_hearts(self):
+        """
+        Decrement elements in heart list according to lives_pos attribute from the character class.
+        Plays lost_life.wav when called.
+
+        :return: None
+        """
         if self.character.lives_pos == 0:
             self.character.lives[0] -= 1
             if self.character.lives[1]:
@@ -384,6 +462,11 @@ class MainFrame:
         lost_life_sfx.play()
 
     def main_menu(self):
+        """
+        Pause menu that acts as a means to stop the gameloop and adjust certain options in the settings.
+
+        :return: None
+        """
         pause_timer = 0
         menu_state = "main"
         user_input_ls = [["Heart Amount:", "", 0, False, pygame.rect.Rect(0, 0, 0, 0), (1, 7), 1],
@@ -470,7 +553,6 @@ class MainFrame:
                     if user_input_ls[3][1]:
                         self.powerup.effect = int(user_input_ls[3][1])*1000
                         self.debuff.effect = int(user_input_ls[3][1])*1000
-                        print("here")
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.menu_running = False
@@ -494,34 +576,54 @@ class MainFrame:
             pygame.display.update()
 
     def check_answer(self) -> bool:
-        # check what stage the user is at to make sure the guess is being made for the right word
+        """
+        Check what stage player is at to make sure the guess is being made for the right word.
+
+        :return: bool
+        """
         if list(self.word_article_dict.items())[0][1] == self.character.on_platform:
             self.coins += 50 * self.coin_multipler
         elif self.punish_articles and list(self.word_article_dict.items())[0][1] != self.character.on_platform:
             return False
         return True
 
-    def calc_stage(self):
+    def calc_stage(self) -> None:
+        """
+        Calculate the current stage based on ground pos (ground object is never deleted for this reason).
+
+        :return: None
+        """
         real_scroll = self.ground.rect.y - 766
         self.stage = (real_scroll // 195)
         self.stage += 1
 
-    def generate_draw_word(self, coordinates: tuple) -> None:
-        # prepare coordinates
+    def generate_word_article_combos(self, coordinates: tuple) -> None:
+        """
+        Randomly generate and append word combos to word_article dictionary.
+
+        :param coordinates: tuple of word coordinates on display.
+        :return: None
+        """
+        # -> prepare coordinates
         a_y = copy.deepcopy(coordinates[1]) - 90
         a_x = copy.deepcopy(coordinates[0]) + self.surface.get_width() / 2
-        # get a word-article combo from the database
+        # -> get a word-article combo from the database
         word_article_combo = database.get_random_word()
-        # as long as the database returns a duplicate, get another one
+        # -> as long as the database returns a duplicate, get another one
         while word_article_combo[0] in [i[0].text for i in list(self.word_article_dict.items())] and \
                 self.lowest_word_rating < word_article_combo[2]:
             word_article_combo = database.get_random_word()
-        # create a Text object
+        # -> create a Text object
         text_obj = Text(word_article_combo[0], (0, 0, 0), 40, (a_x, a_y))
-        # add the Text object and its correct article to dict
+        # -> add the Text object and its correct article to dict
         self.word_article_dict[text_obj] = word_article_combo[1]
 
     def reset_game_variables(self) -> None:
+        """
+        Reset all relevant variables for a new game.
+
+        :return: None
+        """
         self.gameover = False
         self.coins = 0
         self.background_scroll = 0
@@ -531,7 +633,7 @@ class MainFrame:
         self.character.platform_stage = -1
         self.character.on_platform = ""
         self.moving_platforms = False
-        # reset character, ground and platform positions
+        # -> reset character, ground and platform positions
         self.character.lives = copy.deepcopy(self.character.next_lives)
         self.ground.rect.x = 0
         self.ground.rect.y = self.surface.get_size()[1] - 100
@@ -546,9 +648,15 @@ class MainFrame:
                                        self.article_list[2], False)
         self.platform_group.add(self.platform_one, self.platform_two, self.platform_three)
         self.word_article_dict = {}
-        self.generate_draw_word(self.platform_group.sprites()[0].rect[0:2])
+        self.generate_word_article_combos(self.platform_group.sprites()[0].rect[0:2])
 
-    def guess_timer_method(self, stage_changed):
+    def guess_timer_method(self, stage_changed: bool) -> tuple:
+        """
+        Update the guess timer.
+
+        :param stage_changed: bool designating change in stage.
+        :return: tuple
+        """
         if self.guess_timer_bool:
             self.guess_timer_last_time = pygame.time.get_ticks()
             self.guess_timer_bool = False
@@ -564,28 +672,6 @@ class MainFrame:
             self.pause_duration_guess_timer = 0
             return False, time_change
 
-# functions
-
-
-def draw_game_over_text(main_frame, coins):
-    game_over_text = Text("GAME OVER", (255, 255, 255), 50,
-                          (main_frame.surface.get_rect().centerx, main_frame.surface.get_rect().centery - 50),
-                          main_frame.main_font)
-    score_text = Text("SCORE: " + str(coins), (255, 255, 255), 50,
-                      (main_frame.surface.get_rect().centerx, main_frame.surface.get_rect().centery),
-                      main_frame.main_font)
-    play_again_text = Text("PRESS SPACE TO RESTART", (255, 255, 255), 50,
-                           (main_frame.surface.get_rect().centerx, main_frame.surface.get_rect().centery + 50),
-                           main_frame.main_font)
-    game_over_text.draw_on_surface(main_frame.surface)
-    score_text.draw_on_surface(main_frame.surface)
-    play_again_text.draw_on_surface(main_frame.surface)
-
-
-def read_instructions(file_path: str) -> list:
-    with open(file_path) as file:
-        return [line.split() for line in file.readlines()]
-
 
 if __name__ == "__main__":
     game_window = MainFrame(window_width=500, window_height=700)
@@ -596,7 +682,7 @@ if __name__ == "__main__":
         game_window.catch_events()
         if not game_window.menu_running:
             if not game_window.gameover:
-                game_window.draw_update_surface_sprites()
+                game_window.game_loop()
             else:
                 draw_game_over_text(game_window, game_window.coins)
                 if update_frame:
