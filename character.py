@@ -104,11 +104,12 @@ class MainCharacter(pygame.sprite.Sprite):
                         collision_detected = True
                         self.last_saved_pos = list(platform.rect.midtop)
                         if platform.moving:
-                            dx += (platform.move_direction * platform.move_speed*2)
+                            dx += (platform.move_direction * platform.move_speed)
                         if self.platform_stage < stage:
                             self.on_platform = platform.name
                             self.platform_stage = stage
                             stage_changed = True
+
         # check if user is hovering over nothing and if so, drop him
         if self.rect.bottom != ground_top:
             if not self.jumping:
@@ -162,7 +163,6 @@ class MainCharacter(pygame.sprite.Sprite):
             self.jump_sfx = pygame.mixer.Sound("data/sfx/jump3.mp3")
 
     def check_power_up_collision(self, powerup_obj):
-        # FIXME: write proper code for the collision of 2 sprites instead of using a group
         power_up_group = pygame.sprite.Group()
         power_up_group.add(powerup_obj)
         if pygame.sprite.spritecollide(self, power_up_group, False):

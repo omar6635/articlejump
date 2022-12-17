@@ -320,7 +320,7 @@ class MainFrame:
         score_text.draw_on_surface(self.surface)
 
     def raise_difficulty(self):
-        if self.coins > 2000:
+        if self.coins > 1000:
             self.moving_platforms = True
         if self.coins % 1000 == 0 and self.increase_rating:
             self.lowest_word_rating += 1
