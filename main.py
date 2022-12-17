@@ -694,3 +694,4 @@ if __name__ == "__main__":
                     game_window.reset_game_variables()
         else:
             game_window.main_menu()
+    database.close_connection()
