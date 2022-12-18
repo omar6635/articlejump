@@ -7,7 +7,6 @@ class MainCharacter(pygame.sprite.Sprite):
         super(MainCharacter, self).__init__()
         self.sprite = pygame.image.load("data/gfx/internet_asset_packs/Medieval King Pack 2/Sprites/Idle.png")\
             .convert_alpha()
-        # 63, 223, 383 ...
         self.image = load_sprite(self.sprite, 64, 50, 34, 56, 1, (0, 0, 0))
         self.rect = self.image.get_rect()
         self.rect.midbottom = coordinates
@@ -30,8 +29,12 @@ class MainCharacter(pygame.sprite.Sprite):
         self.moving_p_velocity = 0
         self.jump_sfx = 0
 
-    def create_animation_list(self):
-        # create two dimensional list of sprite packs for idle, jumping, dead etc.
+    def create_animation_list(self) -> list:
+        """
+        Create two dimensional list of sprite packs for idle, jumping, dead etc.
+
+        :return: List
+        """
         sprite_list = ["data/gfx/internet_asset_packs/Medieval King Pack 2/Sprites/Idle.png",
                        "data/gfx/internet_asset_packs/Medieval King Pack 2/Sprites/Run.png",
                        "data/gfx/internet_asset_packs/Medieval King Pack 2/Sprites/Jump.png",
@@ -47,7 +50,14 @@ class MainCharacter(pygame.sprite.Sprite):
             animation_list.append(temp_list)
         return animation_list
 
-    def animation(self, animation_list, surface):
+    def animation(self, animation_list: list, surface: pygame.Surface) -> None:
+        """
+        Manipulate the frame variable to simulate animation by loading different sprites from animation_list.
+
+        :param animation_list: two dimensional list of sprites.
+        :param surface: surface to draw on.
+        :return: None
+        """
         current_time = pygame.time.get_ticks()
         if self.frame >= len(animation_list[self.animation_mode]):
             self.frame = 0
@@ -64,14 +74,30 @@ class MainCharacter(pygame.sprite.Sprite):
             image_to_blit.set_colorkey((0, 0, 0))
             surface.blit(image_to_blit, self.rect)
 
-    def check_jump(self, dy: int):
+    def check_jump(self, dy: int) -> None:
+        """
+        Check whether jumping or not and update animation_mode accordingly.
+
+        :param dy: integer delta y.
+        :return: None
+        """
         if dy < 0:
             self.animation_mode = 2
         elif dy > 0:
             self.animation_mode = 3
 
-    def move(self, ground_top,  platform_group, screen_dimensions, stage, reverse_inputs: bool):
-        # reset variables
+    def move(self, ground_top: int,  platform_group: pygame.sprite.Group, screen_dimensions: tuple, stage: int,
+             reverse_inputs: bool) -> tuple:
+        """
+        Class for moving the character sprite. It uses delta values from x and y axes to manipulate user position.
+
+        :param ground_top: integer x coordinate of the ground object.
+        :param platform_group: platform group from the main class.
+        :param screen_dimensions: dimensions of game screen.
+        :param stage: current stage player is on.
+        :param reverse_inputs: bool for input inversion.
+        :return: tuple
+        """
         scroll = 0
         dx = 0
         dy = 0
@@ -131,7 +157,14 @@ class MainCharacter(pygame.sprite.Sprite):
         self.check_jump(dy)
         return scroll, stage_changed
 
-    def handle_input(self, screen_width, reverse_inputs: bool):
+    def handle_input(self, screen_width: int, reverse_inputs: bool) -> None:
+        """
+        Process keypresses by player to move the character.
+
+        :param screen_width:
+        :param reverse_inputs:
+        :return: None
+        """
         keys = pygame.key.get_pressed()
         if keys[pygame.K_RIGHT]:
             if self.allow_traversal(screen_width) != "r border":
@@ -162,14 +195,19 @@ class MainCharacter(pygame.sprite.Sprite):
             self.jump_velocity = -22
             self.jump_sfx = pygame.mixer.Sound("data/sfx/jump3.mp3")
 
-    def check_power_up_collision(self, powerup_obj):
+    def check_power_up_collision(self, powerup_obj) -> bool:
+        """
+
+        :param powerup_obj:
+        :return:
+        """
         power_up_group = pygame.sprite.Group()
         power_up_group.add(powerup_obj)
         if pygame.sprite.spritecollide(self, power_up_group, False):
             return True
         return False
 
-    def allow_traversal(self, surface_width) -> str:
+    def allow_traversal(self, surface_width: int) -> str:
         """
         Allows for the user to go beyond the borders and pop out on the other side
 
@@ -186,7 +224,7 @@ class MainCharacter(pygame.sprite.Sprite):
 if __name__ == "__main__":
     pygame.init()
     display = pygame.display.set_mode((500, 500))
-    my_char = MainCharacter((500, 500))
+    my_char = MainCharacter((500, 500), 360)
     run = True
     while run:
         display.fill((55, 55, 55))
