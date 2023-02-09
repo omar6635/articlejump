@@ -131,8 +131,8 @@ class MainFrame:
         self.punish_articles = False
         self.reverse_inputs_var = False
         # splash and title screens
-        self.splash_screen()
-        self.title_screen()
+        # self.splash_screen()
+        # self.title_screen()
         # format frame
         self.format_panel_screen()
 
@@ -397,7 +397,7 @@ class MainFrame:
         x_coord_increment = 40
         max_hearts = 0
         break_loops = False
-        for i in range(2):
+        for i in range(2):  # (3, 3, 0)
             for x in range(self.character.lives[i]):
                 if i == 0:
                     self.surface.blit(self.whole_heart, (first_x_coord, -2))
@@ -416,6 +416,27 @@ class MainFrame:
         for i in range(self.character.lives[2]):
             self.surface.blit(self.empty_heart, (first_x_coord, -2))
             first_x_coord -= x_coord_increment
+
+    def deduct_hearts(self):
+        """
+        Decrement elements in heart list according to lives_pos attribute from the character class.
+        Plays lost_life.wav when called.
+
+        :return: None
+        """
+        if self.character.lives_pos == 0:
+            self.character.lives[0] -= 1
+            if self.character.lives[1]:
+                self.character.lives_pos += 1
+            else:
+                self.character.lives_pos += 2
+        elif self.character.lives_pos == 1:
+            self.character.lives[1] -= 1
+            self.character.lives_pos += 1
+        if self.character.lives_pos == 2:
+            self.character.lives[2] += 1
+            self.character.lives_pos = 0
+        lost_life_sfx.play()
 
     def gameover_check(self, stage_changed: bool) -> bool:
         """
@@ -439,27 +460,6 @@ class MainFrame:
             if not self.guess_timer_method(stage_changed)[0]:
                 self.deduct_hearts()
         return False
-
-    def deduct_hearts(self):
-        """
-        Decrement elements in heart list according to lives_pos attribute from the character class.
-        Plays lost_life.wav when called.
-
-        :return: None
-        """
-        if self.character.lives_pos == 0:
-            self.character.lives[0] -= 1
-            if self.character.lives[1]:
-                self.character.lives_pos += 1
-            else:
-                self.character.lives_pos += 2
-        elif self.character.lives_pos == 1:
-            self.character.lives[1] -= 1
-            self.character.lives_pos += 1
-        if self.character.lives_pos == 2:
-            self.character.lives[2] += 1
-            self.character.lives_pos = 0
-        lost_life_sfx.play()
 
     def main_menu(self):
         """

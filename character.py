@@ -86,7 +86,7 @@ class MainCharacter(pygame.sprite.Sprite):
         elif dy > 0:
             self.animation_mode = 3
 
-    def move(self, ground_top: int,  platform_group: pygame.sprite.Group, screen_dimensions: tuple, stage: int,
+    def move(self, ground_top: int,  platform_group: pygame.sprite.Group, screen_dimensions: list, stage: int,
              reverse_inputs: bool) -> tuple:
         """
         Class for moving the character sprite. It uses delta values from x and y axes to manipulate user position.

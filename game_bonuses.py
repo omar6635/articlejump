@@ -42,7 +42,7 @@ class GameBonuses(ABC, pygame.sprite.Sprite):
     def update(self, scroll):
         self.rect.y += scroll
 
-    def draw_timer(self) -> True:
+    def draw_timer(self) -> bool:
         current_time = pygame.time.get_ticks()
         time_delta = current_time - self.last_time_draw - self.pause_duration_draw
         if time_delta >= self.disappear:

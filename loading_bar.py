@@ -61,7 +61,7 @@ if __name__ == "__main__":
                 running = False
                 pygame.quit()
         display.fill((0, 0, 0))
-        loading_bar.resize_bar(outer_last_time, display, 10000)
+        loading_bar.resize_bar(outer_last_time, 0, 10000)
         loading_bar.draw_on_screen(display)
         pygame.display.update()
         clock.tick(60)
