@@ -1,0 +1,2829 @@
+(['C:\\Users\\Omar Elbakri\\Documents\\anProProject\\game\\main.py'],
+ ['C:\\Users\\Omar Elbakri\\Documents\\anProProject\\game'],
+ ['codecs'],
+ ['C:\\Users\\Omar '
+  'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\_pyinstaller_hooks_contrib\\hooks\\stdhooks',
+  'C:\\Users\\Omar '
+  'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\_pyinstaller_hooks_contrib\\hooks\\stdhooks\\__pycache__',
+  'C:\\Users\\Omar '
+  'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\_pyinstaller_hooks_contrib\\hooks\\rthooks',
+  'C:\\Users\\Omar '
+  'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\_pyinstaller_hooks_contrib\\hooks\\rthooks\\__pycache__',
+  'C:\\Users\\Omar '
+  'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\_pyinstaller_hooks_contrib\\hooks',
+  'C:\\Users\\Omar '
+  'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\__pyinstaller',
+  'C:\\Users\\Omar '
+  'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame_menu\\__pyinstaller'],
+ {},
+ [],
+ [],
+ False,
+ False,
+ False,
+ {},
+ '3.9.7 (tags/v3.9.7:1016ef3, Aug 30 2021, 20:19:38) [MSC v.1929 64 bit '
+ '(AMD64)]',
+ [('pyi_rth_pkgres',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_pkgres.py',
+   'PYSOURCE'),
+  ('pyi_rth_win32comgenpy',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_win32comgenpy.py',
+   'PYSOURCE'),
+  ('pyi_rth_pywintypes',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\hooks\\rthooks\\pyi_rth_pywintypes.py',
+   'PYSOURCE'),
+  ('pyi_rth_pythoncom',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\hooks\\rthooks\\pyi_rth_pythoncom.py',
+   'PYSOURCE'),
+  ('pyi_rth_inspect',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_inspect.py',
+   'PYSOURCE'),
+  ('pyi_rth_pkgutil',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_pkgutil.py',
+   'PYSOURCE'),
+  ('pyi_rth_multiprocessing',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_multiprocessing.py',
+   'PYSOURCE'),
+  ('main',
+   'C:\\Users\\Omar Elbakri\\Documents\\anProProject\\game\\main.py',
+   'PYSOURCE')],
+ [('multiprocessing.popen_spawn_posix',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\multiprocessing\\popen_spawn_posix.py',
+   'PYMODULE'),
+  ('multiprocessing.resource_tracker',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\multiprocessing\\resource_tracker.py',
+   'PYMODULE'),
+  ('threading',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\threading.py',
+   'PYMODULE'),
+  ('_threading_local',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\_threading_local.py',
+   'PYMODULE'),
+  ('contextlib',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\contextlib.py',
+   'PYMODULE'),
+  ('signal',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\signal.py',
+   'PYMODULE'),
+  ('multiprocessing.util',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\multiprocessing\\util.py',
+   'PYMODULE'),
+  ('multiprocessing.forkserver',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\multiprocessing\\forkserver.py',
+   'PYMODULE'),
+  ('multiprocessing.connection',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\multiprocessing\\connection.py',
+   'PYMODULE'),
+  ('multiprocessing.resource_sharer',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\multiprocessing\\resource_sharer.py',
+   'PYMODULE'),
+  ('xmlrpc.client',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\xmlrpc\\client.py',
+   'PYMODULE'),
+  ('xmlrpc',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\xmlrpc\\__init__.py',
+   'PYMODULE'),
+  ('gzip',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\gzip.py',
+   'PYMODULE'),
+  ('argparse',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\argparse.py',
+   'PYMODULE'),
+  ('textwrap',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\textwrap.py',
+   'PYMODULE'),
+  ('gettext',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\gettext.py',
+   'PYMODULE'),
+  ('_compression',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\_compression.py',
+   'PYMODULE'),
+  ('xml.parsers.expat',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\xml\\parsers\\expat.py',
+   'PYMODULE'),
+  ('xml.parsers',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\xml\\parsers\\__init__.py',
+   'PYMODULE'),
+  ('xml',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\xml\\__init__.py',
+   'PYMODULE'),
+  ('xml.sax.expatreader',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\xml\\sax\\expatreader.py',
+   'PYMODULE'),
+  ('xml.sax.saxutils',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\xml\\sax\\saxutils.py',
+   'PYMODULE'),
+  ('xml.sax',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\xml\\sax\\__init__.py',
+   'PYMODULE'),
+  ('xml.sax.handler',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\xml\\sax\\handler.py',
+   'PYMODULE'),
+  ('xml.sax._exceptions',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\xml\\sax\\_exceptions.py',
+   'PYMODULE'),
+  ('xml.sax.xmlreader',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\xml\\sax\\xmlreader.py',
+   'PYMODULE'),
+  ('http.client',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\http\\client.py',
+   'PYMODULE'),
+  ('ssl',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\ssl.py',
+   'PYMODULE'),
+  ('calendar',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\calendar.py',
+   'PYMODULE'),
+  ('http',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\http\\__init__.py',
+   'PYMODULE'),
+  ('email.message',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\email\\message.py',
+   'PYMODULE'),
+  ('email.policy',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\email\\policy.py',
+   'PYMODULE'),
+  ('email.contentmanager',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\email\\contentmanager.py',
+   'PYMODULE'),
+  ('email.quoprimime',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\email\\quoprimime.py',
+   'PYMODULE'),
+  ('string',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\string.py',
+   'PYMODULE'),
+  ('email.headerregistry',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\email\\headerregistry.py',
+   'PYMODULE'),
+  ('email._header_value_parser',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\email\\_header_value_parser.py',
+   'PYMODULE'),
+  ('email.iterators',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\email\\iterators.py',
+   'PYMODULE'),
+  ('email.generator',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\email\\generator.py',
+   'PYMODULE'),
+  ('email._encoded_words',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\email\\_encoded_words.py',
+   'PYMODULE'),
+  ('email.charset',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\email\\charset.py',
+   'PYMODULE'),
+  ('email.encoders',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\email\\encoders.py',
+   'PYMODULE'),
+  ('email.base64mime',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\email\\base64mime.py',
+   'PYMODULE'),
+  ('email._policybase',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\email\\_policybase.py',
+   'PYMODULE'),
+  ('email.header',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\email\\header.py',
+   'PYMODULE'),
+  ('email.errors',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\email\\errors.py',
+   'PYMODULE'),
+  ('email.utils',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\email\\utils.py',
+   'PYMODULE'),
+  ('email._parseaddr',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\email\\_parseaddr.py',
+   'PYMODULE'),
+  ('email',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\email\\__init__.py',
+   'PYMODULE'),
+  ('quopri',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\quopri.py',
+   'PYMODULE'),
+  ('getopt',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\getopt.py',
+   'PYMODULE'),
+  ('uu',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\uu.py',
+   'PYMODULE'),
+  ('optparse',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\optparse.py',
+   'PYMODULE'),
+  ('email.parser',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\email\\parser.py',
+   'PYMODULE'),
+  ('email.feedparser',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\email\\feedparser.py',
+   'PYMODULE'),
+  ('decimal',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\decimal.py',
+   'PYMODULE'),
+  ('_pydecimal',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\_pydecimal.py',
+   'PYMODULE'),
+  ('contextvars',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\contextvars.py',
+   'PYMODULE'),
+  ('numbers',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\numbers.py',
+   'PYMODULE'),
+  ('datetime',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\datetime.py',
+   'PYMODULE'),
+  ('_strptime',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\_strptime.py',
+   'PYMODULE'),
+  ('base64',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\base64.py',
+   'PYMODULE'),
+  ('hmac',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\hmac.py',
+   'PYMODULE'),
+  ('hashlib',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\hashlib.py',
+   'PYMODULE'),
+  ('struct',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\struct.py',
+   'PYMODULE'),
+  ('socket',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\socket.py',
+   'PYMODULE'),
+  ('selectors',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\selectors.py',
+   'PYMODULE'),
+  ('tempfile',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\tempfile.py',
+   'PYMODULE'),
+  ('shutil',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\shutil.py',
+   'PYMODULE'),
+  ('zipfile',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\zipfile.py',
+   'PYMODULE'),
+  ('py_compile',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\py_compile.py',
+   'PYMODULE'),
+  ('importlib.machinery',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\importlib\\machinery.py',
+   'PYMODULE'),
+  ('importlib',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\importlib\\__init__.py',
+   'PYMODULE'),
+  ('importlib._bootstrap',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\importlib\\_bootstrap.py',
+   'PYMODULE'),
+  ('importlib._bootstrap_external',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\importlib\\_bootstrap_external.py',
+   'PYMODULE'),
+  ('importlib.metadata',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\importlib\\metadata.py',
+   'PYMODULE'),
+  ('importlib.abc',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\importlib\\abc.py',
+   'PYMODULE'),
+  ('typing',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\typing.py',
+   'PYMODULE'),
+  ('configparser',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\configparser.py',
+   'PYMODULE'),
+  ('csv',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\csv.py',
+   'PYMODULE'),
+  ('importlib.util',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\importlib\\util.py',
+   'PYMODULE'),
+  ('tarfile',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\tarfile.py',
+   'PYMODULE'),
+  ('lzma',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\lzma.py',
+   'PYMODULE'),
+  ('bz2',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\bz2.py',
+   'PYMODULE'),
+  ('logging',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\logging\\__init__.py',
+   'PYMODULE'),
+  ('pickle',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\pickle.py',
+   'PYMODULE'),
+  ('pprint',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\pprint.py',
+   'PYMODULE'),
+  ('_compat_pickle',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\_compat_pickle.py',
+   'PYMODULE'),
+  ('multiprocessing.process',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\multiprocessing\\process.py',
+   'PYMODULE'),
+  ('multiprocessing.context',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\multiprocessing\\context.py',
+   'PYMODULE'),
+  ('multiprocessing.popen_forkserver',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\multiprocessing\\popen_forkserver.py',
+   'PYMODULE'),
+  ('multiprocessing.sharedctypes',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\multiprocessing\\sharedctypes.py',
+   'PYMODULE'),
+  ('multiprocessing.heap',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\multiprocessing\\heap.py',
+   'PYMODULE'),
+  ('bisect',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\bisect.py',
+   'PYMODULE'),
+  ('ctypes',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\ctypes\\__init__.py',
+   'PYMODULE'),
+  ('ctypes._endian',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\ctypes\\_endian.py',
+   'PYMODULE'),
+  ('multiprocessing.pool',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\multiprocessing\\pool.py',
+   'PYMODULE'),
+  ('multiprocessing.dummy',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\multiprocessing\\dummy\\__init__.py',
+   'PYMODULE'),
+  ('multiprocessing.dummy.connection',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\multiprocessing\\dummy\\connection.py',
+   'PYMODULE'),
+  ('queue',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\queue.py',
+   'PYMODULE'),
+  ('multiprocessing.queues',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\multiprocessing\\queues.py',
+   'PYMODULE'),
+  ('multiprocessing.synchronize',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\multiprocessing\\synchronize.py',
+   'PYMODULE'),
+  ('multiprocessing.managers',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\multiprocessing\\managers.py',
+   'PYMODULE'),
+  ('multiprocessing.shared_memory',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\multiprocessing\\shared_memory.py',
+   'PYMODULE'),
+  ('secrets',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\secrets.py',
+   'PYMODULE'),
+  ('multiprocessing.reduction',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\multiprocessing\\reduction.py',
+   'PYMODULE'),
+  ('multiprocessing.popen_fork',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\multiprocessing\\popen_fork.py',
+   'PYMODULE'),
+  ('multiprocessing.popen_spawn_win32',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\multiprocessing\\popen_spawn_win32.py',
+   'PYMODULE'),
+  ('subprocess',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\subprocess.py',
+   'PYMODULE'),
+  ('multiprocessing.spawn',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\multiprocessing\\spawn.py',
+   'PYMODULE'),
+  ('runpy',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\runpy.py',
+   'PYMODULE'),
+  ('pkgutil',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\pkgutil.py',
+   'PYMODULE'),
+  ('zipimport',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\zipimport.py',
+   'PYMODULE'),
+  ('inspect',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\inspect.py',
+   'PYMODULE'),
+  ('dis',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\dis.py',
+   'PYMODULE'),
+  ('opcode',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\opcode.py',
+   'PYMODULE'),
+  ('ast',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\ast.py',
+   'PYMODULE'),
+  ('multiprocessing',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\multiprocessing\\__init__.py',
+   'PYMODULE'),
+  ('win32com',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32com\\__init__.py',
+   'PYMODULE'),
+  ('win32com.server.util',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32com\\server\\util.py',
+   'PYMODULE'),
+  ('win32com.server.dispatcher',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32com\\server\\dispatcher.py',
+   'PYMODULE'),
+  ('win32traceutil',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32\\lib\\win32traceutil.py',
+   'PYMODULE'),
+  ('win32com.util',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32com\\util.py',
+   'PYMODULE'),
+  ('win32con',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32\\lib\\win32con.py',
+   'PYMODULE'),
+  ('win32com.server.exception',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32com\\server\\exception.py',
+   'PYMODULE'),
+  ('winerror',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32\\lib\\winerror.py',
+   'PYMODULE'),
+  ('win32com.server.policy',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32com\\server\\policy.py',
+   'PYMODULE'),
+  ('win32com.client',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32com\\client\\__init__.py',
+   'PYMODULE'),
+  ('win32com.client.makepy',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32com\\client\\makepy.py',
+   'PYMODULE'),
+  ('pywin.dialogs.status',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\Pythonwin\\pywin\\dialogs\\status.py',
+   'PYMODULE'),
+  ('pywin.mfc.thread',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\Pythonwin\\pywin\\mfc\\thread.py',
+   'PYMODULE'),
+  ('pywin.mfc.object',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\Pythonwin\\pywin\\mfc\\object.py',
+   'PYMODULE'),
+  ('pywin.mfc.dialog',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\Pythonwin\\pywin\\mfc\\dialog.py',
+   'PYMODULE'),
+  ('pywin.mfc.window',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\Pythonwin\\pywin\\mfc\\window.py',
+   'PYMODULE'),
+  ('pywin.mfc',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\Pythonwin\\pywin\\mfc\\__init__.py',
+   'PYMODULE'),
+  ('pywin.dialogs',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\Pythonwin\\pywin\\dialogs\\__init__.py',
+   'PYMODULE'),
+  ('pywin',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\Pythonwin\\pywin\\__init__.py',
+   'PYMODULE'),
+  ('win32com.client.gencache',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32com\\client\\gencache.py',
+   'PYMODULE'),
+  ('glob',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\glob.py',
+   'PYMODULE'),
+  ('win32com.client.selecttlb',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32com\\client\\selecttlb.py',
+   'PYMODULE'),
+  ('pywin.dialogs.list',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\Pythonwin\\pywin\\dialogs\\list.py',
+   'PYMODULE'),
+  ('commctrl',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32\\lib\\commctrl.py',
+   'PYMODULE'),
+  ('win32com.client.genpy',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32com\\client\\genpy.py',
+   'PYMODULE'),
+  ('win32com.client.CLSIDToClass',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32com\\client\\CLSIDToClass.py',
+   'PYMODULE'),
+  ('win32com.client.dynamic',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32com\\client\\dynamic.py',
+   'PYMODULE'),
+  ('win32com.client.build',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32com\\client\\build.py',
+   'PYMODULE'),
+  ('pywintypes',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32\\lib\\pywintypes.py',
+   'PYMODULE'),
+  ('sysconfig',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\sysconfig.py',
+   'PYMODULE'),
+  ('_aix_support',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\_aix_support.py',
+   'PYMODULE'),
+  ('_bootsubprocess',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\_bootsubprocess.py',
+   'PYMODULE'),
+  ('site',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site.py',
+   'PYMODULE'),
+  ('rlcompleter',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\rlcompleter.py',
+   'PYMODULE'),
+  ('_sitebuiltins',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\_sitebuiltins.py',
+   'PYMODULE'),
+  ('pydoc',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\pydoc.py',
+   'PYMODULE'),
+  ('webbrowser',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\webbrowser.py',
+   'PYMODULE'),
+  ('shlex',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\shlex.py',
+   'PYMODULE'),
+  ('http.server',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\http\\server.py',
+   'PYMODULE'),
+  ('socketserver',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\socketserver.py',
+   'PYMODULE'),
+  ('mimetypes',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\mimetypes.py',
+   'PYMODULE'),
+  ('html',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\html\\__init__.py',
+   'PYMODULE'),
+  ('html.entities',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\html\\entities.py',
+   'PYMODULE'),
+  ('pydoc_data.topics',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\pydoc_data\\topics.py',
+   'PYMODULE'),
+  ('pydoc_data',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\pydoc_data\\__init__.py',
+   'PYMODULE'),
+  ('tty',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\tty.py',
+   'PYMODULE'),
+  ('platform',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\platform.py',
+   'PYMODULE'),
+  ('win32com.server',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32com\\server\\__init__.py',
+   'PYMODULE'),
+  ('win32com.universal',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32com\\universal.py',
+   'PYMODULE'),
+  ('win32com.client.util',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32com\\client\\util.py',
+   'PYMODULE'),
+  ('pythoncom',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pythoncom.py',
+   'PYMODULE'),
+  ('pkg_resources',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pkg_resources\\__init__.py',
+   'PYMODULE'),
+  ('packaging.version',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\packaging\\version.py',
+   'PYMODULE'),
+  ('packaging.utils',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\packaging\\utils.py',
+   'PYMODULE'),
+  ('packaging.tags',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\packaging\\tags.py',
+   'PYMODULE'),
+  ('packaging.specifiers',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\packaging\\specifiers.py',
+   'PYMODULE'),
+  ('packaging.requirements',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\packaging\\requirements.py',
+   'PYMODULE'),
+  ('packaging.markers',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\packaging\\markers.py',
+   'PYMODULE'),
+  ('packaging._tokenizer',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\packaging\\_tokenizer.py',
+   'PYMODULE'),
+  ('dataclasses',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\dataclasses.py',
+   'PYMODULE'),
+  ('packaging._structures',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\packaging\\_structures.py',
+   'PYMODULE'),
+  ('packaging._parser',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\packaging\\_parser.py',
+   'PYMODULE'),
+  ('packaging._musllinux',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\packaging\\_musllinux.py',
+   'PYMODULE'),
+  ('packaging._manylinux',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\packaging\\_manylinux.py',
+   'PYMODULE'),
+  ('packaging._elffile',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\packaging\\_elffile.py',
+   'PYMODULE'),
+  ('packaging.__about__',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\packaging\\__about__.py',
+   'PYMODULE'),
+  ('packaging',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\packaging\\__init__.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.pyparsing',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pkg_resources\\_vendor\\pyparsing.py',
+   'PYMODULE'),
+  ('uuid',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\uuid.py',
+   'PYMODULE'),
+  ('pdb',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\pdb.py',
+   'PYMODULE'),
+  ('code',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\code.py',
+   'PYMODULE'),
+  ('codeop',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\codeop.py',
+   'PYMODULE'),
+  ('__future__',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\__future__.py',
+   'PYMODULE'),
+  ('bdb',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\bdb.py',
+   'PYMODULE'),
+  ('cmd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\cmd.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging.version',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\version.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging.utils',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\utils.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging.tags',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\tags.py',
+   'PYMODULE'),
+  ('distutils.util',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\util.py',
+   'PYMODULE'),
+  ('distutils.filelist',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\filelist.py',
+   'PYMODULE'),
+  ('distutils.debug',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\debug.py',
+   'PYMODULE'),
+  ('distutils.file_util',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\file_util.py',
+   'PYMODULE'),
+  ('distutils.dir_util',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\dir_util.py',
+   'PYMODULE'),
+  ('distutils.sysconfig',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\sysconfig.py',
+   'PYMODULE'),
+  ('distutils.text_file',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\text_file.py',
+   'PYMODULE'),
+  ('_osx_support',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\_osx_support.py',
+   'PYMODULE'),
+  ('distutils.log',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\log.py',
+   'PYMODULE'),
+  ('distutils',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\__init__.py',
+   'PYMODULE'),
+  ('distutils.archive_util',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\archive_util.py',
+   'PYMODULE'),
+  ('distutils.ccompiler',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\ccompiler.py',
+   'PYMODULE'),
+  ('distutils.fancy_getopt',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\fancy_getopt.py',
+   'PYMODULE'),
+  ('distutils.spawn',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\spawn.py',
+   'PYMODULE'),
+  ('distutils.dep_util',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\dep_util.py',
+   'PYMODULE'),
+  ('distutils.errors',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\errors.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging.specifiers',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\specifiers.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging.requirements',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\requirements.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging.markers',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\markers.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging._typing',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_typing.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging._structures',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_structures.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging._compat',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_compat.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging.__about__',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__about__.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__init__.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.appdirs',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pkg_resources\\_vendor\\appdirs.py',
+   'PYMODULE'),
+  ('win32com.shell.shellcon',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32comext\\shell\\shellcon.py',
+   'PYMODULE'),
+  ('win32com.shell',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32comext\\shell\\__init__.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pkg_resources\\_vendor\\__init__.py',
+   'PYMODULE'),
+  ('pkg_resources.extern',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pkg_resources\\extern\\__init__.py',
+   'PYMODULE'),
+  ('imp',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\imp.py',
+   'PYMODULE'),
+  ('plistlib',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\plistlib.py',
+   'PYMODULE'),
+  ('_py_abc',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\_py_abc.py',
+   'PYMODULE'),
+  ('tracemalloc',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\tracemalloc.py',
+   'PYMODULE'),
+  ('stringprep',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\stringprep.py',
+   'PYMODULE'),
+  ('getpass',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\getpass.py',
+   'PYMODULE'),
+  ('nturl2path',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\nturl2path.py',
+   'PYMODULE'),
+  ('ftplib',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\ftplib.py',
+   'PYMODULE'),
+  ('netrc',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\netrc.py',
+   'PYMODULE'),
+  ('http.cookiejar',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\http\\cookiejar.py',
+   'PYMODULE'),
+  ('button',
+   'C:\\Users\\Omar Elbakri\\Documents\\anProProject\\game\\button.py',
+   'PYMODULE'),
+  ('sprite',
+   'C:\\Users\\Omar Elbakri\\Documents\\anProProject\\game\\sprite.py',
+   'PYMODULE'),
+  ('loading_bar',
+   'C:\\Users\\Omar Elbakri\\Documents\\anProProject\\game\\loading_bar.py',
+   'PYMODULE'),
+  ('game_functions',
+   'C:\\Users\\Omar Elbakri\\Documents\\anProProject\\game\\game_functions.py',
+   'PYMODULE'),
+  ('power_up',
+   'C:\\Users\\Omar Elbakri\\Documents\\anProProject\\game\\power_up.py',
+   'PYMODULE'),
+  ('game_bonuses',
+   'C:\\Users\\Omar Elbakri\\Documents\\anProProject\\game\\game_bonuses.py',
+   'PYMODULE'),
+  ('text',
+   'C:\\Users\\Omar Elbakri\\Documents\\anProProject\\game\\text.py',
+   'PYMODULE'),
+  ('platforms',
+   'C:\\Users\\Omar Elbakri\\Documents\\anProProject\\game\\platforms.py',
+   'PYMODULE'),
+  ('ground',
+   'C:\\Users\\Omar Elbakri\\Documents\\anProProject\\game\\ground.py',
+   'PYMODULE'),
+  ('character',
+   'C:\\Users\\Omar Elbakri\\Documents\\anProProject\\game\\character.py',
+   'PYMODULE'),
+  ('random',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\random.py',
+   'PYMODULE'),
+  ('statistics',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\statistics.py',
+   'PYMODULE'),
+  ('fractions',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\fractions.py',
+   'PYMODULE'),
+  ('copy',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\copy.py',
+   'PYMODULE'),
+  ('database',
+   'C:\\Users\\Omar Elbakri\\Documents\\anProProject\\game\\database.py',
+   'PYMODULE'),
+  ('sqlobject.sqlite',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\sqlite\\__init__.py',
+   'PYMODULE'),
+  ('sqlobject.sqlite.sqliteconnection',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\sqlite\\sqliteconnection.py',
+   'PYMODULE'),
+  ('sqlite3',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\sqlite3\\__init__.py',
+   'PYMODULE'),
+  ('sqlite3.dump',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\sqlite3\\dump.py',
+   'PYMODULE'),
+  ('sqlite3.dbapi2',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\sqlite3\\dbapi2.py',
+   'PYMODULE'),
+  ('sqlobject.dberrors',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\dberrors.py',
+   'PYMODULE'),
+  ('sqlobject.compat',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\compat.py',
+   'PYMODULE'),
+  ('sqlobject.col',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\col.py',
+   'PYMODULE'),
+  ('sqlobject.styles',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\styles.py',
+   'PYMODULE'),
+  ('sqlobject.sqlbuilder',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\sqlbuilder.py',
+   'PYMODULE'),
+  ('sqlobject.sresults',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\sresults.py',
+   'PYMODULE'),
+  ('sqlobject.main',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\main.py',
+   'PYMODULE'),
+  ('sqlobject.util.threadinglocal',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\util\\threadinglocal.py',
+   'PYMODULE'),
+  ('sqlobject.util',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\util\\__init__.py',
+   'PYMODULE'),
+  ('sqlobject.events',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\events.py',
+   'PYMODULE'),
+  ('pydispatch.dispatcher',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pydispatch\\dispatcher.py',
+   'PYMODULE'),
+  ('pydispatch.errors',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pydispatch\\errors.py',
+   'PYMODULE'),
+  ('pydispatch.robustapply',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pydispatch\\robustapply.py',
+   'PYMODULE'),
+  ('pydispatch.saferef',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pydispatch\\saferef.py',
+   'PYMODULE'),
+  ('pydispatch',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pydispatch\\__init__.py',
+   'PYMODULE'),
+  ('sqlobject.declarative',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\declarative.py',
+   'PYMODULE'),
+  ('sqlobject.index',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\index.py',
+   'PYMODULE'),
+  ('sqlobject.joins',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\joins.py',
+   'PYMODULE'),
+  ('sqlobject.boundattributes',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\boundattributes.py',
+   'PYMODULE'),
+  ('sqlobject.converters',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\converters.py',
+   'PYMODULE'),
+  ('sqlobject.constraints',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\constraints.py',
+   'PYMODULE'),
+  ('sqlobject.classregistry',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\classregistry.py',
+   'PYMODULE'),
+  ('formencode.validators',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\formencode\\validators.py',
+   'PYMODULE'),
+  ('formencode.national',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\formencode\\national.py',
+   'PYMODULE'),
+  ('formencode.api',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\formencode\\api.py',
+   'PYMODULE'),
+  ('formencode.variabledecode',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\formencode\\variabledecode.py',
+   'PYMODULE'),
+  ('formencode.declarative',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\formencode\\declarative.py',
+   'PYMODULE'),
+  ('six',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\six.py',
+   'PYMODULE'),
+  ('cgi',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\cgi.py',
+   'PYMODULE'),
+  ('formencode.compound',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\formencode\\compound.py',
+   'PYMODULE'),
+  ('formencode',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\formencode\\__init__.py',
+   'PYMODULE'),
+  ('formencode.foreach',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\formencode\\foreach.py',
+   'PYMODULE'),
+  ('formencode.schema',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\formencode\\schema.py',
+   'PYMODULE'),
+  ('formencode.exc',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\formencode\\exc.py',
+   'PYMODULE'),
+  ('json',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\json\\__init__.py',
+   'PYMODULE'),
+  ('json.encoder',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\json\\encoder.py',
+   'PYMODULE'),
+  ('json.decoder',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\json\\decoder.py',
+   'PYMODULE'),
+  ('json.scanner',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\json\\scanner.py',
+   'PYMODULE'),
+  ('sqlobject.dbconnection',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\dbconnection.py',
+   'PYMODULE'),
+  ('sqlobject.sybase',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\sybase\\__init__.py',
+   'PYMODULE'),
+  ('sqlobject.sybase.sybaseconnection',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\sybase\\sybaseconnection.py',
+   'PYMODULE'),
+  ('sqlobject.postgres',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\postgres\\__init__.py',
+   'PYMODULE'),
+  ('sqlobject.postgres.pgconnection',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\postgres\\pgconnection.py',
+   'PYMODULE'),
+  ('sqlobject.mysql',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\mysql\\__init__.py',
+   'PYMODULE'),
+  ('sqlobject.mysql.mysqlconnection',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\mysql\\mysqlconnection.py',
+   'PYMODULE'),
+  ('sqlobject.mssql',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\mssql\\__init__.py',
+   'PYMODULE'),
+  ('sqlobject.mssql.mssqlconnection',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\mssql\\mssqlconnection.py',
+   'PYMODULE'),
+  ('adodbapi',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\adodbapi\\__init__.py',
+   'PYMODULE'),
+  ('adodbapi.adodbapi',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\adodbapi\\adodbapi.py',
+   'PYMODULE'),
+  ('adodbapi.apibase',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\adodbapi\\apibase.py',
+   'PYMODULE'),
+  ('adodbapi.process_connect_string',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\adodbapi\\process_connect_string.py',
+   'PYMODULE'),
+  ('adodbapi.is64bit',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\adodbapi\\is64bit.py',
+   'PYMODULE'),
+  ('adodbapi.ado_consts',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\adodbapi\\ado_consts.py',
+   'PYMODULE'),
+  ('sqlobject.maxdb',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\maxdb\\__init__.py',
+   'PYMODULE'),
+  ('sqlobject.maxdb.maxdbconnection',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\maxdb\\maxdbconnection.py',
+   'PYMODULE'),
+  ('sqlobject.firebird',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\firebird\\__init__.py',
+   'PYMODULE'),
+  ('sqlobject.firebird.firebirdconnection',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\firebird\\firebirdconnection.py',
+   'PYMODULE'),
+  ('sqlobject.cache',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\cache.py',
+   'PYMODULE'),
+  ('sqlobject',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\__init__.py',
+   'PYMODULE'),
+  ('sqlobject.__version__',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\sqlobject\\__version__.py',
+   'PYMODULE'),
+  ('pygame',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\__init__.py',
+   'PYMODULE'),
+  ('pygame.colordict',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\colordict.py',
+   'PYMODULE'),
+  ('pygame.macosx',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\macosx.py',
+   'PYMODULE'),
+  ('pygame.pkgdata',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\pkgdata.py',
+   'PYMODULE'),
+  ('numpy',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\__init__.py',
+   'PYMODULE'),
+  ('numpy.core._dtype_ctypes',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\_dtype_ctypes.py',
+   'PYMODULE'),
+  ('numpy.version',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\version.py',
+   'PYMODULE'),
+  ('numpy._version',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\_version.py',
+   'PYMODULE'),
+  ('numpy._pytesttester',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\_pytesttester.py',
+   'PYMODULE'),
+  ('numpy.distutils.cpuinfo',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\cpuinfo.py',
+   'PYMODULE'),
+  ('numpy.distutils',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\__init__.py',
+   'PYMODULE'),
+  ('numpy.distutils.fcompiler',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\fcompiler\\__init__.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.config_compiler',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\command\\config_compiler.py',
+   'PYMODULE'),
+  ('numpy.distutils.command',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\command\\__init__.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.egg_info',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\command\\egg_info.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.develop',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\command\\develop.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.install_clib',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\command\\install_clib.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.bdist_rpm',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\command\\bdist_rpm.py',
+   'PYMODULE'),
+  ('distutils.command.bdist_rpm',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\command\\bdist_rpm.py',
+   'PYMODULE'),
+  ('distutils.command',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\command\\__init__.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.install',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\command\\install.py',
+   'PYMODULE'),
+  ('distutils.command.install',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\command\\install.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.install_headers',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\command\\install_headers.py',
+   'PYMODULE'),
+  ('distutils.command.install_headers',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\command\\install_headers.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.install_data',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\command\\install_data.py',
+   'PYMODULE'),
+  ('distutils.command.install_data',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\command\\install_data.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.sdist',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\command\\sdist.py',
+   'PYMODULE'),
+  ('distutils.command.sdist',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\command\\sdist.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.build_scripts',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\command\\build_scripts.py',
+   'PYMODULE'),
+  ('distutils.command.build_scripts',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\command\\build_scripts.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.build_src',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\command\\build_src.py',
+   'PYMODULE'),
+  ('numpy.distutils.conv_template',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\conv_template.py',
+   'PYMODULE'),
+  ('numpy.distutils.from_template',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\from_template.py',
+   'PYMODULE'),
+  ('distutils.command.build_ext',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\command\\build_ext.py',
+   'PYMODULE'),
+  ('distutils._msvccompiler',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\_msvccompiler.py',
+   'PYMODULE'),
+  ('concurrent.futures',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\concurrent\\futures\\__init__.py',
+   'PYMODULE'),
+  ('concurrent.futures.thread',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\concurrent\\futures\\thread.py',
+   'PYMODULE'),
+  ('concurrent.futures.process',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\concurrent\\futures\\process.py',
+   'PYMODULE'),
+  ('concurrent.futures._base',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\concurrent\\futures\\_base.py',
+   'PYMODULE'),
+  ('concurrent',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\concurrent\\__init__.py',
+   'PYMODULE'),
+  ('distutils.extension',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\extension.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.build_clib',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\command\\build_clib.py',
+   'PYMODULE'),
+  ('numpy.distutils.ccompiler_opt',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\ccompiler_opt.py',
+   'PYMODULE'),
+  ('distutils.command.build_clib',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\command\\build_clib.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.build_ext',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\command\\build_ext.py',
+   'PYMODULE'),
+  ('numpy.distutils.system_info',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\system_info.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.build_py',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\command\\build_py.py',
+   'PYMODULE'),
+  ('distutils.command.build_py',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\command\\build_py.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.build',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\command\\build.py',
+   'PYMODULE'),
+  ('distutils.command.build',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\command\\build.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.config',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\command\\config.py',
+   'PYMODULE'),
+  ('distutils.msvc9compiler',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\msvc9compiler.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.autodist',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\command\\autodist.py',
+   'PYMODULE'),
+  ('numpy.distutils.mingw32ccompiler',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\mingw32ccompiler.py',
+   'PYMODULE'),
+  ('distutils.msvccompiler',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\msvccompiler.py',
+   'PYMODULE'),
+  ('distutils.unixccompiler',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\unixccompiler.py',
+   'PYMODULE'),
+  ('distutils.cygwinccompiler',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\cygwinccompiler.py',
+   'PYMODULE'),
+  ('distutils.version',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\version.py',
+   'PYMODULE'),
+  ('distutils.command.config',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\command\\config.py',
+   'PYMODULE'),
+  ('distutils.core',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\core.py',
+   'PYMODULE'),
+  ('distutils.config',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\config.py',
+   'PYMODULE'),
+  ('distutils.cmd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\cmd.py',
+   'PYMODULE'),
+  ('distutils.dist',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\dist.py',
+   'PYMODULE'),
+  ('distutils.versionpredicate',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\distutils\\versionpredicate.py',
+   'PYMODULE'),
+  ('numpy.distutils.core',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\core.py',
+   'PYMODULE'),
+  ('numpy.distutils.numpy_distribution',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\numpy_distribution.py',
+   'PYMODULE'),
+  ('numpy.distutils.extension',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\extension.py',
+   'PYMODULE'),
+  ('numpy.distutils.fcompiler.environment',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\fcompiler\\environment.py',
+   'PYMODULE'),
+  ('numpy.distutils.exec_command',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\exec_command.py',
+   'PYMODULE'),
+  ('numpy.distutils.misc_util',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\misc_util.py',
+   'PYMODULE'),
+  ('curses',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\curses\\__init__.py',
+   'PYMODULE'),
+  ('curses.has_key',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\curses\\has_key.py',
+   'PYMODULE'),
+  ('numpy.distutils.__config__',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\__config__.py',
+   'PYMODULE'),
+  ('numpy.distutils.npy_pkg_config',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\npy_pkg_config.py',
+   'PYMODULE'),
+  ('numpy.distutils.unixccompiler',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\unixccompiler.py',
+   'PYMODULE'),
+  ('numpy.distutils.ccompiler',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\ccompiler.py',
+   'PYMODULE'),
+  ('numpy.distutils._shell_utils',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\_shell_utils.py',
+   'PYMODULE'),
+  ('pipes',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\pipes.py',
+   'PYMODULE'),
+  ('numpy.distutils.lib2def',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\lib2def.py',
+   'PYMODULE'),
+  ('numpy.distutils.log',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\distutils\\log.py',
+   'PYMODULE'),
+  ('numpy.testing',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\testing\\__init__.py',
+   'PYMODULE'),
+  ('numpy.testing._private.nosetester',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\testing\\_private\\nosetester.py',
+   'PYMODULE'),
+  ('doctest',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\doctest.py',
+   'PYMODULE'),
+  ('difflib',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\difflib.py',
+   'PYMODULE'),
+  ('numpy.testing._private.noseclasses',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\testing\\_private\\noseclasses.py',
+   'PYMODULE'),
+  ('numpy.testing._private.decorators',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\testing\\_private\\decorators.py',
+   'PYMODULE'),
+  ('numpy.testing._private.parameterized',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\testing\\_private\\parameterized.py',
+   'PYMODULE'),
+  ('numpy.testing._private.extbuild',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\testing\\_private\\extbuild.py',
+   'PYMODULE'),
+  ('numpy.testing._private',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\testing\\_private\\__init__.py',
+   'PYMODULE'),
+  ('numpy.testing._private.utils',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\testing\\_private\\utils.py',
+   'PYMODULE'),
+  ('numpy.core.fromnumeric',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\fromnumeric.py',
+   'PYMODULE'),
+  ('numpy.core._methods',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\_methods.py',
+   'PYMODULE'),
+  ('numpy.lib.stride_tricks',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\lib\\stride_tricks.py',
+   'PYMODULE'),
+  ('numpy.core.numeric',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\numeric.py',
+   'PYMODULE'),
+  ('numpy.core._asarray',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\_asarray.py',
+   'PYMODULE'),
+  ('numpy.core.arrayprint',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\arrayprint.py',
+   'PYMODULE'),
+  ('numpy.core._ufunc_config',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\_ufunc_config.py',
+   'PYMODULE'),
+  ('numpy.core.shape_base',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\shape_base.py',
+   'PYMODULE'),
+  ('numpy.core._exceptions',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\_exceptions.py',
+   'PYMODULE'),
+  ('numpy.core.umath',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\umath.py',
+   'PYMODULE'),
+  ('numpy.core.overrides',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\overrides.py',
+   'PYMODULE'),
+  ('numpy.compat._inspect',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\compat\\_inspect.py',
+   'PYMODULE'),
+  ('numpy.core.multiarray',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\multiarray.py',
+   'PYMODULE'),
+  ('numpy.core.numerictypes',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\numerictypes.py',
+   'PYMODULE'),
+  ('numpy.core._dtype',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\_dtype.py',
+   'PYMODULE'),
+  ('numpy.core._type_aliases',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\_type_aliases.py',
+   'PYMODULE'),
+  ('numpy.core._string_helpers',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\_string_helpers.py',
+   'PYMODULE'),
+  ('unittest.case',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\unittest\\case.py',
+   'PYMODULE'),
+  ('unittest._log',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\unittest\\_log.py',
+   'PYMODULE'),
+  ('unittest.util',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\unittest\\util.py',
+   'PYMODULE'),
+  ('unittest.result',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\unittest\\result.py',
+   'PYMODULE'),
+  ('unittest',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\unittest\\__init__.py',
+   'PYMODULE'),
+  ('unittest.async_case',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\unittest\\async_case.py',
+   'PYMODULE'),
+  ('asyncio',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\__init__.py',
+   'PYMODULE'),
+  ('asyncio.unix_events',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\unix_events.py',
+   'PYMODULE'),
+  ('asyncio.log',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\log.py',
+   'PYMODULE'),
+  ('asyncio.windows_events',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\windows_events.py',
+   'PYMODULE'),
+  ('asyncio.windows_utils',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\windows_utils.py',
+   'PYMODULE'),
+  ('asyncio.selector_events',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\selector_events.py',
+   'PYMODULE'),
+  ('asyncio.proactor_events',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\proactor_events.py',
+   'PYMODULE'),
+  ('asyncio.base_subprocess',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\base_subprocess.py',
+   'PYMODULE'),
+  ('asyncio.threads',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\threads.py',
+   'PYMODULE'),
+  ('asyncio.subprocess',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\subprocess.py',
+   'PYMODULE'),
+  ('asyncio.streams',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\streams.py',
+   'PYMODULE'),
+  ('asyncio.queues',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\queues.py',
+   'PYMODULE'),
+  ('asyncio.runners',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\runners.py',
+   'PYMODULE'),
+  ('asyncio.base_events',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\base_events.py',
+   'PYMODULE'),
+  ('asyncio.trsock',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\trsock.py',
+   'PYMODULE'),
+  ('asyncio.staggered',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\staggered.py',
+   'PYMODULE'),
+  ('asyncio.tasks',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\tasks.py',
+   'PYMODULE'),
+  ('asyncio.base_tasks',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\base_tasks.py',
+   'PYMODULE'),
+  ('asyncio.locks',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\locks.py',
+   'PYMODULE'),
+  ('asyncio.sslproto',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\sslproto.py',
+   'PYMODULE'),
+  ('asyncio.transports',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\transports.py',
+   'PYMODULE'),
+  ('asyncio.protocols',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\protocols.py',
+   'PYMODULE'),
+  ('asyncio.futures',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\futures.py',
+   'PYMODULE'),
+  ('asyncio.exceptions',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\exceptions.py',
+   'PYMODULE'),
+  ('asyncio.events',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\events.py',
+   'PYMODULE'),
+  ('asyncio.coroutines',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\coroutines.py',
+   'PYMODULE'),
+  ('asyncio.base_futures',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\base_futures.py',
+   'PYMODULE'),
+  ('asyncio.format_helpers',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\format_helpers.py',
+   'PYMODULE'),
+  ('asyncio.constants',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\asyncio\\constants.py',
+   'PYMODULE'),
+  ('unittest.signals',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\unittest\\signals.py',
+   'PYMODULE'),
+  ('unittest.main',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\unittest\\main.py',
+   'PYMODULE'),
+  ('unittest.runner',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\unittest\\runner.py',
+   'PYMODULE'),
+  ('unittest.loader',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\unittest\\loader.py',
+   'PYMODULE'),
+  ('unittest.suite',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\unittest\\suite.py',
+   'PYMODULE'),
+  ('numpy.matrixlib',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\matrixlib\\__init__.py',
+   'PYMODULE'),
+  ('numpy.matrixlib.defmatrix',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\matrixlib\\defmatrix.py',
+   'PYMODULE'),
+  ('numpy.ma',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\ma\\__init__.py',
+   'PYMODULE'),
+  ('numpy.ma.extras',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\ma\\extras.py',
+   'PYMODULE'),
+  ('numpy.lib.index_tricks',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\lib\\index_tricks.py',
+   'PYMODULE'),
+  ('numpy.lib.function_base',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\lib\\function_base.py',
+   'PYMODULE'),
+  ('numpy.lib.histograms',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\lib\\histograms.py',
+   'PYMODULE'),
+  ('numpy.lib.twodim_base',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\lib\\twodim_base.py',
+   'PYMODULE'),
+  ('numpy.core.function_base',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\function_base.py',
+   'PYMODULE'),
+  ('numpy.ma.core',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\ma\\core.py',
+   'PYMODULE'),
+  ('numpy.ctypeslib',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\ctypeslib.py',
+   'PYMODULE'),
+  ('numpy.core._internal',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\_internal.py',
+   'PYMODULE'),
+  ('numpy.random',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\random\\__init__.py',
+   'PYMODULE'),
+  ('numpy.random._pickle',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\random\\_pickle.py',
+   'PYMODULE'),
+  ('numpy.polynomial',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\polynomial\\__init__.py',
+   'PYMODULE'),
+  ('numpy.polynomial._polybase',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\polynomial\\_polybase.py',
+   'PYMODULE'),
+  ('numpy.polynomial.laguerre',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\polynomial\\laguerre.py',
+   'PYMODULE'),
+  ('numpy.polynomial.hermite_e',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\polynomial\\hermite_e.py',
+   'PYMODULE'),
+  ('numpy.polynomial.hermite',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\polynomial\\hermite.py',
+   'PYMODULE'),
+  ('numpy.polynomial.legendre',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\polynomial\\legendre.py',
+   'PYMODULE'),
+  ('numpy.polynomial.chebyshev',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\polynomial\\chebyshev.py',
+   'PYMODULE'),
+  ('numpy.polynomial.polynomial',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\polynomial\\polynomial.py',
+   'PYMODULE'),
+  ('numpy.polynomial.polyutils',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\polynomial\\polyutils.py',
+   'PYMODULE'),
+  ('numpy.fft',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\fft\\__init__.py',
+   'PYMODULE'),
+  ('numpy.fft.helper',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\fft\\helper.py',
+   'PYMODULE'),
+  ('numpy.fft._pocketfft',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\fft\\_pocketfft.py',
+   'PYMODULE'),
+  ('numpy.linalg',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\linalg\\__init__.py',
+   'PYMODULE'),
+  ('numpy.linalg.linalg',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\linalg\\linalg.py',
+   'PYMODULE'),
+  ('numpy.lib',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\lib\\__init__.py',
+   'PYMODULE'),
+  ('numpy.lib._version',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\lib\\_version.py',
+   'PYMODULE'),
+  ('numpy.lib.arraypad',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\lib\\arraypad.py',
+   'PYMODULE'),
+  ('numpy.lib.arrayterator',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\lib\\arrayterator.py',
+   'PYMODULE'),
+  ('numpy.lib.npyio',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\lib\\npyio.py',
+   'PYMODULE'),
+  ('numpy.ma.mrecords',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\ma\\mrecords.py',
+   'PYMODULE'),
+  ('numpy.core.records',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\records.py',
+   'PYMODULE'),
+  ('numpy.lib._iotools',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\lib\\_iotools.py',
+   'PYMODULE'),
+  ('numpy.lib._datasource',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\lib\\_datasource.py',
+   'PYMODULE'),
+  ('numpy.lib.format',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\lib\\format.py',
+   'PYMODULE'),
+  ('numpy.lib.arraysetops',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\lib\\arraysetops.py',
+   'PYMODULE'),
+  ('numpy.lib.utils',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\lib\\utils.py',
+   'PYMODULE'),
+  ('numpy.lib.polynomial',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\lib\\polynomial.py',
+   'PYMODULE'),
+  ('numpy.lib.ufunclike',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\lib\\ufunclike.py',
+   'PYMODULE'),
+  ('numpy.lib.shape_base',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\lib\\shape_base.py',
+   'PYMODULE'),
+  ('numpy.lib.nanfunctions',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\lib\\nanfunctions.py',
+   'PYMODULE'),
+  ('numpy.lib.type_check',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\lib\\type_check.py',
+   'PYMODULE'),
+  ('numpy.core.getlimits',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\getlimits.py',
+   'PYMODULE'),
+  ('numpy.core._machar',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\_machar.py',
+   'PYMODULE'),
+  ('numpy.lib.scimath',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\lib\\scimath.py',
+   'PYMODULE'),
+  ('numpy.lib.mixins',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\lib\\mixins.py',
+   'PYMODULE'),
+  ('numpy.compat',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\compat\\__init__.py',
+   'PYMODULE'),
+  ('numpy.compat.py3k',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\compat\\py3k.py',
+   'PYMODULE'),
+  ('numpy.core',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\__init__.py',
+   'PYMODULE'),
+  ('numpy.core._add_newdocs_scalars',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\_add_newdocs_scalars.py',
+   'PYMODULE'),
+  ('numpy.core._add_newdocs',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\_add_newdocs.py',
+   'PYMODULE'),
+  ('numpy.core.einsumfunc',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\einsumfunc.py',
+   'PYMODULE'),
+  ('numpy.core.memmap',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\memmap.py',
+   'PYMODULE'),
+  ('numpy.core.defchararray',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\defchararray.py',
+   'PYMODULE'),
+  ('numpy._distributor_init',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\_distributor_init.py',
+   'PYMODULE'),
+  ('numpy.__config__',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\__config__.py',
+   'PYMODULE'),
+  ('numpy.array_api',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\array_api\\__init__.py',
+   'PYMODULE'),
+  ('numpy.array_api._utility_functions',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\array_api\\_utility_functions.py',
+   'PYMODULE'),
+  ('numpy.array_api._array_object',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\array_api\\_array_object.py',
+   'PYMODULE'),
+  ('numpy.typing',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\typing\\__init__.py',
+   'PYMODULE'),
+  ('numpy.typing._add_docstring',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\typing\\_add_docstring.py',
+   'PYMODULE'),
+  ('numpy.typing._generic_alias',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\typing\\_generic_alias.py',
+   'PYMODULE'),
+  ('numpy.typing._array_like',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\typing\\_array_like.py',
+   'PYMODULE'),
+  ('numpy.typing._dtype_like',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\typing\\_dtype_like.py',
+   'PYMODULE'),
+  ('numpy.typing._shape',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\typing\\_shape.py',
+   'PYMODULE'),
+  ('numpy.typing._scalars',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\typing\\_scalars.py',
+   'PYMODULE'),
+  ('numpy.typing._char_codes',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\typing\\_char_codes.py',
+   'PYMODULE'),
+  ('numpy.typing._nbit',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\typing\\_nbit.py',
+   'PYMODULE'),
+  ('numpy.typing._nested_sequence',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\typing\\_nested_sequence.py',
+   'PYMODULE'),
+  ('numpy.array_api._typing',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\array_api\\_typing.py',
+   'PYMODULE'),
+  ('numpy.array_api._statistical_functions',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\array_api\\_statistical_functions.py',
+   'PYMODULE'),
+  ('numpy.array_api._sorting_functions',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\array_api\\_sorting_functions.py',
+   'PYMODULE'),
+  ('numpy.array_api._set_functions',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\array_api\\_set_functions.py',
+   'PYMODULE'),
+  ('numpy.array_api._searching_functions',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\array_api\\_searching_functions.py',
+   'PYMODULE'),
+  ('numpy.array_api._manipulation_functions',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\array_api\\_manipulation_functions.py',
+   'PYMODULE'),
+  ('numpy.array_api.linalg',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\array_api\\linalg.py',
+   'PYMODULE'),
+  ('numpy.array_api._elementwise_functions',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\array_api\\_elementwise_functions.py',
+   'PYMODULE'),
+  ('numpy.array_api._dtypes',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\array_api\\_dtypes.py',
+   'PYMODULE'),
+  ('numpy.array_api._data_type_functions',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\array_api\\_data_type_functions.py',
+   'PYMODULE'),
+  ('numpy.array_api._creation_functions',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\array_api\\_creation_functions.py',
+   'PYMODULE'),
+  ('numpy.array_api._constants',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\array_api\\_constants.py',
+   'PYMODULE'),
+  ('numpy._globals',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\_globals.py',
+   'PYMODULE'),
+  ('pygame.fastevent',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\fastevent.py',
+   'PYMODULE'),
+  ('pygame.sndarray',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\sndarray.py',
+   'PYMODULE'),
+  ('pygame.surfarray',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\surfarray.py',
+   'PYMODULE'),
+  ('pygame.sysfont',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\sysfont.py',
+   'PYMODULE'),
+  ('pygame.ftfont',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\ftfont.py',
+   'PYMODULE'),
+  ('pygame.threads',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\threads\\__init__.py',
+   'PYMODULE'),
+  ('pygame.sprite',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\sprite.py',
+   'PYMODULE'),
+  ('pygame.cursors',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\cursors.py',
+   'PYMODULE'),
+  ('pygame.version',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\version.py',
+   'PYMODULE')],
+ [('api-ms-win-crt-locale-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-crt-locale-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-runtime-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-crt-runtime-l1-1-0.dll',
+   'BINARY'),
+  ('VCRUNTIME140.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\VCRUNTIME140.dll',
+   'BINARY'),
+  ('api-ms-win-crt-heap-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-crt-heap-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-stdio-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-crt-stdio-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-math-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-crt-math-l1-1-0.dll',
+   'BINARY'),
+  ('python39.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\python39.dll',
+   'BINARY'),
+  ('ucrtbase.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\ucrtbase.dll',
+   'BINARY'),
+  ('api-ms-win-crt-string-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-crt-string-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-convert-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-crt-convert-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-process-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-crt-process-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-time-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-crt-time-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-environment-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-crt-environment-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-filesystem-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-crt-filesystem-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-conio-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-crt-conio-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-processthreads-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-core-processthreads-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-rtlsupport-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-core-rtlsupport-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-file-l2-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-core-file-l2-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-file-l1-2-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-core-file-l1-2-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-libraryloader-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-core-libraryloader-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-file-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-core-file-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-localization-l1-2-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-core-localization-l1-2-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-namedpipe-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-core-namedpipe-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-interlocked-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-core-interlocked-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-synch-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-core-synch-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-debug-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-core-debug-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-console-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-core-console-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-heap-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-core-heap-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-sysinfo-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-core-sysinfo-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-string-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-core-string-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-synch-l1-2-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-core-synch-l1-2-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-errorhandling-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-core-errorhandling-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-timezone-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-core-timezone-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-handle-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-core-handle-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-processthreads-l1-1-1.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-core-processthreads-l1-1-1.dll',
+   'BINARY'),
+  ('api-ms-win-core-memory-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-core-memory-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-datetime-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-core-datetime-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-processenvironment-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-core-processenvironment-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-profile-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-core-profile-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-util-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-core-util-l1-1-0.dll',
+   'BINARY'),
+  ('SDL2_ttf.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\SDL2_ttf.dll',
+   'BINARY'),
+  ('zlib1.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\zlib1.dll',
+   'BINARY'),
+  ('libpng16-16.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\libpng16-16.dll',
+   'BINARY'),
+  ('libmpg123-0.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\libmpg123-0.dll',
+   'BINARY'),
+  ('pywin32_system32\\pythoncom39.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pywin32_system32\\pythoncom39.dll',
+   'BINARY'),
+  ('libtiff-5.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\libtiff-5.dll',
+   'BINARY'),
+  ('libvorbis-0.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\libvorbis-0.dll',
+   'BINARY'),
+  ('libopenblas.EL2C6PLE4ZYW3ECEVIV3OXXGRN2NRFM2.gfortran-win_amd64.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\.libs\\libopenblas.EL2C6PLE4ZYW3ECEVIV3OXXGRN2NRFM2.gfortran-win_amd64.dll',
+   'BINARY'),
+  ('libopus-0.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\libopus-0.dll',
+   'BINARY'),
+  ('libvorbisfile-3.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\libvorbisfile-3.dll',
+   'BINARY'),
+  ('libfreetype-6.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\libfreetype-6.dll',
+   'BINARY'),
+  ('libogg-0.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\libogg-0.dll',
+   'BINARY'),
+  ('SDL2_mixer.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\SDL2_mixer.dll',
+   'BINARY'),
+  ('libjpeg-9.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\libjpeg-9.dll',
+   'BINARY'),
+  ('libwebp-7.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\libwebp-7.dll',
+   'BINARY'),
+  ('libmodplug-1.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\libmodplug-1.dll',
+   'BINARY'),
+  ('SDL2.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\SDL2.dll',
+   'BINARY'),
+  ('libopusfile-0.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\libopusfile-0.dll',
+   'BINARY'),
+  ('portmidi.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\portmidi.dll',
+   'BINARY'),
+  ('pywin32_system32\\pywintypes39.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pywin32_system32\\pywintypes39.dll',
+   'BINARY'),
+  ('libFLAC-8.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\libFLAC-8.dll',
+   'BINARY'),
+  ('SDL2_image.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\SDL2_image.dll',
+   'BINARY'),
+  ('_multiprocessing.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\_multiprocessing.pyd',
+   'EXTENSION'),
+  ('pyexpat.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\pyexpat.pyd',
+   'EXTENSION'),
+  ('_ssl.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\_ssl.pyd',
+   'EXTENSION'),
+  ('_decimal.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\_decimal.pyd',
+   'EXTENSION'),
+  ('_hashlib.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\_hashlib.pyd',
+   'EXTENSION'),
+  ('_socket.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\_socket.pyd',
+   'EXTENSION'),
+  ('select.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\select.pyd',
+   'EXTENSION'),
+  ('_lzma.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\_lzma.pyd',
+   'EXTENSION'),
+  ('_bz2.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\_bz2.pyd',
+   'EXTENSION'),
+  ('_ctypes.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\_ctypes.pyd',
+   'EXTENSION'),
+  ('_queue.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\_queue.pyd',
+   'EXTENSION'),
+  ('win32trace.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32\\win32trace.pyd',
+   'EXTENSION'),
+  ('win32ui.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\Pythonwin\\win32ui.pyd',
+   'EXTENSION'),
+  ('_win32sysloader.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32\\_win32sysloader.pyd',
+   'EXTENSION'),
+  ('win32api.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32\\win32api.pyd',
+   'EXTENSION'),
+  ('_uuid.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\_uuid.pyd',
+   'EXTENSION'),
+  ('win32com\\shell\\shell.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32comext\\shell\\shell.pyd',
+   'EXTENSION'),
+  ('unicodedata.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\unicodedata.pyd',
+   'EXTENSION'),
+  ('_sqlite3.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\_sqlite3.pyd',
+   'EXTENSION'),
+  ('numpy\\core\\_multiarray_umath.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\_multiarray_umath.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('numpy\\core\\_multiarray_tests.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\core\\_multiarray_tests.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('win32pdh.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\win32\\win32pdh.pyd',
+   'EXTENSION'),
+  ('numpy\\linalg\\lapack_lite.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\linalg\\lapack_lite.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('_overlapped.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\_overlapped.pyd',
+   'EXTENSION'),
+  ('_asyncio.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\_asyncio.pyd',
+   'EXTENSION'),
+  ('numpy\\random\\mtrand.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\random\\mtrand.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('numpy\\random\\_sfc64.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\random\\_sfc64.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('numpy\\random\\_philox.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\random\\_philox.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('numpy\\random\\_pcg64.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\random\\_pcg64.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('numpy\\random\\_mt19937.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\random\\_mt19937.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('numpy\\random\\bit_generator.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\random\\bit_generator.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('numpy\\random\\_generator.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\random\\_generator.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('numpy\\random\\_bounded_integers.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\random\\_bounded_integers.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('numpy\\random\\_common.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\random\\_common.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('numpy\\fft\\_pocketfft_internal.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\fft\\_pocketfft_internal.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('numpy\\linalg\\_umath_linalg.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\numpy\\linalg\\_umath_linalg.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\imageext.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\imageext.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\scrap.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\scrap.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\mixer.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\mixer.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\mixer_music.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\mixer_music.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\font.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\font.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\_freetype.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\_freetype.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\transform.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\transform.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\time.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\time.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\pixelarray.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\pixelarray.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\mask.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\mask.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\surface.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\surface.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\pixelcopy.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\pixelcopy.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\mouse.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\mouse.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\key.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\key.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\joystick.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\joystick.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\image.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\image.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\event.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\event.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\draw.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\draw.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\display.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\display.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\math.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\math.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\bufferproxy.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\bufferproxy.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\color.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\color.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\surflock.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\surflock.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\rwobject.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\rwobject.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\rect.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\rect.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\constants.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\constants.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\base.cp39-win_amd64.pyd',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\base.cp39-win_amd64.pyd',
+   'EXTENSION'),
+  ('pygame\\SDL2.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\SDL2.dll',
+   'BINARY'),
+  ('pygame\\libfreetype-6.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\libfreetype-6.dll',
+   'BINARY'),
+  ('api-ms-win-crt-utility-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-crt-utility-l1-1-0.dll',
+   'BINARY'),
+  ('pygame\\libjpeg-9.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\libjpeg-9.dll',
+   'BINARY'),
+  ('pygame\\libogg-0.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\libogg-0.dll',
+   'BINARY'),
+  ('libcrypto-1_1.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\libcrypto-1_1.dll',
+   'BINARY'),
+  ('libssl-1_1.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\libssl-1_1.dll',
+   'BINARY'),
+  ('libffi-7.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\libffi-7.dll',
+   'BINARY'),
+  ('mfc140u.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\Pythonwin\\mfc140u.dll',
+   'BINARY'),
+  ('sqlite3.dll',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\DLLs\\sqlite3.dll',
+   'BINARY'),
+  ('api-ms-win-crt-multibyte-l1-1-0.dll',
+   'C:\\Program Files\\Eclipse '
+   'Adoptium\\jdk-17.0.4.101-hotspot\\bin\\api-ms-win-crt-multibyte-l1-1-0.dll',
+   'BINARY')],
+ [],
+ [],
+ [('base_library.zip',
+   'C:\\Users\\Omar '
+   'Elbakri\\Documents\\anProProject\\game\\build\\main\\base_library.zip',
+   'DATA'),
+  ('pygame\\freesansbold.ttf',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\freesansbold.ttf',
+   'DATA'),
+  ('pygame\\pygame_icon.bmp',
+   'C:\\Users\\Omar '
+   'Elbakri\\AppData\\Local\\Programs\\Python\\Python39\\lib\\site-packages\\pygame\\pygame_icon.bmp',
+   'DATA')],
+ [])
