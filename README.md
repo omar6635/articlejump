@@ -9,4 +9,4 @@ Jump - Up Arrow<br>
 Move Left - Left Arrow<br>
 Move Right - Right Arrow
 ### Create and run Executable
-To run the game, simply download the project using the "download as a ZIP" option. After extracting it, you can run the game by navigating to build>main>executable with assets>main.exe.
+To run the game, you will first need to download the project using the "download ZIP" option. After extracting it, you can run the game by navigating to build>main>executable with assets>main.exe.
